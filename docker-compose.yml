@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    #ports:
+    #- 27017:27017
+  
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432:5432
+    # volumes:
+    #   - ./data/users.sql:/docker-entrypoint-initdb.d/users.sql
+
+  frontend:
+    # env_file:
+    #   - ./frontend/.env.prod
+    container_name: frontend
+    build: ./frontend
+    ports:
+      - 80:80
+
+  backend:
+    # env_file:
+    #   - ./backend/.env.prod
+    container_name: backend
+    build: ./backend
+    depends_on:
+      - mongodb
+      - postgres
+    ports:
+      - 4000:4000

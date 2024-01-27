@@ -1,0 +1,50 @@
+name: Continuous Integration - Frontend
+
+on:
+  pull_request:
+    branches:
+      - main # Run the workflow only on pull requests to the main branch
+    paths:
+      - 'frontend/**' # Workflow triggered on changes to code
+      - '.github/workflows/frontend_ci.yml'
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Build Docker Image
+      run: |
+        docker build -t frontend:latest .
+    
+    - name: Run Docker image
+      run: docker run -d --name frontend -p 80:80 frontend:latest
+
+    - name: Check running container
+      run: docker ps
+
+  test-image:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    needs: build
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Run Tests
+      run: |
+        # Add commands to run your tests inside the Docker container.
+        # Example: docker run your-image-name:latest npm test
+
