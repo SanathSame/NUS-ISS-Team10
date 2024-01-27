@@ -6,7 +6,7 @@ import * as TestSetup from '../test.setup'
 describe('PATCH /products/:id', () => {
   test('returns status code 200 if it accepts a given entity with appropriate id and details', async () => {
     const res: any = await request(TestSetup.app)
-      .patch(`/product/${TestSetup.defaultEntityId}`)
+      .patch(`/products/${TestSetup.defaultEntityId}`)
       .send({ quantity: 46 })
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
