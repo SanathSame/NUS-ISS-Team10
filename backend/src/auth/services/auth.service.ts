@@ -1,5 +1,5 @@
 // import db
-import type Database from '../database/interface/database.interface'
+import type Database from '../../database/interface/database.interface'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 

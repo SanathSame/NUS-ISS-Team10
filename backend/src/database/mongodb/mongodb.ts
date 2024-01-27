@@ -40,6 +40,10 @@ class MongoDb implements Database {
     return this.ModelObject.findOne({ _id }).exec()
   }
 
+  async getOneEntityByUsername (username: string): Promise<any> {
+    return this.ModelObject.findOne({ username }).exec()
+  }
+
   async getAllEntities (params: Partial<any>): Promise<any> {
     return this.ModelObject.find({ params }).exec()
   }
