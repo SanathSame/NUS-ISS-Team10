@@ -48,3 +48,13 @@ jobs:
         # Add commands to run your tests inside the Docker container.
         # Example: docker run your-image-name:latest npm test
 
+  code-quality:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./backend
+    
+    steps:
+    - name: Lint Codebase
+        run: npm run lint
