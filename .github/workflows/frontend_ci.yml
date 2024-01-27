@@ -56,5 +56,8 @@ jobs:
         working-directory: ./backend
     
     steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
     - name: Lint Codebase
       run: npm run lint
