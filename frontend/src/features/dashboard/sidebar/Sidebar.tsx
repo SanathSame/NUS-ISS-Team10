@@ -57,9 +57,7 @@ export function Sidebar (): JSX.Element {
                             </a>
                         </li>
                     </ul>
-
                     <hr className="my-3" />
-                    
                     <ul className="nav flex-column mb-auto">
                         <li className="nav-item">
                             <a className="nav-link d-flex align-items-center gap-2" href="/settings">

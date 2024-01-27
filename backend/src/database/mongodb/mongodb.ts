@@ -8,8 +8,6 @@ class MongoDb implements Database {
   ModelObject: any
   connectionString: string
 
-
-
   constructor (connectionString: string, entitySchema: any, entityModelName: any) {
     this.schema = new mongoose.Schema(entitySchema)
     this.ModelObject = mongoose.model(entityModelName, this.schema)

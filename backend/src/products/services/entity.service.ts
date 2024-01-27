@@ -1,5 +1,5 @@
 // import db
-import type Database from "../../database/interface/database.interface"
+import type Database from '../../database/interface/database.interface'
 
 class EntityService {
   async createNewEntity (database: Database, params: any): Promise<any> {
