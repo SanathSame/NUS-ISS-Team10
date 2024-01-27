@@ -1,7 +1,6 @@
 import { type ProductFilter } from '../../models/product/ProductFilter'
 import { RequestTypes } from '../utils/RequestTypes'
 
-
 const productEndpoint = '/products/'
 
 const createNewProduct = async (entityDetails: any): Promise<any> => {
@@ -27,7 +26,7 @@ const updateProductById = async (id: any, updatedDetails: any): Promise<any> => 
 }
 
 const deleteProductById = async (id: any): Promise<any> => {
-  return await RequestTypes.deleteRequest(`${productEndpoint +id}`)
+  return await RequestTypes.deleteRequest(`${productEndpoint + id}`)
 }
 
 export const ProductApi = {
