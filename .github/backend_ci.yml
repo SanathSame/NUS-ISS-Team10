@@ -9,7 +9,7 @@ on:
       - '.github/workflows/backend_ci.yml'
 
 jobs:
-  build:
+  build-image:
     runs-on: ubuntu-latest
 
     defaults:
@@ -22,13 +22,13 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t your-image-name:latest .
+        docker build -t backend:latest .
     
-    - name: Check Docker Image Health
-      run: |
-        docker run --name temp-container your-image-name:latest
-        docker inspect --format='{{.State.Health.Status}}' temp-container
-        docker rm -f temp-container
+    - name: Run Docker image
+      run: docker run -d --name frontend -p 4000:4000 backend:latest
+
+    - name: Check running container
+      run: docker ps
 
   test:
     runs-on: ubuntu-latest
