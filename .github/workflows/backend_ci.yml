@@ -27,23 +27,47 @@ jobs:
     - name: Run Docker image
       run: docker run -d --name frontend -p 4000:4000 backend:latest
 
-    - name: Check running container
+    - name: Check running docker container
       run: docker ps
 
-  test:
+    # - name: Test health of docker container
+    #   run: curl -f http://localhost:4000/products/health || exit 1
+
+  test-image:
     runs-on: ubuntu-latest
 
     defaults:
       run:
         working-directory: ./backend
 
-    needs: build
+    needs: build-image
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
+    # - name: Set up system using docker-compose
+    #   run: |
+    #     docker-compose up -d --build
+    
     - name: Run Tests
       run: |
         # Add commands to run your tests inside the Docker container.
         # Example: docker run your-image-name:latest npm test
+
+  code-quality:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./backend
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Lint Codebase
+      run: npm run lint

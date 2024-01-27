@@ -29,6 +29,9 @@ jobs:
 
     - name: Check running container
       run: docker ps
+    
+    # - name: Test health of docker container
+    #   run: curl -f http://localhost:80/welcome || exit 1
 
   test-image:
     runs-on: ubuntu-latest
@@ -37,7 +40,7 @@ jobs:
       run:
         working-directory: ./frontend
 
-    needs: build
+    needs: build-image
 
     steps:
     - name: Checkout Repository
@@ -48,3 +51,19 @@ jobs:
         # Add commands to run your tests inside the Docker container.
         # Example: docker run your-image-name:latest npm test
 
+  code-quality:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Lint Codebase
+      run: npm run lint
