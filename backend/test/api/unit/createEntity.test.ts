@@ -3,10 +3,10 @@ import { StatusCode } from 'status-code-enum'
 
 import * as TestSetup from '../test.setup'
 
-describe('POST /product/', () => {
+describe('POST /products/', () => {
   test('returns status code 201 if it accepts a given entity with appropriate details', async () => {
     const res: any = await request(TestSetup.app)
-      .post('/product/')
+      .post('/products/')
       .send({
         name: 'Cold Head Decongestion',
         description: 'Integer a nibh. In quis justo.',
@@ -19,7 +19,7 @@ describe('POST /product/', () => {
 
   test('returns a data of a created object', async () => {
     const res: any = await request(TestSetup.app)
-      .post('/product/')
+      .post('/products/')
       .send({
         name: 'Cold Head Decongestion',
         description: 'Integer a nibh. In quis justo.',

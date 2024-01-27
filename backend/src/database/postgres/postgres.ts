@@ -1,14 +1,17 @@
 import type Database from '../interface/database.interface'
-import { entitySchema, entityModelName } from '../../models/entity.model'
 
 import pgPromise, { type IMain } from 'pg-promise'
 
 class Postgres implements Database {
   pgp: IMain = pgPromise()
   db: any
+  entitySchema: any
+  entityModelName: any
 
-  constructor (connectionString: string) {
+  constructor (connectionString: string, entitySchema: any, entityModelName: any) {
     this.db = this.pgp(connectionString)
+    this.entitySchema = entitySchema
+    this.entityModelName = entityModelName
   }
 
   async connect (): Promise<void> {
@@ -23,11 +26,11 @@ class Postgres implements Database {
   /* eslint-disable no-template-curly-in-string */
 
   async createEntity (data: any): Promise<any> {
-    const columns = entitySchema.obj !== undefined ? Object.keys(entitySchema.obj) : []
+    const columns = this.entitySchema.obj !== undefined ? Object.keys(this.entitySchema.obj) : []
     const values = columns.map((column) => data[column])
 
     const result = await this.db.one(
-        `INSERT INTO ${entityModelName}s (${columns.join(', ')}) VALUES (${columns.map((_, index) => `$${index + 1}`).join(', ')}) RETURNING *`,
+        `INSERT INTO ${this.entityModelName}s (${columns.join(', ')}) VALUES (${columns.map((_, index) => `$${index + 1}`).join(', ')}) RETURNING *`,
         values
     )
 
@@ -35,17 +38,17 @@ class Postgres implements Database {
   }
 
   async getOneEntity (_id: string): Promise<any> {
-    return this.db.oneOrNone(`SELECT * FROM ${entityModelName}s WHERE _id = $1`, [_id])
+    return this.db.oneOrNone(`SELECT * FROM ${this.entityModelName}s WHERE _id = $1`, [_id])
   }
 
   async getAllEntities (params: Partial<any>): Promise<any> {
     if (params === null || params === undefined) {
-      return this.db.manyOrNone(`SELECT * FROM ${entityModelName}s`)
+      return this.db.manyOrNone(`SELECT * FROM ${this.entityModelName}s`)
     }
 
     const condition = Object.keys(params).map((key, index) => `$${index + 1}:${key}`).join(' AND ')
     const values = Object.values(params)
-    return this.db.manyOrNone(`SELECT * FROM ${entityModelName}s WHERE ${condition}`, values)
+    return this.db.manyOrNone(`SELECT * FROM ${this.entityModelName}s WHERE ${condition}`, values)
   }
 
   async updateEntity (_id: string, newData: Partial<any>): Promise<any> {
@@ -55,13 +58,13 @@ class Postgres implements Database {
 
     const values = [_id, ...Object.values(newData)]
     return this.db.oneOrNone(
-        `UPDATE ${entityModelName}s SET ${updateSet} WHERE _id = $1 RETURNING *`,
+        `UPDATE ${this.entityModelName}s SET ${updateSet} WHERE _id = $1 RETURNING *`,
         values
     )
   }
 
   async deleteEntity (_id: string): Promise<any> {
-    return this.db.oneOrNone(`DELETE FROM ${entityModelName}s WHERE _id = $1 RETURNING *`, [_id])
+    return this.db.oneOrNone(`DELETE FROM ${this.entityModelName}s WHERE _id = $1 RETURNING *`, [_id])
   }
 }
 

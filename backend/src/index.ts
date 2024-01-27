@@ -2,17 +2,18 @@ import express, { type Express } from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
-import EntityRouter from './routes/entity.route'
+import EntityRouter from './products/routes/entity.route'
 
 import type Database from './database/interface/database.interface'
 import { createDatabaseObject } from './database/factory/databaseFactory'
+import { entityModelName, entitySchema } from './products/models/entity.model'
 
 dotenv.config()
 
 const app: Express = express()
-const port = process.env.PORT ?? 4000 // Recommended: change default port, do not use 4000, 4001 and 4002
+const port = process.env.PORT ?? 4000
 
-const database: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL))
+const database: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), entitySchema, entityModelName)
 
 database.connect()
   .catch((error) => {
