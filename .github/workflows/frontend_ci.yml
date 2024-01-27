@@ -29,6 +29,9 @@ jobs:
 
     - name: Check running container
       run: docker ps
+    
+    - name: Test health of docker container
+      run: curl -f http://localhost:80/welcome || exit 1
 
   test-image:
     runs-on: ubuntu-latest
