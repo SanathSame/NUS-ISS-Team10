@@ -31,7 +31,7 @@ jobs:
       run: docker ps
 
     - name: Test health of docker container
-          run: curl -f http://localhost:4000/product/health || exit 1
+      run: curl -f http://localhost:4000/product/health || exit 1
 
   test-image:
     runs-on: ubuntu-latest
