@@ -59,5 +59,8 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
+    - name: Install dependencies
+      run: npm install
+
     - name: Lint Codebase
       run: npm run lint
