@@ -45,7 +45,6 @@ class Postgres implements Database {
     return this.db.oneOrNone(`SELECT * FROM ${this.entityModelName}s WHERE username = $1`, [username])
   }
 
-
   async getAllEntities (params: Partial<any>): Promise<any> {
     if (params === null || params === undefined) {
       return this.db.manyOrNone(`SELECT * FROM ${this.entityModelName}s`)

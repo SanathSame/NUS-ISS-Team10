@@ -23,21 +23,20 @@ const authDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_
 const userDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), userEntitySchema, userEntityModelName)
 // Add db object here for entity schema and model name, ref products
 
-
 productDatabase.connect()
   .catch((error) => {
     console.log(error)
-})
+  })
 
 authDatabase.connect()
   .catch((error) => {
     console.log(error)
-})
+  })
 
 userDatabase.connect()
   .catch((error) => {
     console.log(error)
-})
+  })
 
 // Call connect function to call wrapper class to connect to db
 
@@ -46,7 +45,6 @@ app.set('auth-database', authDatabase)
 app.set('user-database', authDatabase)
 
 // set a unique key for db data retrieval in particular controller - refer to controller
-
 
 app.use(cors())
 app.options('*', cors())
