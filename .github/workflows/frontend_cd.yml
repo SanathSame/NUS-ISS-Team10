@@ -18,8 +18,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Deploy to production
-        uses: johnbeynon/render-deploy-action@v0.0.8
-        with:
-          service-id: ${{ secrets.RENDER_SERVICE_ID_FRONTEND }}
-          api-key: ${{ secrets.RENDER_API_KEY_FRONTEND }}
+      - name: Deploy
+        # Only run this step if the branch is main
+        if: github.ref == 'refs/heads/main'
+        env:
+          deploy_url: https://api.render.com/deploy/srv-cni53uf79t8c73bpp410?key=vxC30bBy7VY
+        run: |
+          curl "$deploy_url"
