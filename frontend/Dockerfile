@@ -1,5 +1,6 @@
 # Stage 1: Build the application
 FROM node:18-alpine as builder
+ARG REACT_APP_BACKEND_ENDPOINT
 WORKDIR /app
 
 COPY package*.json ./
@@ -10,6 +11,8 @@ RUN npm run build
 
 # Stage 2: Run the application
 FROM nginx:stable-alpine as executor
+ARG REACT_APP_BACKEND_ENDPOINT
+
 WORKDIR /app
 
 COPY --from=builder /app/build /usr/share/nginx/html
