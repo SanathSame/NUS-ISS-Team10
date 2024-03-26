@@ -25,17 +25,11 @@ import SignupPage from "pages/Signup.js";
 
 import LoginPageImageSrc from "images/demo/LoginPage.jpeg";
 import SignupPageImageSrc from "images/demo/SignupPage.jpeg";
-import PricingPageImageSrc from "images/demo/PricingPage.jpeg";
-import AboutUsPageImageSrc from "images/demo/AboutUsPage.jpeg";
-import ContactUsPageImageSrc from "images/demo/ContactUsPage.jpeg";
-import BlogIndexPageImageSrc from "images/demo/BlogIndexPage.jpeg";
-import TermsOfServicePageImageSrc from "images/demo/TermsOfServicePage.jpeg";
-import PrivacyPolicyPageImageSrc from "images/demo/PrivacyPolicyPage.jpeg";
+
 
 import BackgroundAsImageHero from "components/hero/BackgroundAsImage.js";
 import IllustrationAndVideoHero from "components/hero/TwoColumnWithVideo.js";
 import IllustrationAndInputHero from "components/hero/TwoColumnWithInput.js";
-import FeaturesAndTestimonialHero from "components/hero/TwoColumnWithFeaturesAndTestimonial.js";
 import FullWidthWithImageHero from "components/hero/FullWidthWithImage.js";
 import BackgroundAsImageWithCenteredContentHero from "components/hero/BackgroundAsImageWithCenteredContent.js";
 import IllustrationAndPrimaryBackgroundHero from "components/hero/TwoColumnWithPrimaryBackground.js";
@@ -68,12 +62,6 @@ import ThreeColSimpleWithImageBlog from "components/blogs/ThreeColSimpleWithImag
 import ThreeColSimpleWithImageAndDashedBorderBlog from "components/blogs/ThreeColSimpleWithImageAndDashedBorder.js";
 import PopularAndRecentPostsBlog from "components/blogs/PopularAndRecentBlogPosts.js";
 import GridWithFeaturedPostBlog from "components/blogs/GridWithFeaturedPost.js";
-
-import TwoColumnWithImageTestimonial from "components/testimonials/TwoColumnWithImage.js";
-import TwoColumnWithImageAndProfilePictureReviewTestimonial from "components/testimonials/TwoColumnWithImageAndProfilePictureReview.js";
-import TwoColumnWithImageAndRatingTestimonial from "components/testimonials/TwoColumnWithImageAndRating.js";
-import ThreeColumnWithProfileImageTestimonial from "components/testimonials/ThreeColumnWithProfileImage.js";
-import SimplePrimaryBackgroundTestimonial from "components/testimonials/SimplePrimaryBackground.js";
 
 import SimpleContactUsForm from "components/forms/SimpleContactUs.js";
 import SimpleSubscribeNewsletterForm from "components/forms/SimpleSubscribeNewsletter.js";
@@ -159,11 +147,6 @@ export const components = {
           name: "With Image Illustration and Video",
           component: IllustrationAndVideoHero,
           url: "/components/blocks/Hero/IllustrationAndVideo",
-        },
-        FeaturesAndTestimonial: {
-          name: "With Features And Customer Testimonial",
-          component: FeaturesAndTestimonialHero,
-          url: "/components/blocks/Hero/FeaturesAndTestimonial",
         },
         FullWidthWithImage: {
           name: "Full Width With Image",
@@ -329,38 +312,6 @@ export const components = {
         },
       }
     },
-
-    Testimonial: {
-      type: "Testimonial Section",
-      elements: {
-        TwoColumnWithImage: {
-          name: "Two Column With Image",
-          component: TwoColumnWithImageTestimonial,
-          url: "/components/blocks/Testimonial/TwoColumnWithImage",
-        },
-        TwoColumnWithImageAndProfilePictureReview: {
-          name: "Two Column With Image And Profile Picture Review",
-          component: TwoColumnWithImageAndProfilePictureReviewTestimonial,
-          url: "/components/blocks/Testimonial/TwoColumnWithImageAndProfilePictureReview",
-        },
-        TwoColumnWithImageAndRating: {
-          name: "Two Column With Image And Rating",
-          component: TwoColumnWithImageAndRatingTestimonial,
-          url: "/components/blocks/Testimonial/TwoColumnWithImageAndRating",
-        },
-        ThreeColumnWithProfileImage: {
-          name: "Three Column With Profile Image",
-          component: ThreeColumnWithProfileImageTestimonial,
-          url: "/components/blocks/Testimonial/ThreeColumnWithProfileImage",
-        },
-        SimplePrimaryBackground: {
-          name: "Simple With Primary Background",
-          component: SimplePrimaryBackgroundTestimonial,
-          url: "/components/blocks/Testimonial/SimplePrimaryBackground",
-        },
-      }
-    },
-
     Form: {
       type: "Forms Section",
       elements: {

@@ -9,7 +9,6 @@ import Features from "components/features/ThreeColWithSideImage.js";
 import MainFeature from "components/features/TwoColWithTwoHorizontalFeaturesAndButton.js";
 import FeatureStats from "components/features/ThreeColCenteredStatsPrimaryBackground.js";
 import Pricing from "components/pricing/TwoPlansWithDurationSwitcher.js";
-import Blog from "components/blogs/GridWithFeaturedPost.js";
 import Footer from "components/footers/FiveColumnWithInputForm.js";
 
 const HighlightedText = tw.span`text-primary-500`
@@ -24,9 +23,6 @@ export default () => {
       />
       <MainFeature
         heading={<>Cloud built by and for <HighlightedText>Professionals</HighlightedText></>}
-      />
-      <Testimonial
-        heading={<>Our Clients <HighlightedText>Love Us</HighlightedText></>}
       />
       <Pricing
         heading={<>Flexible <HighlightedText>Plans</HighlightedText></>}
