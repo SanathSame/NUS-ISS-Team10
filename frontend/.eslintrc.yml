@@ -10,3 +10,12 @@ parserOptions:
 plugins:
   - react
 rules: {}
+overrides:
+  - files:
+      - "*.js"  # Adjust file patterns as needed
+    rules:
+      react/display-name: off
+      react/prop-types: off
+      react/no-unknown-property: off
+      import/no-duplicates: off
+      react/no-unescaped-entities: off
