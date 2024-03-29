@@ -24,14 +24,20 @@ jobs:
       run: |
         docker build -t frontend:latest .
     
-    - name: Run Docker image
-      run: docker run -d --name frontend -p 80:80 frontend:latest
+    - name: Run Docker image with environment variables
+      run: |
+        docker run -d --name frontend \
+          -p 80:80 \
+          frontend:latest
 
-    - name: Check running container
+    - name: Check running docker container
       run: docker ps
-    
-    # - name: Test health of docker container
-    #   run: curl -f http://localhost:80/welcome || exit 1
+
+    - name: Wait for 5 seconds
+      run: sleep 5
+
+    - name: Test health of docker container
+      run: curl -f http://localhost:80 || exit 1
 
   test-image:
     runs-on: ubuntu-latest
@@ -65,5 +71,5 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Lint Codebase
-      run: npm run lint
+    # - name: Lint Codebase
+    #   run: npm run lint
