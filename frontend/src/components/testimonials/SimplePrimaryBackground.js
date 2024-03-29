@@ -1,22 +1,22 @@
-import React, {useState} from "react";
-import Slider from "react-slick";
-import tw from "twin.macro";
+import React, { useState } from 'react'
+import Slider from 'react-slick'
+import tw from 'twin.macro'
 import styled, { css } from "styled-components/macro"; //eslint-disable-line
-import { Container, ContentWithPaddingXl } from "components/misc/Layouts.js";
-import { SectionHeading, Subheading as SubheadingBase } from "components/misc/Headings.js";
-import { SectionDescription } from "components/misc/Typography.js";
-import { ReactComponent as QuoteIconBase } from "images/quotes-l.svg"
-import { ReactComponent as ArrowLeftIcon } from "images/arrow-left-3-icon.svg"
-import { ReactComponent as ArrowRightIcon } from "images/arrow-right-3-icon.svg"
+import { Container, ContentWithPaddingXl } from 'components/misc/Layouts.js'
+import { SectionHeading, Subheading as SubheadingBase } from 'components/misc/Headings.js'
+import { SectionDescription } from 'components/misc/Typography.js'
+import { ReactComponent as QuoteIconBase } from 'images/quotes-l.svg'
+import { ReactComponent as ArrowLeftIcon } from 'images/arrow-left-3-icon.svg'
+import { ReactComponent as ArrowRightIcon } from 'images/arrow-right-3-icon.svg'
 
-import "slick-carousel/slick/slick.css";
+import 'slick-carousel/slick/slick.css'
 
-const PrimaryBackgroundContainer = tw(Container)`-mx-8 px-8 bg-primary-900 text-gray-100`;
+const PrimaryBackgroundContainer = tw(Container)`-mx-8 px-8 bg-primary-900 text-gray-100`
 
-const HeadingContainer = tw.div``;
-const Subheading = tw(SubheadingBase)`text-center text-gray-100 mb-4`;
-const Heading = tw(SectionHeading)``;
-const Description = tw(SectionDescription)`mx-auto text-center text-gray-300`;
+const HeadingContainer = tw.div``
+const Subheading = tw(SubheadingBase)`text-center text-gray-100 mb-4`
+const Heading = tw(SectionHeading)``
+const Description = tw(SectionDescription)`mx-auto text-center text-gray-300`
 
 const TestimonialsSlider = styled(Slider)`
   ${tw`flex mt-16 mx-auto max-w-xs sm:max-w-xl lg:max-w-4xl text-left bg-gray-100 rounded-lg text-gray-900`}
@@ -29,7 +29,7 @@ const TestimonialsSlider = styled(Slider)`
   .slick-slide > div {
     ${tw`h-full`}
   }
-`;
+`
 const Testimonial = tw.div`px-6 py-12 sm:px-20 sm:py-16 focus:outline-none flex! flex-col justify-between h-full`
 const QuoteContainer = tw.div`relative`
 const QuoteIcon = tw(QuoteIconBase)`absolute opacity-15 top-0 left-0 transform -translate-y-2 -translate-x-1/2 sm:-translate-x-full w-10 fill-current text-primary-500`
@@ -45,36 +45,36 @@ const ControlButton = styled.button`
   .icon {
     ${tw`fill-current w-6`}
   }
-`;
+`
 
 export default ({
-  subheading = "",
-  heading = "Testimonials",
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  subheading = '',
+  heading = 'Testimonials',
+  description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   testimonials = [
     {
-      customerName: "David Hanson",
-      customerProfile: "CEO, Koalify",
+      customerName: 'David Hanson',
+      customerProfile: 'CEO, Koalify',
       imageSrc:
-        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.85&w=256&h=256&q=80",
+        'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.85&w=256&h=256&q=80',
       quote:
-        "We have been using servana for about 2 years. And in that time we have had no problem at all. The user interface is really simple to use. Our services scale automatically and we never have to worry about downtimes. is as described."
+        'We have been using servana for about 2 years. And in that time we have had no problem at all. The user interface is really simple to use. Our services scale automatically and we never have to worry about downtimes. is as described.'
     },
     {
-      customerName: "Serena Davis",
-      customerProfile: "Founder, Travana",
+      customerName: 'Serena Davis',
+      customerProfile: 'Founder, Travana',
       imageSrc:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=256&h=256&q=80",
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=256&h=256&q=80',
       quote:
-        "We are delighted with the quality and performance of the servers that servana provides. The uptime is amazing and the internet connection is great for the price we are paying."
+        'We are delighted with the quality and performance of the servers that servana provides. The uptime is amazing and the internet connection is great for the price we are paying.'
     },
     {
-      customerName: "Timothy Burr",
-      customerProfile: "CTO, Coronax",
+      customerName: 'Timothy Burr',
+      customerProfile: 'CTO, Coronax',
       imageSrc:
-        "https://images.unsplash.com/photo-1580852300654-03c803a14e24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4.25&w=256&h=256&q=80",
+        'https://images.unsplash.com/photo-1580852300654-03c803a14e24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4.25&w=256&h=256&q=80',
       quote:
-        "It has been 8 months since we have switched to servana and it has nothing but an amazing experience. The cost is affordable, support is great, uptime is as described."
+        'It has been 8 months since we have switched to servana and it has nothing but an amazing experience. The cost is affordable, support is great, uptime is as described.'
     }
   ]
 }) => {
@@ -121,5 +121,5 @@ export default ({
         </TestimonialsSlider>
       </ContentWithPaddingXl>
     </PrimaryBackgroundContainer>
-  );
-};
+  )
+}
