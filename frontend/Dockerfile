@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM node:18-alpine as builder
+FROM node:16-alpine as builder
 ARG REACT_APP_BACKEND_ENDPOINT
 WORKDIR /app
 
