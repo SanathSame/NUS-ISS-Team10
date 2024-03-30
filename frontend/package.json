@@ -9,6 +9,7 @@
     "feather-icons": "^4.29.0",
     "framer-motion": "^7.3.2",
     "react": "^18.0.0",
+    "axios": "^1.6.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-dom": "^18.0.0",
     "react-github-btn": "^1.4.0",
@@ -20,6 +21,7 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.5",
     "tailwindcss": "^3.0.0",
+    "buffer": "^6.0.3",
     "twin.macro": "^3.0.0-rc.4"
   },
   "scripts": {

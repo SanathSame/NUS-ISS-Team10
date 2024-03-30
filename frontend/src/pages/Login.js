@@ -10,6 +10,7 @@ import logo from 'images/logo.svg'
 import googleIconImageSrc from 'images/google-icon.png'
 import twitterIconImageSrc from 'images/twitter-icon.png'
 import { ReactComponent as LoginIcon } from 'feather-icons/dist/icons/log-in.svg'
+import { AuthApi } from 'api/auth/AuthApi'
 
 const Container = tw(ContainerBase)`min-h-screen bg-primary-900 text-white font-medium flex justify-center -m-8`
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`
@@ -84,7 +85,23 @@ export default ({
   }, [redirectTo, navigate])
 
   const handleLogin = () => {
-    setRedirectTo('/components/landingPages/HotelTravelLandingPage')
+    try {
+      const formData = new FormData(event.target)
+      const formObjectRequest = Object.fromEntries(formData)
+      const response = AuthApi.authenticateUser(formObjectRequest)
+
+      localStorage.setItem('refreshToken', response.data.data.refreshToken)
+      localStorage.setItem('accessToken', response.data.data.accessToken)
+
+      console.log("Login successful!")
+
+      setRedirectTo('/components/landingPages/HotelTravelLandingPage')
+      window.location.reload()
+    } catch (error) {
+      // Use a more clear way to check if there is an error message
+      const errorMessage = error.message !== undefined ? error.message : 'Login failed'
+      console.error(errorMessage)
+    }
   }
 
   return (
@@ -112,7 +129,7 @@ export default ({
                   <DividerText>Or Sign in with your e-mail</DividerText>
                 </DividerTextContainer>
                 <Form>
-                  <Input type="email" placeholder="Email" />
+                  <Input type="text" placeholder="Username" />
                   <Input type="password" placeholder="Password" />
                   <SubmitButton type="button" onClick={handleLogin}> {/* Changed to type button and added onClick event */}
                     <SubmitButtonIcon className="icon" />

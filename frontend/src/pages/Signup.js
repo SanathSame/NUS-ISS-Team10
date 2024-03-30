@@ -97,8 +97,9 @@ export default ({
                 <DividerText>Or Sign up with your e-mail</DividerText>
               </DividerTextContainer>
               <Form>
-                <Input type="email" placeholder="Email" />
+                <Input type="text" placeholder="Username" />
                 <Input type="password" placeholder="Password" />
+                <Input type="email" placeholder="Email" />
                 <SubmitButton type="submit">
                   <SubmitButtonIcon className="icon" />
                   <span className="text">{submitButtonText}</span>
