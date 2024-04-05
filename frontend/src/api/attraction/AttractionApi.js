@@ -29,10 +29,10 @@ const deleteAttractionById = async (id) => {
 }
 
 export const ProductApi = {
-    createNewAttraction,
-    getAttractions,
-    getAttractionById,
-    getAttractionsByFilter,
-    updateAttractionById,
-    deleteAttractionById
+  createNewAttraction,
+  getAttractions,
+  getAttractionById,
+  getAttractionsByFilter,
+  updateAttractionById,
+  deleteAttractionById
 }

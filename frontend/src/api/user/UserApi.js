@@ -19,11 +19,11 @@ const getUsersByFilter = async (filterParams) => {
   })
 }
 
-const updateUserById = async (id: string, updatedDetails: any): Promise<any> => {
+const updateUserById = async (id, updatedDetails) => {
   return await RequestTypes.patchRequest(`${userEndpoint + id}`, updatedDetails)
 }
 
-const deleteUserById = async (id: string): Promise<any> => {
+const deleteUserById = async (id) => {
   return await RequestTypes.deleteRequest(`${userEndpoint + id}`)
 }
 

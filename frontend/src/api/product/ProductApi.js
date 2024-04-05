@@ -10,7 +10,7 @@ const getProducts = async () => {
   return await RequestTypes.getRequest(productEndpoint)
 }
 
-const getProductById = async (entityId)=> {
+const getProductById = async (entityId) => {
   return await RequestTypes.getRequest(`${productEndpoint + entityId}`)
 }
 
@@ -20,11 +20,11 @@ const getProductsByFilter = async (filterParams) => {
   })
 }
 
-const updateProductById = async (id: any, updatedDetails: any): Promise<any> => {
+const updateProductById = async (id, updatedDetails) => {
   return await RequestTypes.patchRequest(`${productEndpoint + id}`, updatedDetails)
 }
 
-const deleteProductById = async (id: any): Promise<any> => {
+const deleteProductById = async (id) => {
   return await RequestTypes.deleteRequest(`${productEndpoint + id}`)
 }
 
