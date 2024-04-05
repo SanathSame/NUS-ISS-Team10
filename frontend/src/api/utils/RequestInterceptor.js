@@ -19,7 +19,7 @@ async function refreshAccessToken (instance) {
   }
 };
 
-async function setRequestInterceptor (instance) {
+function setRequestInterceptor (instance) {
   instance.interceptors.request.use(
     function (config) {
     // Check if accessToken is present
@@ -46,7 +46,7 @@ function decodeToken (jwtToken) {
   return JSON.parse(payloadJson)
 }
 
-async function setResponseInterceptor (instance) {
+function setResponseInterceptor (instance) {
   instance.interceptors.response.use(
     function (response) {
       return response
@@ -70,7 +70,7 @@ async function setResponseInterceptor (instance) {
 
               // Redirect to login or perform any other action needed
               const navigate = useNavigate()
-              navigate('/welcome')
+              navigate('/')
               return await Promise.reject(error)
             }
 
@@ -84,10 +84,8 @@ async function setResponseInterceptor (instance) {
             localStorage.removeItem('accessToken')
             localStorage.removeItem('refreshToken')
 
-            // Redirect to login or perform any other action needed
-            window.location.href = '/login'
             const navigate = useNavigate()
-            navigate('/welcome')
+            navigate('/')
             return await Promise.reject(refreshError)
           }
         }

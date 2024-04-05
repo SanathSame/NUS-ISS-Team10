@@ -84,19 +84,26 @@ export default ({
     }
   }, [redirectTo, navigate])
 
-  const handleLogin = () => {
+  const handleLogin = async (event) => {
+    event.preventDefault()
+    const username = document.querySelector('#username')
+    const password = document.querySelector('#password')
+
     try {
-      const formData = new FormData(event.target)
+      const formData = new FormData()
+      formData.append('username', username.value)
+      formData.append('password', password.value)
+
       const formObjectRequest = Object.fromEntries(formData)
-      const response = AuthApi.authenticateUser(formObjectRequest)
+      const response = await AuthApi.authenticateUser(formObjectRequest)
+      console.log(response)
 
       localStorage.setItem('refreshToken', response.data.data.refreshToken)
       localStorage.setItem('accessToken', response.data.data.accessToken)
 
-      console.log("Login successful!")
+      console.log('Login successful!')
 
       setRedirectTo('/components/landingPages/HotelTravelLandingPage')
-      window.location.reload()
     } catch (error) {
       // Use a more clear way to check if there is an error message
       const errorMessage = error.message !== undefined ? error.message : 'Login failed'
@@ -129,8 +136,8 @@ export default ({
                   <DividerText>Or Sign in with your e-mail</DividerText>
                 </DividerTextContainer>
                 <Form>
-                  <Input type="text" placeholder="Username" />
-                  <Input type="password" placeholder="Password" />
+                  <Input id="username" type="text" placeholder="Username" />
+                  <Input id="password" type="password" placeholder="Password" />
                   <SubmitButton type="button" onClick={handleLogin}> {/* Changed to type button and added onClick event */}
                     <SubmitButtonIcon className="icon" />
                     <span className="text">{submitButtonText}</span>
