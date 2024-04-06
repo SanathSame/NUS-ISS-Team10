@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import AnimationRevealPage from 'helpers/AnimationRevealPage.js'
+import { useNavigate } from 'react-router-dom' // Import the useNavigate hook
 import { Container as ContainerBase } from 'components/misc/Layouts'
 import tw from 'twin.macro'
 import styled from 'styled-components'
@@ -9,6 +10,7 @@ import logo from 'images/logo.svg'
 import googleIconImageSrc from 'images/google-icon.png'
 import twitterIconImageSrc from 'images/twitter-icon.png'
 import { ReactComponent as SignUpIcon } from 'feather-icons/dist/icons/user-plus.svg'
+import { UserApi } from 'api/user/UserApi'
 
 const Container = tw(ContainerBase)`min-h-screen bg-primary-900 text-white font-medium flex justify-center -m-8`
 const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`
@@ -72,51 +74,89 @@ export default ({
   submitButtonText = 'Sign Up',
   SubmitButtonIcon = SignUpIcon,
   signInUrl = '/components/innerPages/LoginPage'
-}) => (
-  <AnimationRevealPage>
-    <Container>
-      <Content>
-        <MainContainer>
-          <LogoLink href={logoLinkUrl}>
-            <LogoImage src={logo} />
-          </LogoLink>
-          <MainContent>
-            <Heading>{headingText}</Heading>
-            <FormContainer>
-              <SocialButtonsContainer>
-                {socialButtons.map((socialButton, index) => (
-                  <SocialButton key={index} href={socialButton.url}>
-                    <span className="iconContainer">
-                      <img src={socialButton.iconImageSrc} className="icon" alt="" />
-                    </span>
-                    <span className="text">{socialButton.text}</span>
-                  </SocialButton>
-                ))}
-              </SocialButtonsContainer>
-              <DividerTextContainer>
-                <DividerText>Or Sign up with your e-mail</DividerText>
-              </DividerTextContainer>
-              <Form>
-                <Input type="email" placeholder="Email" />
-                <Input type="password" placeholder="Password" />
-                <SubmitButton type="submit">
-                  <SubmitButtonIcon className="icon" />
-                  <span className="text">{submitButtonText}</span>
-                </SubmitButton>
-                <p tw="mt-8 text-sm text-gray-600 text-center">
-                  Already have an account?{' '}
-                  <a href={signInUrl} tw="border-b border-gray-500 border-dotted">
-                    Sign In
-                  </a>
-                </p>
-              </Form>
-            </FormContainer>
-          </MainContent>
-        </MainContainer>
-        <IllustrationContainer>
-          <IllustrationImage imageSrc={illustrationImageSrc} />
-        </IllustrationContainer>
-      </Content>
-    </Container>
-  </AnimationRevealPage>
-)
+}) => {
+  const navigate = useNavigate()
+  const [redirectTo, setRedirectTo] = useState(null) // State to manage redirection
+
+  useEffect(() => {
+    if (redirectTo) {
+      navigate(redirectTo)
+    }
+  }, [redirectTo, navigate])
+
+  const handleSignup = async (event) => {
+    event.preventDefault()
+    const username = document.querySelector('#username')
+    const password = document.querySelector('#password')
+    const email = document.querySelector('#email')
+
+    try {
+      const formData = new FormData()
+      formData.append('username', username.value)
+      formData.append('password', password.value)
+      formData.append('email', email.value)
+
+      const formObjectRequest = Object.fromEntries(formData)
+      console.log(formObjectRequest)
+      const response = await UserApi.createNewUser(formObjectRequest)
+      console.log('Signup successful!')
+      console.log(response)
+
+      setRedirectTo('/components/innerPages/LoginPage')
+    } catch (error) {
+      // Use a more clear way to check if there is an error message
+      const errorMessage = error.message !== undefined ? error.message : 'Login failed'
+      console.error(errorMessage)
+    }
+  }
+
+  return (
+    <AnimationRevealPage>
+      <Container>
+        <Content>
+          <MainContainer>
+            <LogoLink href={logoLinkUrl}>
+              <LogoImage src={logo} />
+            </LogoLink>
+            <MainContent>
+              <Heading>{headingText}</Heading>
+              <FormContainer>
+                <SocialButtonsContainer>
+                  {socialButtons.map((socialButton, index) => (
+                    <SocialButton key={index} href={socialButton.url}>
+                      <span className="iconContainer">
+                        <img src={socialButton.iconImageSrc} className="icon" alt="" />
+                      </span>
+                      <span className="text">{socialButton.text}</span>
+                    </SocialButton>
+                  ))}
+                </SocialButtonsContainer>
+                <DividerTextContainer>
+                  <DividerText>Or Sign up with your e-mail</DividerText>
+                </DividerTextContainer>
+                <Form>
+                  <Input id="username" type="text" placeholder="Username" />
+                  <Input id="password" type="password" placeholder="Password" />
+                  <Input id="email" type="email" placeholder="Email" />
+                  <SubmitButton type="button" onClick={handleSignup}>
+                    <SubmitButtonIcon className="icon" />
+                    <span className="text">{submitButtonText}</span>
+                  </SubmitButton>
+                  <p tw="mt-8 text-sm text-gray-600 text-center">
+                    Already have an account?{' '}
+                    <a href={signInUrl} tw="border-b border-gray-500 border-dotted">
+                      Sign In
+                    </a>
+                  </p>
+                </Form>
+              </FormContainer>
+            </MainContent>
+          </MainContainer>
+          <IllustrationContainer>
+            <IllustrationImage imageSrc={illustrationImageSrc} />
+          </IllustrationContainer>
+        </Content>
+      </Container>
+    </AnimationRevealPage>
+  )
+}
