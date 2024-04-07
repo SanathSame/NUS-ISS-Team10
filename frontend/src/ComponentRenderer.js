@@ -25,7 +25,7 @@ import LoginPageImageSrc from 'images/demo/LoginPage.jpeg'
 import SignupPageImageSrc from 'images/demo/SignupPage.jpeg'
 
 import BackgroundAsImageHero from 'components/hero/BackgroundAsImage.js'
-import IllustrationAndVideoHero from 'components/hero/TwoColumnWithVideo.js'
+import IllustrationAndVideoHero from 'components/hero/MainPage'
 import IllustrationAndInputHero from 'components/hero/TwoColumnWithInput.js'
 import FullWidthWithImageHero from 'components/hero/FullWidthWithImage.js'
 import BackgroundAsImageWithCenteredContentHero from 'components/hero/BackgroundAsImageWithCenteredContent.js'

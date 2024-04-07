@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import tw from 'twin.macro'
 import { css } from "styled-components/macro"; //eslint-disable-line
-import HeaderBase, { NavLinks, NavLink, PrimaryLink } from 'components/headers/light.js'
+import HeaderBase, { NavLinks, NavLink, PrimaryLink } from 'components/headers/header.js'
 import { SectionHeading } from 'components/misc/Headings.js'
 import { SectionDescription } from 'components/misc/Typography.js'
 import { PrimaryButton as PrimaryButtonBase } from 'components/misc/Buttons.js'
@@ -94,7 +94,7 @@ export default ({
                 <Image src={imageSrc} />
                 {imageDecoratorBlob && <ImageDecoratorBlob />}
                 <Testimonial>
-                  <QuotesLeftIcon/>
+                  <QuotesLeftIcon />
                   <Quote>{testimonial.quote}</Quote>
                   <CustomerName>{testimonial.customerName}</CustomerName>
                   <CustomerCompany>{testimonial.customerCompany}</CustomerCompany>

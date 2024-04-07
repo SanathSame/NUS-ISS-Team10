@@ -3,7 +3,7 @@ import tw from 'twin.macro'
 import styled from 'styled-components'
 import { css } from "styled-components/macro"; //eslint-disable-line
 
-import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from '../headers/light.js'
+import Header, { NavLink, NavLinks, PrimaryLink as PrimaryLinkBase, LogoLink, NavToggle, DesktopNavLinks } from '../headers/header.js'
 
 const StyledHeader = styled(Header)`
   ${tw`pt-8 max-w-none w-full`}
@@ -65,9 +65,9 @@ export default () => {
         <StyledHeader links={navLinks} />
         <Content>
           <Heading>
-              Book Music & Comedy Events
-              <br />
-              anywhere in New York
+            Book Music & Comedy Events
+            <br />
+            anywhere in New York
           </Heading>
           <PrimaryAction>Search Events Near Me</PrimaryAction>
         </Content>
