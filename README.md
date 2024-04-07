@@ -1,6 +1,6 @@
 # NUS-ISS-Team10
 
-# Project Name
+# Project Name - Travel Aid
 
 An application to help users plan for their dream journeys involving overseas travel
 
