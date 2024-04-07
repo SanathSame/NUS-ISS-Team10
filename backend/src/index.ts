@@ -14,6 +14,8 @@ import UserRouter from './users/routes/user.route'
 import { userEntityModelName, userEntitySchema } from './users/models/user.model'
 import AttractionRouter from './attractions/routes/entity.route'
 import { attractionEntityModelName, attractionEntitySchema } from './attractions/models/entity.model'
+import FlightRouter from './flights/routes/entity.route'
+import { flightEntityModelName, flightEntitySchema } from './flights/models/entity.model'
 
 dotenv.config()
 
@@ -24,6 +26,7 @@ const productDatabase: Database = createDatabaseObject(Number(process.env.DATABA
 const authDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), authEntitySchema, authEntityModelName)
 const userDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), userEntitySchema, userEntityModelName)
 const attractionDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), attractionEntitySchema, attractionEntityModelName)
+const flightDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), flightEntitySchema, flightEntityModelName)
 // Add db object here for entity schema and model name, ref products
 
 productDatabase.connect()
@@ -46,12 +49,18 @@ attractionDatabase.connect()
     console.log(error)
   })
 
+flightDatabase.connect()
+  .catch((error) => {
+    console.log(error)
+  })
+
 // Call connect function to call wrapper class to connect to db
 
 app.set('product-database', productDatabase)
 app.set('auth-database', authDatabase)
 app.set('user-database', userDatabase)
 app.set('attraction-database', attractionDatabase)
+app.set('flight-database', flightDatabase)
 
 // set a unique key for db data retrieval in particular controller - refer to controller
 
@@ -65,6 +74,7 @@ app.use('/products/', EntityRouter)
 app.use('/auth/', AuthRouter)
 app.use('/users/', UserRouter)
 app.use('/attractions/', AttractionRouter)
+app.use('/flights/', FlightRouter)
 
 // Add custom router to expose its routes in backends
 

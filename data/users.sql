@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS entities;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS attractions;
+DROP TABLE IF EXISTS flights;
 
 create table users (
 	_id varchar(24) NOT NULL DEFAULT generate_object_id(),
@@ -54,6 +55,16 @@ create table attractions (
 	ratings DECIMAL(3,1) NOT NULL,
 	opening_hours VARCHAR(50) NOT NULL,
 	type_of_attraction VARCHAR(30) NOT NULL
+);
+
+create table flights (
+    _id varchar(24) NOT NULL DEFAULT generate_object_id(),
+	departure_city VARCHAR(50) NOT NULL,
+	arrival_city VARCHAR(50) NOT NULL,
+    departure_date DATE,
+    departure_time TIME,
+    flight_duration INT,
+	ticket_price DECIMAL(10,2) NOT NULL
 );
 
 insert into users (_id, username, password, email) values ('65757316fc13ae561bfa20eb', 'Wilek', '$2a$04$gFV8SwSMf9jzfx5Gax2x9eJ/o1dtxa3WMbMxbbDvN2cpzhHdn/KFy', 'wlannin0@admin.ch');
@@ -315,3 +326,106 @@ insert into attractions (_id, city, country, description, price, ratings, openin
 insert into attractions (_id, city, country, description, price, ratings, opening_hours, type_of_attraction) values ('65e3d46ffc13ae629ccd36df', 'El Triunfo', 'Honduras', 'lectus pellentesque at nulla suspendisse potenti cras in purus eu magna', 271.04, 2.0, '5:30 AM', 'Natural Wonders and Landscapes');
 insert into attractions (_id, city, country, description, price, ratings, opening_hours, type_of_attraction) values ('65e3d46ffc13ae629ccd36e0', 'Beizhuang', 'China', 'donec dapibus duis at velit eu est congue elementum in', 939.85, 3.2, '1:49 AM', 'Temples and Religious Sites');
 insert into attractions (_id, city, country, description, price, ratings, opening_hours, type_of_attraction) values ('65e3d46ffc13ae629ccd36e1', 'Xiuyu', 'China', 'libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis', 606.33, 8.7, '3:17 AM', 'Natural Wonders and Landscapes');
+
+
+
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('1', 'Jakarta Indonesia', 'Pattaya Thailand', '28-04-2022', '7:38 AM', 5, 801.68);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('2', 'Singapore Singapore', 'Penang Malaysia', '07-06-2022', '11:54 PM', 18, 267.36);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('3', 'Hanoi Vietnam', 'Bali Indonesia', '03-01-2022', '3:49 AM', 20, 428.59);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('4', 'Yangon Myanmar', 'Vientiane Laos', '19-05-2022', '10:09 AM', 6, 730.17);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('5', 'Hanoi Vietnam', 'Bali Indonesia', '07-08-2022', '8:31 AM', 23, 221.41);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('6', 'Singapore Singapore', 'Penang Malaysia', '04-01-2022', '2:49 AM', 8, 113.09);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('7', 'Jakarta Indonesia', 'Bandung Indonesia', '07-09-2022', '2:36 PM', 20, 97.26);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('8', 'Singapore Singapore', 'Phnom Penh Cambodia', '20-10-2022', '11:03 AM', 3, 830.27);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('9', 'Kuala Lumpur Malaysia', 'Vientiane Laos', '22-02-2022', '8:57 AM', 15, 109.99);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('10', 'Chiang Mai Thailand', 'Phnom Penh Cambodia', '27-03-2022', '5:45 PM', 17, 422.39);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('11', 'Bangkok Thailand', 'Bali Indonesia', '20-09-2022', '11:58 AM', 20, 566.15);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('12', 'Da Nang Vietnam', 'Penang Malaysia', '05-10-2022', '7:17 PM', 17, 310.35);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('13', 'Hanoi Vietnam', 'Bandung Indonesia', '01-10-2022', '10:33 AM', 4, 482.03);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('14', 'Singapore Singapore', 'Bali Indonesia', '29-08-2022', '7:23 PM', 13, 509.87);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('15', 'Siem Reap Cambodia', 'Phnom Penh Cambodia', '24-11-2022', '3:47 AM', 23, 662.18);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('16', 'Siem Reap Cambodia', 'Bali Indonesia', '26-08-2022', '4:08 AM', 18, 88.32);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('17', 'Kuala Lumpur Malaysia', 'Luang Prabang Laos', '02-05-2022', '9:17 PM', 19, 961.21);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('18', 'Kuala Lumpur Malaysia', 'Vientiane Laos', '19-01-2022', '7:38 AM', 22, 125.49);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('19', 'Yangon Myanmar', 'Bali Indonesia', '07-01-2022', '1:03 PM', 3, 936.35);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('20', 'Siem Reap Cambodia', 'Penang Malaysia', '26-09-2022', '8:57 AM', 11, 981.54);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('21', 'Hanoi Vietnam', 'Phuket Thailand', '29-07-2022', '10:49 PM', 24, 357.7);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('22', 'Yangon Myanmar', 'Boracay Philippines', '23-09-2022', '12:34 PM', 7, 861.09);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('23', 'Bangkok Thailand', 'Boracay Philippines', '25-02-2022', '10:31 PM', 13, 528.61);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('24', 'Hanoi Vietnam', 'Vientiane Laos', '03-05-2022', '2:12 PM', 7, 89.24);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('25', 'Chiang Mai Thailand', 'Phuket Thailand', '18-02-2022', '1:46 AM', 17, 585.63);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('26', 'Singapore Singapore', 'Vientiane Laos', '28-01-2022', '2:42 AM', 18, 219.03);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('27', 'Bangkok Thailand', 'Pattaya Thailand', '03-03-2022', '1:51 AM', 24, 118.98);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('28', 'Hanoi Vietnam', 'Vientiane Laos', '30-05-2022', '3:46 AM', 14, 602.79);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('29', 'Singapore Singapore', 'Phuket Thailand', '13-01-2022', '6:37 PM', 6, 599.95);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('30', 'Manila Philippines', 'Phnom Penh Cambodia', '19-05-2022', '3:52 PM', 10, 70.22);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('31', 'Chiang Mai Thailand', 'Penang Malaysia', '16-07-2022', '12:57 AM', 12, 557.77);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('32', 'Jakarta Indonesia', 'Pattaya Thailand', '02-01-2022', '1:22 AM', 8, 612.85);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('33', 'Kuala Lumpur Malaysia', 'Luang Prabang Laos', '12-04-2022', '9:28 AM', 20, 197.12);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('34', 'Jakarta Indonesia', 'Bandung Indonesia', '05-12-2022', '4:20 PM', 15, 891.58);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('35', 'Chiang Mai Thailand', 'Bandung Indonesia', '01-04-2022', '6:44 PM', 11, 277.44);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('36', 'Chiang Mai Thailand', 'Luang Prabang Laos', '14-01-2022', '7:09 AM', 9, 580.51);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('37', 'Bangkok Thailand', 'Vientiane Laos', '20-07-2022', '3:49 PM', 11, 691.75);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('38', 'Bangkok Thailand', 'Phuket Thailand', '05-01-2022', '4:47 PM', 19, 572.84);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('39', 'Chiang Mai Thailand', 'Phnom Penh Cambodia', '02-03-2022', '5:43 PM', 19, 810.91);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('40', 'Singapore Singapore', 'Pattaya Thailand', '23-09-2022', '5:53 AM', 22, 209.8);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('41', 'Manila Philippines', 'Bandung Indonesia', '04-07-2022', '8:49 AM', 16, 904.78);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('42', 'Yangon Myanmar', 'Phnom Penh Cambodia', '28-05-2022', '4:06 AM', 22, 601.59);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('43', 'Kuala Lumpur Malaysia', 'Penang Malaysia', '21-01-2022', '6:52 AM', 2, 829.5);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('44', 'Singapore Singapore', 'Vientiane Laos', '17-01-2022', '1:42 PM', 13, 523.21);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('45', 'Da Nang Vietnam', 'Vientiane Laos', '03-07-2022', '4:06 AM', 21, 947.65);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('46', 'Da Nang Vietnam', 'Phnom Penh Cambodia', '15-11-2022', '1:56 AM', 1, 175.0);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('47', 'Jakarta Indonesia', 'Luang Prabang Laos', '15-03-2022', '12:24 PM', 19, 279.33);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('48', 'Jakarta Indonesia', 'Pattaya Thailand', '05-04-2022', '5:45 AM', 21, 138.09);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('49', 'Jakarta Indonesia', 'Pattaya Thailand', '16-09-2022', '1:44 PM', 4, 72.34);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('50', 'Da Nang Vietnam', 'Bandung Indonesia', '26-06-2022', '8:55 PM', 2, 775.22);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('51', 'Kuala Lumpur Malaysia', 'Phuket Thailand', '30-03-2022', '1:49 PM', 6, 788.07);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('52', 'Da Nang Vietnam', 'Vientiane Laos', '13-08-2022', '10:39 AM', 4, 880.41);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('53', 'Siem Reap Cambodia', 'Vientiane Laos', '24-03-2022', '9:45 PM', 23, 836.26);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('54', 'Manila Philippines', 'Luang Prabang Laos', '30-08-2022', '8:44 PM', 19, 293.77);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('55', 'Chiang Mai Thailand', 'Pattaya Thailand', '07-07-2022', '9:13 PM', 22, 281.15);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('56', 'Singapore Singapore', 'Phnom Penh Cambodia', '30-01-2022', '6:36 AM', 2, 913.65);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('57', 'Kuala Lumpur Malaysia', 'Bandung Indonesia', '28-11-2022', '5:37 AM', 22, 694.42);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('58', 'Chiang Mai Thailand', 'Bandung Indonesia', '19-12-2022', '5:38 AM', 23, 308.46);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('59', 'Manila Philippines', 'Phuket Thailand', '24-08-2022', '2:25 AM', 6, 346.18);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('60', 'Manila Philippines', 'Phuket Thailand', '03-11-2022', '5:38 PM', 8, 414.77);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('61', 'Singapore Singapore', 'Bali Indonesia', '12-01-2022', '3:48 PM', 9, 799.32);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('62', 'Bangkok Thailand', 'Phnom Penh Cambodia', '22-08-2022', '6:58 AM', 13, 836.66);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('63', 'Chiang Mai Thailand', 'Pattaya Thailand', '05-02-2022', '12:48 AM', 18, 471.72);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('64', 'Yangon Myanmar', 'Vientiane Laos', '09-06-2022', '8:34 PM', 6, 245.35);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('65', 'Da Nang Vietnam', 'Bali Indonesia', '05-06-2022', '3:22 AM', 12, 691.1);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('66', 'Siem Reap Cambodia', 'Bali Indonesia', '05-12-2022', '1:00 PM', 22, 100.31);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('67', 'Jakarta Indonesia', 'Luang Prabang Laos', '22-05-2022', '3:30 PM', 6, 105.51);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('68', 'Da Nang Vietnam', 'Penang Malaysia', '30-12-2022', '1:26 PM', 8, 237.45);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('69', 'Kuala Lumpur Malaysia', 'Phnom Penh Cambodia', '15-01-2022', '12:36 AM', 6, 360.95);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('70', 'Singapore Singapore', 'Boracay Philippines', '06-05-2022', '10:45 PM', 14, 999.23);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('71', 'Chiang Mai Thailand', 'Phuket Thailand', '28-12-2022', '2:26 PM', 22, 219.49);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('72', 'Bangkok Thailand', 'Penang Malaysia', '21-01-2022', '9:50 PM', 18, 518.56);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('73', 'Bangkok Thailand', 'Bandung Indonesia', '15-10-2022', '4:04 PM', 23, 304.61);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('74', 'Hanoi Vietnam', 'Pattaya Thailand', '23-04-2022', '12:09 PM', 22, 553.92);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('75', 'Yangon Myanmar', 'Pattaya Thailand', '18-01-2022', '6:53 PM', 8, 258.45);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('76', 'Manila Philippines', 'Phnom Penh Cambodia', '13-04-2022', '7:10 PM', 5, 601.9);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('77', 'Manila Philippines', 'Bali Indonesia', '02-03-2022', '8:17 PM', 19, 130.43);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('78', 'Singapore Singapore', 'Luang Prabang Laos', '08-08-2022', '1:57 AM', 19, 893.91);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('79', 'Bangkok Thailand', 'Phuket Thailand', '13-05-2022', '6:27 AM', 1, 259.48);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('80', 'Yangon Myanmar', 'Boracay Philippines', '13-07-2022', '6:39 AM', 8, 279.7);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('81', 'Chiang Mai Thailand', 'Phnom Penh Cambodia', '18-02-2022', '4:30 PM', 11, 219.0);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('82', 'Yangon Myanmar', 'Penang Malaysia', '28-07-2022', '6:47 PM', 7, 347.73);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('83', 'Da Nang Vietnam', 'Phnom Penh Cambodia', '15-01-2022', '7:39 AM', 1, 945.74);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('84', 'Singapore Singapore', 'Boracay Philippines', '23-03-2022', '6:02 AM', 9, 670.0);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('85', 'Jakarta Indonesia', 'Phuket Thailand', '11-09-2022', '4:06 AM', 18, 628.96);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('86', 'Chiang Mai Thailand', 'Bali Indonesia', '03-02-2022', '10:59 AM', 21, 205.0);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('87', 'Yangon Myanmar', 'Phuket Thailand', '10-12-2022', '5:52 AM', 20, 651.64);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('88', 'Kuala Lumpur Malaysia', 'Luang Prabang Laos', '30-10-2022', '7:10 AM', 10, 243.27);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('89', 'Chiang Mai Thailand', 'Pattaya Thailand', '01-01-2022', '10:53 PM', 8, 786.66);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('90', 'Siem Reap Cambodia', 'Phuket Thailand', '08-11-2022', '2:18 PM', 20, 244.54);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('91', 'Chiang Mai Thailand', 'Vientiane Laos', '09-09-2022', '8:14 PM', 4, 342.39);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('92', 'Chiang Mai Thailand', 'Phnom Penh Cambodia', '15-05-2022', '2:29 PM', 5, 556.95);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('93', 'Hanoi Vietnam', 'Pattaya Thailand', '07-04-2022', '4:24 AM', 16, 614.93);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('94', 'Kuala Lumpur Malaysia', 'Phnom Penh Cambodia', '26-01-2022', '5:02 PM', 11, 595.96);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('95', 'Da Nang Vietnam', 'Vientiane Laos', '21-09-2022', '4:56 PM', 17, 271.5);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('96', 'Singapore Singapore', 'Phnom Penh Cambodia', '30-11-2022', '6:11 AM', 15, 199.23);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('97', 'Siem Reap Cambodia', 'Pattaya Thailand', '06-12-2022', '5:10 PM', 15, 705.48);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('98', 'Da Nang Vietnam', 'Phuket Thailand', '03-08-2022', '7:18 AM', 22, 287.93);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('99', 'Yangon Myanmar', 'Phnom Penh Cambodia', '15-08-2022', '4:07 PM', 15, 274.19);
+insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('100', 'Chiang Mai Thailand', 'Phnom Penh Cambodia', '30-07-2022', '11:35 AM', 2, 292.98);

@@ -28,7 +28,7 @@ const deleteAttractionById = async (id) => {
   return await RequestTypes.deleteRequest(`${attractionEndpoint + id}`)
 }
 
-export const ProductApi = {
+export const AttractionApi = {
   createNewAttraction,
   getAttractions,
   getAttractionById,
