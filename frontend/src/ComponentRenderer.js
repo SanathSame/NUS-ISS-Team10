@@ -20,6 +20,7 @@ import HostingCloudLandingPageImageSrc from 'images/demo/HostingCloudLandingPage
 
 import LoginPage from 'pages/Login.js'
 import SignupPage from 'pages/Signup.js'
+import AttractionPage from 'pages/AttractionPage'
 
 import LoginPageImageSrc from 'images/demo/LoginPage.jpeg'
 import SignupPageImageSrc from 'images/demo/SignupPage.jpeg'
@@ -122,6 +123,10 @@ export const components = {
       url: '/components/innerPages/SignupPage',
       imageSrc: SignupPageImageSrc,
       scrollAnimationDisabled: true
+    },
+    AttractionPage: {
+      component: AttractionPage,
+      url: '/components/innerPages/AttractionPage'
     }
   },
 
