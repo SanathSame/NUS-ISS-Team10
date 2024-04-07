@@ -56,7 +56,7 @@ jobs:
     - name: Test health of docker container
       run: curl -f http://localhost:4000/products/health || exit 1
 
-  test-image:
+  test-service:
     runs-on: ubuntu-latest
 
     defaults:
@@ -65,18 +65,34 @@ jobs:
 
     needs: build-image
 
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_DB: postgres        
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_TYPE: 1
+      DATABASE_CONNECTION_URL: postgresql://postgres@localhost:5432/postgres
+
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
-    # - name: Set up system using docker-compose
-    #   run: |
-    #     docker-compose up -d --build
-    
-    - name: Run Tests
-      run: |
-        # Add commands to run your tests inside the Docker container.
-        # Example: docker run your-image-name:latest npm test
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install dependencies
+      run: npm run test
 
   code-quality:
     runs-on: ubuntu-latest
