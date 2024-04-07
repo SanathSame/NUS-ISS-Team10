@@ -28,7 +28,7 @@ const deleteFlightById = async (id) => {
   return await RequestTypes.deleteRequest(`${flightEndpoint + id}`)
 }
 
-export const ProductApi = {
+export const FlightApi = {
   createNewFlight,
   getFlights,
   getFlightById,
