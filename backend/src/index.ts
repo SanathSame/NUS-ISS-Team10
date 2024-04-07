@@ -54,7 +54,6 @@ flightDatabase.connect()
     console.log(error)
   })
 
-
 // Call connect function to call wrapper class to connect to db
 
 app.set('product-database', productDatabase)
