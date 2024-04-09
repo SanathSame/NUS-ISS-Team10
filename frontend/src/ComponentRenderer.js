@@ -20,10 +20,11 @@ import HostingCloudLandingPageImageSrc from 'images/demo/HostingCloudLandingPage
 
 import LoginPage from 'pages/Login.js'
 import SignupPage from 'pages/Signup.js'
+import BlogIndexPage from 'pages/BlogIndex.js'
 
 import LoginPageImageSrc from 'images/demo/LoginPage.jpeg'
 import SignupPageImageSrc from 'images/demo/SignupPage.jpeg'
-
+import BlogIndexPageImageSrc from 'images/demo/BlogIndexPage.jpeg'
 import BackgroundAsImageHero from 'components/hero/BackgroundAsImage.js'
 import IllustrationAndVideoHero from 'components/hero/TwoColumnWithVideo.js'
 import IllustrationAndInputHero from 'components/hero/TwoColumnWithInput.js'
@@ -116,6 +117,12 @@ export const components = {
       imageSrc: LoginPageImageSrc,
       scrollAnimationDisabled: true,
       url: '/components/innerPages/LoginPage'
+    },
+    BlogIndexPage: {
+      component: BlogIndexPage,
+      url: '/components/innerPages/BlogIndexPage',
+      imageSrc: BlogIndexPageImageSrc,
+      scrollAnimationDisabled: true
     },
     SignupPage: {
       component: SignupPage,
