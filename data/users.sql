@@ -62,9 +62,9 @@ create table flights (
     _id varchar(24) NOT NULL DEFAULT generate_object_id(),
 	departure_city VARCHAR(50) NOT NULL,
 	arrival_city VARCHAR(50) NOT NULL,
-    departure_date VARCHAR(50),
-    departure_time VARCHAR(50),
-    flight_duration INT,
+    departure_date VARCHAR(50) NOT NULL,
+    departure_time VARCHAR(50) NOT NULL,
+    flight_duration INT NOT NULL,
 	ticket_price DECIMAL(10,2) NOT NULL
 );
 
