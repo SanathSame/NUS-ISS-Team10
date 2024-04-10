@@ -68,7 +68,7 @@ jobs:
         ports:
           - 5432:5432
         volumes:  # Mount a volume containing SQL files
-          - ./test/sql/init.sql:/docker-entrypoint-initdb.d
+          - ./backend/test/sql/init.sql:/docker-entrypoint-initdb.d
 
     steps:
     - name: Checkout Repository
