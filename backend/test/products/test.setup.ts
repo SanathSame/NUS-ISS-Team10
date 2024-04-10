@@ -18,7 +18,6 @@ const beforeEachFunction = beforeEach(async () => {
   productObject.one('INSERT INTO products (_id, name, description, price, quantity, created_at) VALUES ' +
   "('6591464efc13ae0a31fa20ba', 'North Cough Drop', 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.', 12.37, 9, '2023-08-08 17:50:59')")
   console.log('SELECT * FROM products')
-
 })
 
 const afterEachFunction = afterEach(async () => {
