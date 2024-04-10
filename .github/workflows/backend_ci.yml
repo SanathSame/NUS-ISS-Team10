@@ -58,21 +58,14 @@ jobs:
       run:
         working-directory: ./backend
 
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_DB: postgres        
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_USER: postgres
-        ports:
-          - 5432:5432
-        volumes:  # Mount a volume containing SQL files
-          - ./backend/test/sql/init.sql:/docker-entrypoint-initdb.d
-
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
+
+    - uses: dentarg/postgres@v1
+    - run: psql < ./test/sql/init.sql
+      env:
+        DATABASE_URL: "${{ env.POSTGRES_URL }}" # or use POSTGRES_URL directly
 
     - name: Install dependencies
       run: npm install
@@ -81,7 +74,7 @@ jobs:
       run: |
         touch .env
         echo DATABASE_TYPE=1 >> .env
-        echo DATABASE_CONNECTION_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
+        echo DATABASE_CONNECTION_URL="${{ env.POSTGRES_URL }}" >> .env
         cat .env
 
     - name: Run tests
