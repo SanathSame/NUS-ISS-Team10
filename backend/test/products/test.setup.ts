@@ -19,7 +19,7 @@ const beforeEachFunction = beforeEach(async () => {
 
 const afterEachFunction = afterEach(async () => {
   const productObject = app.get('product-database').getDbObject()
-  productObject.one("DELETE * from products")
+  productObject.one("DELETE from products")
 })
 
 const afterAllFunction = afterAll(async () => {
