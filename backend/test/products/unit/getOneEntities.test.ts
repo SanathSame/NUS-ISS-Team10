@@ -5,7 +5,6 @@ import * as TestSetup from '../test.setup'
 import { SampleEntities } from '../data/entities.sample'
 
 describe('GET /products/:id', () => {
-
   test('returns status code 200 if it gets a given entity id', async () => {
     const res: any = await request(TestSetup.app)
       .get(`/products/${TestSetup.defaultEntityId}`)
