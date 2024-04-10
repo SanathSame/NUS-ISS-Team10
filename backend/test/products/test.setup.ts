@@ -23,7 +23,7 @@ const beforeEachFunction = beforeEach(async () => {
 
 const afterEachFunction = afterEach(async () => {
   const productObject = app.get('product-database').getDbObject()
-  productObject.oneOrNone('DELETE from products RETURNING *')
+  productObject.manyOrNone('DELETE from products RETURNING *')
   console.log("after each")
   console.log(await productObject.manyOrNone('SELECT * FROM products'))
 })
