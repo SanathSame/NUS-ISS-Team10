@@ -35,26 +35,6 @@ productDatabase.connect()
     console.log(error)
   })
 
-authDatabase.connect()
-  .catch((error) => {
-    console.log(error)
-  })
-
-userDatabase.connect()
-  .catch((error) => {
-    console.log(error)
-  })
-
-attractionDatabase.connect()
-  .catch((error) => {
-    console.log(error)
-  })
-
-flightDatabase.connect()
-  .catch((error) => {
-    console.log(error)
-  })
-
 // Call connect function to call wrapper class to connect to db
 
 app.set('product-database', productDatabase)

@@ -5,6 +5,7 @@ import * as TestSetup from '../test.setup'
 import { SampleEntities } from '../data/entities.sample'
 
 describe('GET /products/', () => {
+
   test('returns status code 200 if can fetch a list of existing entities', async () => {
     const res: any = await request(TestSetup.app)
       .get('/products/')
