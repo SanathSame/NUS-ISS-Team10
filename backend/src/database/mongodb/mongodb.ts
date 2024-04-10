@@ -59,8 +59,6 @@ class MongoDb implements Database {
   getDbObject (): any {
     return this.ModelObject
   }
-
-
 }
 
 export default MongoDb

@@ -5,11 +5,10 @@ import * as TestSetup from '../test.setup'
 import { SampleEntities } from '../data/entities.sample'
 
 describe('GET /products/:id', () => {
-
   afterAll(async () => {
-    await request(TestSetup.app).delete('/products/6591464efc13ae0a31fa20b9');
-    await request(TestSetup.app).delete('/products/6591464efc13ae0a31fa20ba');
-  });
+    await request(TestSetup.app).delete('/products/6591464efc13ae0a31fa20b9')
+    await request(TestSetup.app).delete('/products/6591464efc13ae0a31fa20ba')
+  })
 
   test('returns status code 200 if it gets a given entity id', async () => {
     const res: any = await request(TestSetup.app)
