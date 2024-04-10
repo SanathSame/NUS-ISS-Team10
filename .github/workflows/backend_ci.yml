@@ -44,7 +44,7 @@ jobs:
         docker run -d --name backend \
           -p 4000:4000 \
           -e DATABASE_TYPE=1 \
-          -e DATABASE_CONNECTION_URL=postgresql://postgres:postgres@postgres:5432/postgres \
+          -e DATABASE_CONNECTION_URL=postgres://postgres:postgres@localhost:5432/postgres \
           backend:latest
 
     - name: Check running docker container
@@ -89,8 +89,7 @@ jobs:
       run: npm run test-debug
       env:
         DATABASE_TYPE: 1
-        DATABASE_CONNECTION_URL: postgresql://postgres:postgres@localhost:5432/postgres
-
+        DATABASE_CONNECTION_URL: postgres://postgres:postgres@localhost:5432/postgres
 
   code-quality:
     runs-on: ubuntu-latest
