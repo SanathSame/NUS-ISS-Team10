@@ -85,11 +85,15 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Install dependencies
+    - name: 'Create env file'
+        run: |
+          touch .env
+          echo DATABASE_TYPE=1 >> .env
+          echo DATABASE_CONNECTION_URL="postgres://postgres:postgres@localhost:5432/postgres" >> .env
+          cat .env
+
+    - name: Run tests
       run: npm run test-debug
-      env:
-        DATABASE_TYPE: 1
-        DATABASE_CONNECTION_URL: postgres://postgres:postgres@localhost:5432/postgres
 
   code-quality:
     runs-on: ubuntu-latest
