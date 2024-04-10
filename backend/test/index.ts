@@ -12,8 +12,6 @@ import { userEntitySchema, userEntityModelName } from '../src/users/models/user.
 
 import { attractionEntitySchema, attractionEntityModelName } from '../src/attractions/models/entity.model'
 
-
-
 import AuthRouter from '../src/auth/routes/auth.route'
 import UserRouter from '../src/users/routes/user.route'
 import AttractionRouter from '../src/attractions/routes/entity.route'
@@ -64,7 +62,6 @@ app.set('auth-database', authDatabase)
 app.set('user-database', userDatabase)
 app.set('attraction-database', attractionDatabase)
 app.set('flight-database', flightDatabase)
-
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
