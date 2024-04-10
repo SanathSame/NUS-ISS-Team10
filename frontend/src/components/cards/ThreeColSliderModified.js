@@ -126,12 +126,12 @@ export default () => {
   return (
     <Container>
       <Content>
-        <SearchContainer>
-          <SearchInput type="text" placeholder="Search..." />
-          <SearchButton onClick={handleSearch}>Search</SearchButton>
-        </SearchContainer>
         <HeadingWithControl>
           <Heading>Popular Attractions</Heading>
+          <SearchContainer>
+            <SearchInput type="text" placeholder="Search..." />
+            <SearchButton onClick={handleSearch}>Search</SearchButton>
+          </SearchContainer>
           <Controls>
             <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
             <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
