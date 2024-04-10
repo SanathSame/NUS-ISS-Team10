@@ -70,6 +70,7 @@ class EntityController {
         })
       })
       .catch((errorObject: any) => {
+        console.log(errorObject)
         const errorResponse = JSON.parse(serverErrorResponse)
 
         if (errorObject.message === 'BadUsernameError') {
@@ -94,6 +95,7 @@ class EntityController {
         })
       })
       .catch((errorObject: any) => {
+        console.log(errorObject)
         const errorResponse = JSON.parse(serverErrorResponse)
 
         if (errorObject.message === 'BadUsernameError') {

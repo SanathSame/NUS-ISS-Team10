@@ -20,6 +20,7 @@ import HostingCloudLandingPageImageSrc from 'images/demo/HostingCloudLandingPage
 
 import LoginPage from 'pages/Login.js'
 import SignupPage from 'pages/Signup.js'
+import FlightPage from 'pages/Flight.js'
 
 import LoginPageImageSrc from 'images/demo/LoginPage.jpeg'
 import SignupPageImageSrc from 'images/demo/SignupPage.jpeg'
@@ -107,6 +108,11 @@ export const components = {
       component: HostingCloudLandingPage,
       imageSrc: HostingCloudLandingPageImageSrc,
       url: '/components/landingPages/HostingCloudLandingPage'
+    },
+    FlightPage: {
+      component: FlightPage,
+      imageSrc: HostingCloudLandingPageImageSrc,
+      url: '/components/landingPages/FlightPage'
     }
   },
 
