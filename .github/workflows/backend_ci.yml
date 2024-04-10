@@ -44,7 +44,7 @@ jobs:
         docker run -d --name backend \
           -p 4000:4000 \
           -e DATABASE_TYPE=1 \
-          -e DATABASE_CONNECTION_URL=postgresql://postgres@postgres:5432/postgres \
+          -e DATABASE_CONNECTION_URL=postgresql://postgres:postgres@postgres:5432/postgres \
           backend:latest
 
     - name: Check running docker container
@@ -66,9 +66,17 @@ jobs:
     services:
       postgres:
         image: postgres:latest
+        env:
+          POSTGRES_DB: postgres        
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
         ports:
           - 5432:5432
-
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
     - name: Checkout Repository
@@ -81,7 +89,7 @@ jobs:
       run: npm run test-debug
       env:
         DATABASE_TYPE: 1
-        DATABASE_CONNECTION_URL: postgresql://postgres@localhost:5432/postgres
+        DATABASE_CONNECTION_URL: postgresql://postgres:postgres@localhost:5432/postgres
 
 
   code-quality:
