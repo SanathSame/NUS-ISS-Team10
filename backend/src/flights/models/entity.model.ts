@@ -13,7 +13,9 @@ Recommended:
 const flightEntityModelName = 'Flight'
 const flightEntitySchema = new Schema({
   departure_city: { type: String, required: true },
+  departure_country: { type: String, required: true },
   arrival_city: { type: String, required: true },
+  arrival_country: { type: String, required: true },
   departure_date: { type: String, required: true },
   departure_time: { type: String, required: true },
   flight_duration: { type: Number, required: true },
