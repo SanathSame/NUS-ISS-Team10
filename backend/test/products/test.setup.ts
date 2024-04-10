@@ -1,34 +1,30 @@
 import { app } from '../index'
-import { SampleEntities } from './data/entities.sample'
 
-import mongoose from 'mongoose'
 const port = 4010
 
-let defaultEntityId: string = ''
+const defaultEntityId: string = '6591464efc13ae0a31fa20b9'
 let server: any
-let ModelObject: any
 
 const beforeAllFunction = beforeAll(() => {
-  ModelObject = mongoose.models.Product
-
   server = app.listen(port, () => {
     console.log(`[test]: Server is running at http://localhost:${port}`)
   })
 })
 
 const beforeEachFunction = beforeEach(async () => {
-  const modelInstances = SampleEntities.map(data => new ModelObject(data))
-
-  const saveResult = await ModelObject.insertMany(modelInstances)
-  defaultEntityId = saveResult[0]._id
+  const productObject = app.get('product-database').getDbObject()
+  productObject.one('INSERT INTO products (_id, name, description, price, quantity, created_at) VALUES ' +
+  "('6591464efc13ae0a31fa20b9', 'Cold Head Congestion Daytime Non-Drowsy', 'Integer a nibh. In quis justo.', 29.61, 95, '2023-12-28 15:56:58') RETURNING *")
+  productObject.one('INSERT INTO products (_id, name, description, price, quantity, created_at) VALUES ' +
+  "('6591464efc13ae0a31fa20ba', 'North Cough Drop', 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.', 12.37, 9, '2023-08-08 17:50:59') RETURNING *")
 })
 
 const afterEachFunction = afterEach(async () => {
-  await ModelObject.deleteMany({})
+  const productObject = app.get('product-database').getDbObject()
+  productObject.manyOrNone('DELETE from products RETURNING *')
 })
 
 const afterAllFunction = afterAll(async () => {
-  await mongoose.disconnect()
   await server.close()
 })
 
