@@ -47,7 +47,7 @@ export default ({
       <NavLink href="#">Itenerary</NavLink>
       <NavLink href="#">Flights</NavLink>
       <NavLink href="#">Hotels</NavLink>
-      <NavLink href="/components/landingPages/RestaurantLandingPage">Attractions</NavLink>
+      <NavLink href="/components/innerPages/AttractionPage">Attractions</NavLink>
     </NavLinks>
   ],
   heading = (
