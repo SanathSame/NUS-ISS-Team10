@@ -71,9 +71,6 @@ jobs:
         ports:
           - 5432:5432
 
-    env:
-      DATABASE_TYPE: 1
-      DATABASE_CONNECTION_URL: postgresql://postgres@localhost:5432/postgres
 
     steps:
     - name: Checkout Repository
@@ -84,6 +81,10 @@ jobs:
 
     - name: Install dependencies
       run: npm run test
+      env:
+        DATABASE_TYPE: 1
+        DATABASE_CONNECTION_URL: postgresql://postgres@localhost:5432/postgres
+
 
   code-quality:
     runs-on: ubuntu-latest
