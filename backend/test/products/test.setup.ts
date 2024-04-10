@@ -2,11 +2,10 @@ import { app } from '../index'
 
 const port = 4010
 
-let defaultEntityId: string = ''
+const defaultEntityId: string = ''
 let server: any
 
 const beforeAllFunction = beforeAll(() => {
-
   server = app.listen(port, () => {
     console.log(`[test]: Server is running at http://localhost:${port}`)
   })

@@ -6,6 +6,10 @@ import { createDatabaseObject } from '../src/database/factory/databaseFactory'
 
 import type Database from '../src/database/interface/database.interface'
 import { productEntityModelName, productEntitySchema } from '../src/products/models/entity.model'
+import AuthRouter from '../src/auth/routes/auth.route'
+import UserRouter from '../src/users/routes/user.route'
+import AttractionRouter from '../src/attractions/routes/entity.route'
+import FlightRouter from '../src/flights/routes/entity.route'
 
 export const app: Express = express()
 
@@ -24,3 +28,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/products/', EntityRouter)
+app.use('/auth/', AuthRouter)
+app.use('/users/', UserRouter)
+app.use('/attractions/', AttractionRouter)
+app.use('/flights/', FlightRouter)
