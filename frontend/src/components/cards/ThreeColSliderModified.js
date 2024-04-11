@@ -78,14 +78,11 @@ const SearchButton = styled.button`
   ${tw`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg`}
 `
 
-const handleSearch = () => {
-  // Handle search functionality
-}
-
 export default () => {
   // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
   const [sliderRef, setSliderRef] = useState(null)
   const [attractions, setAttractions] = useState([])
+  const [originalAttractions, setOriginalAttractions] = useState([])
   const sliderSettings = {
     arrows: false,
     slidesToShow: 3,
@@ -107,21 +104,46 @@ export default () => {
   }
 
   useEffect(() => {
-    const fetchAttractions = async () => {
-      try {
-        const fetchedAttractions = await AttractionApi.getAttractions() // Fetch attractions using your getAttractions function
-        console.log('Type of attractions:', typeof fetchedAttractions.data)
-        console.log(fetchedAttractions.data)
-        console.log('Size: ', fetchedAttractions.data.data.length)
-        console.log('data.data: ', fetchedAttractions.data.data)
-        setAttractions(fetchedAttractions.data.data)
-      } catch (error) {
-        console.error('Error fetching attractions:', error)
-      }
-    }
-
     fetchAttractions()
   }, [])
+
+  const fetchAttractions = async () => {
+    try {
+      const fetchedAttractions = await AttractionApi.getAttractions()
+      console.log('data.data: ', fetchedAttractions.data.data)
+      setAttractions(fetchedAttractions.data.data)
+      setOriginalAttractions(fetchedAttractions.data.data)
+    } catch (error) {
+      console.error('Error fetching attractions:', error)
+    }
+  }
+
+  const handleSearch = () => {
+    const searchInput = document.getElementById('searchInput')
+    let searchQuery = ''
+    if (searchInput) {
+      searchQuery = searchInput.value.toLowerCase()
+    }
+    console.log('Search Query:', searchQuery)
+    console.log('Attractions Before Filtering:', attractions)
+    if (!searchQuery) {
+      // If search query is empty, fetch attractions again
+      fetchAttractions()
+    } else {
+      const filteredAttractions = originalAttractions.filter(attraction => {
+        const attractionName = attraction.name.toLowerCase()
+        const attractionCity = attraction.city.toLowerCase()
+        const attractionCountry = attraction.country.toLowerCase()
+        return (
+          attractionName.includes(searchQuery) ||
+          attractionCity.includes(searchQuery) ||
+          attractionCountry.includes(searchQuery)
+        )
+      })
+      console.log('Filtered Attractions:', filteredAttractions)
+      setAttractions(filteredAttractions)
+    }
+  }
 
   return (
     <Container>
@@ -129,7 +151,7 @@ export default () => {
         <HeadingWithControl>
           <Heading>Popular Attractions</Heading>
           <SearchContainer>
-            <SearchInput type="text" placeholder="Search..." />
+            <SearchInput id='searchInput' type="text" placeholder="Search..." />
             <SearchButton onClick={handleSearch}>Search</SearchButton>
           </SearchContainer>
           <Controls>
