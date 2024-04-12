@@ -21,7 +21,7 @@ import HostingCloudLandingPageImageSrc from 'images/demo/HostingCloudLandingPage
 import LoginPage from 'pages/Login.js'
 import SignupPage from 'pages/Signup.js'
 import BlogIndexPage from 'pages/BlogIndex.js'
-
+import LandingPage from 'pages/LandingPage.js'
 import LoginPageImageSrc from 'images/demo/LoginPage.jpeg'
 import SignupPageImageSrc from 'images/demo/SignupPage.jpeg'
 import BlogIndexPageImageSrc from 'images/demo/BlogIndexPage.jpeg'
@@ -31,6 +31,7 @@ import IllustrationAndInputHero from 'components/hero/TwoColumnWithInput.js'
 import FullWidthWithImageHero from 'components/hero/FullWidthWithImage.js'
 import BackgroundAsImageWithCenteredContentHero from 'components/hero/BackgroundAsImageWithCenteredContent.js'
 import IllustrationAndPrimaryBackgroundHero from 'components/hero/TwoColumnWithPrimaryBackground.js'
+import AboutUsPageImageSrc from 'images/demo/AboutUsPage.jpeg'
 
 import TwoPlansWithDurationSwitcherPricing from 'components/pricing/TwoPlansWithDurationSwitcher.js'
 import ThreePlansWithHalfPrimaryBackgroundPricing from 'components/pricing/ThreePlansWithHalfPrimaryBackground.js'
@@ -129,6 +130,11 @@ export const components = {
       url: '/components/innerPages/SignupPage',
       imageSrc: SignupPageImageSrc,
       scrollAnimationDisabled: true
+    },
+    LandingPage: {
+      component: LandingPage,
+      url: '/components/innerPages/LandingPage',
+      imageSrc: AboutUsPageImageSrc
     }
   },
 
