@@ -55,7 +55,7 @@ describe('/users/', () => {
     const res: any = await request(TestSetup.app)
       .get(`/users/${defaultEntityId}`)
 
-    expect(res.body.data.quantity).toEqual(SampleEntities[0].quantity)
+    expect(res.body.data.username).toEqual(SampleEntities[0].username)
   })
 
   test('returns status code 200 if it accepts a given entity with appropriate id and details', async () => {
@@ -71,7 +71,7 @@ describe('/users/', () => {
       .patch(`/users/${defaultEntityId}`)
       .send({ username: 'imelda' })
 
-    expect(res.body.data.usename).toEqual('imelda')
+    expect(res.body.data.username).toEqual('imelda')
   })
 
   test('returns status code 200 if it deletes a given entity id', async () => {

@@ -64,7 +64,7 @@ describe('/flights/', () => {
     const res: any = await request(TestSetup.app)
       .get(`/flights/${defaultEntityId}`)
 
-    expect(res.body.data.quantity).toEqual(SampleEntities[0].quantity)
+    expect(res.body.data.departure_city).toEqual(SampleEntities[0].departure_city)
   })
 
   test('returns status code 200 if it updates a given entity with appropriate id and details', async () => {
