@@ -11,13 +11,13 @@ describe('/flights/', () => {
     const res: any = await request(TestSetup.app)
       .post('/flights/')
       .send({
-        name: 'Attraction',
-        city: 'Singapore',
-        description: 'Integer a nibh. In quis justo.',
-        price: 29.61,
-        ratings: 5,
-        opening_hours: '10:01 PM',
-        type_of_attraction: 'Beaches and Islands'
+        _id: '1',
+        departure_city: 'Hing Bali',
+        arrival_city: 'Temburong Ipsum',
+        departure_date: '2022-04-28',
+        departure_time: '7:38 AM',
+        flight_duration: 5,
+        ticket_price: 801.68
       })
 
     expect(res.statusCode).toEqual(StatusCode.SuccessCreated)
@@ -27,13 +27,13 @@ describe('/flights/', () => {
     const res: any = await request(TestSetup.app)
       .post('/flights/')
       .send({
-        name: 'Attraction',
-        city: 'Singapore',
-        description: 'Integer a nibh. In quis justo.',
-        price: 29.61,
-        ratings: 5,
-        opening_hours: '10:01 PM',
-        type_of_attraction: 'Beaches and Islands'
+        _id: '1',
+        departure_city: 'Jakarta Bali',
+        arrival_city: 'Temburong Thailand',
+        departure_date: '2022-04-28',
+        departure_time: '7:38 AM',
+        flight_duration: 5,
+        ticket_price: 801.68
       })
 
     expect(res.body.data._id).toBeDefined()
