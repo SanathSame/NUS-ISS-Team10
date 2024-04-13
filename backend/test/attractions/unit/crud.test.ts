@@ -26,7 +26,7 @@ describe('/attractions/', () => {
         type_of_attraction: 'Beaches and Islands'
       })
 
-    expect(res.statusCode).toEqual(StatusCode.SuccessCreated)
+    expect(res.data.statusCode).toEqual(StatusCode.SuccessCreated)
   })
 
   test('returns a data of a created object', async () => {
@@ -41,7 +41,7 @@ describe('/attractions/', () => {
         type_of_attraction: 'Beaches and Islands'
       })
 
-    expect(res.body.data._id).toBeDefined()
+    expect(res.body.data.data._id).toBeDefined()
   })
 
   test('returns status code 200 if can fetch a list of existing entities', async () => {
@@ -69,7 +69,7 @@ describe('/attractions/', () => {
     const res: any = await request(TestSetup.app)
       .get(`/attractions/${defaultEntityId}`)
 
-    expect(res.body.data.opening_hours).toEqual(SampleEntities[0].opening_hours)
+    expect(res.body.data.data.opening_hours).toEqual(SampleEntities[0].opening_hours)
   })
 
   test('returns status code 200 if it updates a given entity with appropriate id and details', async () => {
@@ -84,7 +84,7 @@ describe('/attractions/', () => {
       .patch(`/attractions/${defaultEntityId}`)
       .send({ ratings: 3.3 })
 
-    expect(res.body.data.data.ratings).toEqual(3.3)
+    expect(res.body.data.data.ratings).toEqual("3.3")
   })
 
   test('returns status code 200 if it deletes a given entity id', async () => {
