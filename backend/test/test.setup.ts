@@ -2,10 +2,10 @@ import { app } from './index'
 
 const port = 4010
 
-const productObject = app.get('product-database').getDbObject()
-const userObject = app.get('user-database').getDbObject()
-const flightObject = app.get('flight-database').getDbObject()
-const attractionObject = app.get('attraction-database').getDbObject()
+let productObject = app.get('product-database').getDbObject()
+let userObject = app.get('user-database').getDbObject()
+let flightObject = app.get('flight-database').getDbObject()
+let attractionObject = app.get('attraction-database').getDbObject()
 
 let server: any
 
@@ -16,6 +16,12 @@ const beforeAllFunction = beforeAll(() => {
 })
 
 const beforeEachFunction = beforeEach(async () => {
+
+  productObject = app.get('product-database').getDbObject()
+  userObject = app.get('user-database').getDbObject()
+  flightObject = app.get('flight-database').getDbObject()
+  attractionObject = app.get('attraction-database').getDbObject()
+
   productObject.manyOrNone('DELETE from products RETURNING *')
   userObject.manyOrNone('DELETE from users RETURNING *')
   flightObject.manyOrNone('DELETE FROM flights RETURNING *')
@@ -47,6 +53,12 @@ const afterEachFunction = afterEach(async () => {
   userObject.manyOrNone('DELETE from users RETURNING *')
   flightObject.manyOrNone('DELETE FROM flights RETURNING *')
   attractionObject.manyOrNone('DELETE FROM attractions RETURNING *')
+
+
+  productObject.disconnect();
+  userObject.disconnect();
+  flightObject.disconnect();
+  attractionObject.disconnect();
 })
 
 const afterAllFunction = afterAll(async () => {
