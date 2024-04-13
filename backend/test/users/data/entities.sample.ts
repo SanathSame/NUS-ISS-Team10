@@ -1,7 +1,7 @@
 export const SampleEntities = [
   {
     _id: '65757316fc13ae561bfa20eb',
-    username: 'Wilek',
+    username: 'shawn',
     password: '$2a$04$gFV8SwSMf9jzfx5Gax2x9eJ/o1dtxa3WMbMxbbDvN2cpzhHdn/KFy',
     email: 'wlannin0@admin.ch'
   },
