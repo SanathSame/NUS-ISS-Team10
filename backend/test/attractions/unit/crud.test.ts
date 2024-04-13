@@ -20,6 +20,7 @@ describe('/attractions/', () => {
       .send({
         name: 'wakandiii',
         city: 'Singapore',
+        country: "Jepun",
         description: 'Integer a nibh. In quis justo.',
         price: 29,
         ratings: 5,
@@ -38,6 +39,7 @@ describe('/attractions/', () => {
       .send({
         name: 'wakanda',
         city: 'Singaporess',
+        country: "South Dakota",
         description: 'Integer a nibh. sssIn quis justo.',
         price: 29,
         ratings: 5,
