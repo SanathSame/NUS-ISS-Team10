@@ -9,7 +9,7 @@
     "start": "npx tsc && node dist/src/index.js",
     "dev": "npx tsc --watch & nodemon dist/src/index.js",
     "test-debug": "jest --runInBand --detectOpenHandles --verbose",
-    "test": "jest --runInBand --detectOpenHandles --silent --verbose",
+    "test": "jest --runInBand --detectOpenHandles --silent --verbose --coverage",
     "lint": "eslint --ext .ts  .",
     "lint-fix": "eslint --fix . --ext .ts"
   },
