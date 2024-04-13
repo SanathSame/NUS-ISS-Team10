@@ -11,10 +11,9 @@ describe('/users/', () => {
     const res: any = await request(TestSetup.app)
       .post('/users/')
       .send({
-        name: 'Cold Head Decongestion',
-        description: 'Integer a nibh. In quis justo.',
-        price: 29.61,
-        quantity: 95
+        email: 'aa@bb.com',
+        username: 'testing',
+        password: 'hello123',
       })
 
     expect(res.statusCode).toEqual(StatusCode.SuccessCreated)
@@ -24,10 +23,9 @@ describe('/users/', () => {
     const res: any = await request(TestSetup.app)
       .post('/users/')
       .send({
-        name: 'Cold Head Decongestion',
-        description: 'Integer a nibh. In quis justo.',
-        price: 29.61,
-        quantity: 95
+        email: 'aa@bb.com',
+        username: 'testing',
+        password: 'hello123',
       })
 
     expect(res.body.data._id).toBeDefined()
@@ -63,7 +61,7 @@ describe('/users/', () => {
   test('returns status code 200 if it accepts a given entity with appropriate id and details', async () => {
     const res: any = await request(TestSetup.app)
       .patch(`/users/${defaultEntityId}`)
-      .send({ quantity: 46 })
+      .send({ username: 'imelda' })
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
@@ -71,9 +69,9 @@ describe('/users/', () => {
   test('returns object with updated password if updated successfully', async () => {
     const res: any = await request(TestSetup.app)
       .patch(`/users/${defaultEntityId}`)
-      .send({ quantity: 46 })
+      .send({ username: 'imelda' })
 
-    expect(res.body.data.quantity).toEqual(46)
+    expect(res.body.data.usename).toEqual('imelda')
   })
 
   test('returns status code 200 if it deletes a given entity id', async () => {
