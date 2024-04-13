@@ -7,8 +7,6 @@ import * as TestSetup from '../../test.setup'
 const defaultEntityId: string = '1'
 
 describe('/flights/', () => {
-
-  
   test('returns status code 201 if it accepts a given entity with appropriate details', async () => {
     const res: any = await request(TestSetup.app)
       .post('/flights/')
