@@ -2,7 +2,7 @@ import { app } from './index'
 
 const port = 4010
 
-let productObject = app.get('product-database').getDbObject()
+const productObject = app.get('product-database').getDbObject()
 
 let server: any
 
@@ -13,11 +13,6 @@ const beforeAllFunction = beforeAll(() => {
 })
 
 const beforeEachFunction = beforeEach(async () => {
-  productObject.manyOrNone('DELETE from products RETURNING *')
-  productObject.manyOrNone('DELETE from users RETURNING *')
-  productObject.manyOrNone('DELETE FROM flights RETURNING *')
-  productObject.manyOrNone('DELETE FROM attractions RETURNING *')
-
   productObject.one('INSERT INTO products (_id, name, description, price, quantity, created_at) VALUES ' +
   "('6591464efc13ae0a31fa20b9', 'Cold Head Congestion Daytime Non-Drowsy', 'Integer a nibh. In quis justo.', 29.61, 95, '2023-12-28 15:56:58') RETURNING *")
   productObject.one('INSERT INTO products (_id, name, description, price, quantity, created_at) VALUES ' +
