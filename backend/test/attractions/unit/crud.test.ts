@@ -31,6 +31,21 @@ describe('/attractions/', () => {
     expect(res.statusCode).toEqual(StatusCode.SuccessCreated)
   })
 
+
+  test('returns error if missing properties added', async () => {
+    const res: any = await request(TestSetup.app)
+      .post('/attractions/')
+      .send({
+        description: 'Integer a nibh. In quis justo.',
+        price: 29,
+        ratings: 5,
+        opening_hours: '10:01 PM',
+        type_of_attraction: 'Beaches and Islands'
+      })
+
+    expect(res.statusCode).toEqual(StatusCode.ServerErrorInternal)
+  })
+
   test('returns a data of a created object', async () => {
     const res: any = await request(TestSetup.app)
       .post('/attractions/')
@@ -47,6 +62,7 @@ describe('/attractions/', () => {
 
     expect(res.body.data._id).toBeDefined()
   })
+  
 
   test('returns status code 200 if can fetch a list of existing entities', async () => {
     const res: any = await request(TestSetup.app)
@@ -96,5 +112,12 @@ describe('/attractions/', () => {
       .delete(`/attractions/${defaultEntityId}`)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
+  })
+
+  test('returns status code 200 if it deletes a given entity id', async () => {
+    const res: any = await request(TestSetup.app)
+      .delete('/attractions/wakwandeu')
+
+    expect(res.statusCode).toEqual(StatusCode.ServerErrorInternal)
   })
 })
