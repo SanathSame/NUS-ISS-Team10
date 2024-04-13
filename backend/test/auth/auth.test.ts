@@ -11,6 +11,12 @@ const sampleValidRefreshToken = jwt.sign({ username: 'tom' }, JwtConstants.refre
 const sampleInvalidRefreshToken = 'lol'
 
 describe('/auth/login', () => {
+  test('returns status code 200 if api is set up correctly', async () => {
+    const res: any = await request(TestSetup.app)
+      .get('/auth/health')
+
+    expect(res.statusCode).toEqual(StatusCode.SuccessOK)
+  })
   test('returns status code 201 if it accepts a given entity with appropriate details', async () => {
     const res: any = await request(TestSetup.app)
       .post('/auth/login')

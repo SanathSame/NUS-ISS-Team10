@@ -7,6 +7,13 @@ import * as TestSetup from '../../test.setup'
 const defaultEntityId: string = '65757316fc13ae561bfa20eb'
 
 describe('/users/', () => {
+  test('returns status code 200 if api is set up correctly', async () => {
+    const res: any = await request(TestSetup.app)
+      .get('/users/health')
+
+    expect(res.statusCode).toEqual(StatusCode.SuccessOK)
+  })
+
   test('returns status code 201 if it accepts a given entity with appropriate details', async () => {
     const res: any = await request(TestSetup.app)
       .post('/users/')
