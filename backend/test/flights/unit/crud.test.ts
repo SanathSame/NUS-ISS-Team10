@@ -11,7 +11,7 @@ describe('/flights/', () => {
     const res: any = await request(TestSetup.app)
       .get('/flights/health')
 
-    expect(res.data.statusCode).toEqual(StatusCode.SuccessOK)
+    expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
 
   test('returns status code 201 if it accepts a given entity with appropriate details', async () => {
@@ -43,7 +43,7 @@ describe('/flights/', () => {
         type_of_attraction: 'Beaches and Islands'
       })
 
-    expect(res.body.data.data._id).toBeDefined()
+    expect(res.body.data._id).toBeDefined()
   })
 
   test('returns status code 200 if can fetch a list of existing entities', async () => {
@@ -71,7 +71,7 @@ describe('/flights/', () => {
     const res: any = await request(TestSetup.app)
       .get(`/flights/${defaultEntityId}`)
 
-    expect(res.body.data.data.departure_city).toEqual(SampleEntities[0].departure_city)
+    expect(res.body.data.departure_city).toEqual(SampleEntities[0].departure_city)
   })
 
   test('returns status code 200 if it updates a given entity with appropriate id and details', async () => {
@@ -86,7 +86,7 @@ describe('/flights/', () => {
       .patch(`/flights/${defaultEntityId}`)
       .send({ city: 'Malaysia' })
 
-    expect(res.body.data.data.city).toEqual('Malaysia')
+    expect(res.body.data.city).toEqual('Malaysia')
   })
 
   test('returns status code 200 if it deletes a given entity id', async () => {

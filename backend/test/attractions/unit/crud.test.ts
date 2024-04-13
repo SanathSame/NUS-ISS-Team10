@@ -7,7 +7,7 @@ import * as TestSetup from '../../test.setup'
 const defaultEntityId: string = '661609ebfc13ae7ef9ab89f5'
 
 describe('/attractions/', () => {
-  test('returns status code 200 if api is set up correctly', async () => {
+    test('returns status code 200 if api is set up correctly', async () => {
     const res: any = await request(TestSetup.app)
       .get('/attractions/health')
 
@@ -25,8 +25,10 @@ describe('/attractions/', () => {
         opening_hours: '10:01 PM',
         type_of_attraction: 'Beaches and Islands'
       })
+    
+    console.log(res.body)
 
-    expect(res.data.statusCode).toEqual(StatusCode.SuccessCreated)
+    expect(res.statusCode).toEqual(StatusCode.SuccessCreated)
   })
 
   test('returns a data of a created object', async () => {
@@ -41,7 +43,7 @@ describe('/attractions/', () => {
         type_of_attraction: 'Beaches and Islands'
       })
 
-    expect(res.body.data.data._id).toBeDefined()
+    expect(res.body.data._id).toBeDefined()
   })
 
   test('returns status code 200 if can fetch a list of existing entities', async () => {
@@ -69,7 +71,7 @@ describe('/attractions/', () => {
     const res: any = await request(TestSetup.app)
       .get(`/attractions/${defaultEntityId}`)
 
-    expect(res.body.data.data.opening_hours).toEqual(SampleEntities[0].opening_hours)
+    expect(res.body.data.opening_hours).toEqual(SampleEntities[0].opening_hours)
   })
 
   test('returns status code 200 if it updates a given entity with appropriate id and details', async () => {
@@ -83,6 +85,8 @@ describe('/attractions/', () => {
     const res: any = await request(TestSetup.app)
       .patch(`/attractions/${defaultEntityId}`)
       .send({ ratings: 3.3 })
+
+    console.log(res.body)
 
     expect(res.body.data.data.ratings).toEqual("3.3")
   })
