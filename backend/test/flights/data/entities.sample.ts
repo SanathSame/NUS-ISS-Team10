@@ -17,4 +17,4 @@ export const SampleEntities = [
     flight_duration: 18,
     ticket_price: 267.36
   }
-];
+]

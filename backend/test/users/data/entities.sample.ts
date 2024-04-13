@@ -1,4 +1,4 @@
-export const SampleEntities =  [
+export const SampleEntities = [
   {
     _id: '65757316fc13ae561bfa20eb',
     username: 'Wilek',
@@ -11,4 +11,4 @@ export const SampleEntities =  [
     password: '$2a$04$VrmVSPIcSEgMV/kW6yo/GugiuIWDNAHYQEky0X6ic/eYyOrggKdMy',
     email: 'nlawlor1@dailymotion.com'
   }
-];
+]

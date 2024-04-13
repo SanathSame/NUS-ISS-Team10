@@ -21,4 +21,4 @@ export const SampleEntities = [
     opening_hours: '12:23 PM',
     type_of_attraction: 'Markets and Bazaars'
   }
-];
+]

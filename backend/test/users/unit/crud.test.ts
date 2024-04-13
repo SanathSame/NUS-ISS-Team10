@@ -13,7 +13,7 @@ describe('/users/', () => {
       .send({
         email: 'aa@bb.com',
         username: 'testing',
-        password: 'hello123',
+        password: 'hello123'
       })
 
     expect(res.statusCode).toEqual(StatusCode.SuccessCreated)
@@ -25,7 +25,7 @@ describe('/users/', () => {
       .send({
         email: 'aa@bb.com',
         username: 'testing',
-        password: 'hello123',
+        password: 'hello123'
       })
 
     expect(res.body.data._id).toBeDefined()

@@ -77,7 +77,7 @@ describe('/attractions/', () => {
       .patch(`/attractions/${defaultEntityId}`)
       .send({ ratings: 3.3 })
 
-    expect(res.body.data.ratings).toEqual(3.3)
+    expect(res.body.data.data.ratings).toEqual(3.3)
   })
 
   test('returns status code 200 if it deletes a given entity id', async () => {
