@@ -13,7 +13,7 @@ describe('POST /attractions/', () => {
         description: 'Integer a nibh. In quis justo.',
         price: 29.61,
         ratings: 5,
-        opening_hours: '10:01 PM', 
+        opening_hours: '10:01 PM',
         type_of_attraction: 'Beaches and Islands'
       })
 
@@ -29,7 +29,7 @@ describe('POST /attractions/', () => {
         description: 'Integer a nibh. In quis justo.',
         price: 29.61,
         ratings: 5,
-        opening_hours: '10:01 PM', 
+        opening_hours: '10:01 PM',
         type_of_attraction: 'Beaches and Islands'
       })
 
