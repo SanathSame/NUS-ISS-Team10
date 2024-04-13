@@ -16,7 +16,6 @@ const beforeAllFunction = beforeAll(() => {
 })
 
 const beforeEachFunction = beforeEach(async () => {
-
   productObject.manyOrNone('DELETE from products RETURNING *')
   userObject.manyOrNone('DELETE from users RETURNING *')
   flightObject.manyOrNone('DELETE FROM flights RETURNING *')
@@ -28,7 +27,7 @@ const beforeEachFunction = beforeEach(async () => {
   "('6591464efc13ae0a31fa20ba', 'North Cough Drop', 'Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.', 12.37, 9, '2023-08-08 17:50:59') RETURNING *")
 
   userObject.one('INSERT INTO users (_id, username, password, email) VALUES ' +
-  "('65757316fc13ae561bfa20eb', 'Wilek', '$2a$04$gFV8SwSMf9jzfx5Gax2x9eJ/o1dtxa3WMbMxbbDvN2cpzhHdn/KFy', 'wlannin0@admin.ch') RETURNING *")
+  "('65757316fc13ae561bfa20eb', 'shawn', '$2b$10$Ruy9.sDl4u1GlpDGtXnqV.kG4Ao828Oy7a2P899QnzAaLpRPgnRP2', 'wlannin0@admin.ch') RETURNING *")
   userObject.one('INSERT INTO users (_id, username, password, email) VALUES ' +
   "('65757316fc13ae561bfa20ec', 'Neville', '$2a$04$VrmVSPIcSEgMV/kW6yo/GugiuIWDNAHYQEky0X6ic/eYyOrggKdMy', 'nlawlor1@dailymotion.com') RETURNING *")
 
