@@ -8,8 +8,8 @@
     "prod": "node build/index.js",
     "start": "npx tsc && node dist/src/index.js",
     "dev": "npx tsc --watch & nodemon dist/src/index.js",
-    "test-debug": "jest --runInBand --detectOpenHandles --verbose",
-    "test": "jest --runInBand --detectOpenHandles --silent --verbose --coverage",
+    "test-debug": "jest --runInBand --detectOpenHandles --verbose --forceExit",
+    "test": "jest --runInBand --detectOpenHandles --silent --verbose --coverage --forceExit",
     "lint": "eslint --ext .ts  .",
     "lint-fix": "eslint --fix . --ext .ts"
   },
