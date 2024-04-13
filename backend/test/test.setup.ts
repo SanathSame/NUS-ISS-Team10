@@ -13,7 +13,6 @@ const beforeAllFunction = beforeAll(() => {
 })
 
 const beforeEachFunction = beforeEach(async () => {
-
   productObject = app.get('product-database').getDbObject()
 
   productObject.manyOrNone('DELETE from products RETURNING *')
@@ -43,14 +42,14 @@ const beforeEachFunction = beforeEach(async () => {
 })
 
 const afterEachFunction = afterEach(async () => {
-  productObject.manyOrNone('DELETE FROM products RETURNING *')
-  productObject.manyOrNone('DELETE FROM users RETURNING *')
-  productObject.manyOrNone('DELETE FROM flights RETURNING *')
-  productObject.manyOrNone('DELETE FROM attractions RETURNING *')
-
+  await productObject.manyOrNone('DELETE FROM products RETURNING *')
+  await productObject.manyOrNone('DELETE FROM users RETURNING *')
+  await productObject.manyOrNone('DELETE FROM flights RETURNING *')
+  await productObject.manyOrNone('DELETE FROM attractions RETURNING *')
 })
 
 const afterAllFunction = afterAll(async () => {
+  await productObject.close();
   await server.close()
 })
 
