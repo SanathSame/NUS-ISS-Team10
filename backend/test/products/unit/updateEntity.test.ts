@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { StatusCode } from 'status-code-enum'
 
-import * as TestSetup from '../test.setup'
+import * as TestSetup from '../../test.setup'
 
 describe('PATCH /products/:id', () => {
   test('returns status code 200 if it accepts a given entity with appropriate id and details', async () => {
