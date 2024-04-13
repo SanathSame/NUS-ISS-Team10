@@ -7,7 +7,7 @@ import * as TestSetup from '../../test.setup'
 const defaultEntityId: string = '661609ebfc13ae7ef9ab89f5'
 
 describe('/attractions/', () => {
-    test('returns status code 200 if api is set up correctly', async () => {
+  test('returns status code 200 if api is set up correctly', async () => {
     const res: any = await request(TestSetup.app)
       .get('/attractions/health')
 
@@ -25,7 +25,7 @@ describe('/attractions/', () => {
         opening_hours: '10:01 PM',
         type_of_attraction: 'Beaches and Islands'
       })
-    
+
     console.log(res.body)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessCreated)
@@ -88,7 +88,7 @@ describe('/attractions/', () => {
 
     console.log(res.body)
 
-    expect(res.body.data.data.ratings).toEqual("3.3")
+    expect(res.body.data.ratings).toEqual('3.3')
   })
 
   test('returns status code 200 if it deletes a given entity id', async () => {
