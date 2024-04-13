@@ -16,6 +16,12 @@ const beforeAllFunction = beforeAll(() => {
 })
 
 const beforeEachFunction = beforeEach(async () => {
+
+  productObject.manyOrNone('DELETE from products RETURNING *')
+  userObject.manyOrNone('DELETE from users RETURNING *')
+  flightObject.manyOrNone('DELETE FROM flights RETURNING *')
+  attractionObject.manyOrNone('DELETE FROM attractions RETURNING *')
+
   productObject.one('INSERT INTO products (_id, name, description, price, quantity, created_at) VALUES ' +
   "('6591464efc13ae0a31fa20b9', 'Cold Head Congestion Daytime Non-Drowsy', 'Integer a nibh. In quis justo.', 29.61, 95, '2023-12-28 15:56:58') RETURNING *")
   productObject.one('INSERT INTO products (_id, name, description, price, quantity, created_at) VALUES ' +
