@@ -18,6 +18,7 @@ describe('/attractions/', () => {
     const res: any = await request(TestSetup.app)
       .post('/attractions/')
       .send({
+        name: "wakandiii",
         city: 'Singapore',
         description: 'Integer a nibh. In quis justo.',
         price: 29.61,
@@ -35,6 +36,7 @@ describe('/attractions/', () => {
     const res: any = await request(TestSetup.app)
       .post('/attractions/')
       .send({
+        name: "wakanda",
         city: 'Singapore',
         description: 'Integer a nibh. In quis justo.',
         price: 29.61,
