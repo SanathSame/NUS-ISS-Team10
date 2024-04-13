@@ -36,10 +36,10 @@ const CardSlider = styled(Slider)`
   }
 `
 const Card = tw.div`h-full flex! flex-col sm:border max-w-sm sm:rounded-tl-4xl sm:rounded-br-5xl relative focus:outline-none`
-// const CardImage = styled.div(props => [
-//   `background-image: url("${props.imageSrc}");`,
-//   tw`w-full h-56 sm:h-64 bg-cover bg-center rounded sm:rounded-none sm:rounded-tl-4xl`
-// ])
+const CardImage = styled.div(props => [
+  `background-image: url("${props.imageSrc}");`,
+  tw`w-full h-56 sm:h-64 bg-cover bg-center rounded sm:rounded-none sm:rounded-tl-4xl`
+])
 
 const TextInfo = tw.div`py-6 sm:px-10 sm:py-6`
 const TitleReviewContainer = tw.div`flex flex-col sm:flex-row sm:justify-between sm:items-center`
@@ -162,7 +162,7 @@ export default () => {
         <CardSlider ref={setSliderRef} {...sliderSettings}>
           {attractions.map((attraction, index) => (
             <Card key={index}>
-              {/* <CardImage imageSrc={card.imageSrc} /> */}
+               <CardImage imageSrc={attraction.attraction_image} alt="Attraction Image"/>
               <TextInfo>
                 <TitleReviewContainer>
                   <Title>{attraction.name}</Title>
