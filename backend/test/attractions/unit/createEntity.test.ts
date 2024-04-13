@@ -8,10 +8,13 @@ describe('POST /attractions/', () => {
     const res: any = await request(TestSetup.app)
       .post('/attractions/')
       .send({
-        name: 'Cold Head Decongestion',
+        name: 'Attraction',
+        city: 'Singapore',
         description: 'Integer a nibh. In quis justo.',
         price: 29.61,
-        quantity: 95
+        ratings: 5,
+        opening_hours: '10:01 PM', 
+        type_of_attraction: 'Beaches and Islands'
       })
 
     expect(res.statusCode).toEqual(StatusCode.SuccessCreated)
@@ -21,10 +24,13 @@ describe('POST /attractions/', () => {
     const res: any = await request(TestSetup.app)
       .post('/attractions/')
       .send({
-        name: 'Cold Head Decongestion',
+        name: 'Attraction',
+        city: 'Singapore',
         description: 'Integer a nibh. In quis justo.',
         price: 29.61,
-        quantity: 95
+        ratings: 5,
+        opening_hours: '10:01 PM', 
+        type_of_attraction: 'Beaches and Islands'
       })
 
     expect(res.body.data._id).toBeDefined()

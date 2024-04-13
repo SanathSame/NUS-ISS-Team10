@@ -7,16 +7,15 @@ describe('PATCH /attractions/:id', () => {
   test('returns status code 200 if it accepts a given entity with appropriate id and details', async () => {
     const res: any = await request(TestSetup.app)
       .patch(`/attractions/${TestSetup.defaultEntityId}`)
-      .send({ quantity: 46 })
-
+      .send({ city: 'Malaysia' })
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
 
   test('returns object with updated password if updated successfully', async () => {
     const res: any = await request(TestSetup.app)
       .patch(`/attractions/${TestSetup.defaultEntityId}`)
-      .send({ quantity: 46 })
+      .send({ city: 'Malaysia' })
 
-    expect(res.body.data.quantity).toEqual(46)
+    expect(res.body.data.city).toEqual('Malaysia')
   })
 })
