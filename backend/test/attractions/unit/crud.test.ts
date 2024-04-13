@@ -28,8 +28,6 @@ describe('/attractions/', () => {
         type_of_attraction: 'Beaches and Islands'
       })
 
-    console.log(res.body)
-
     expect(res.statusCode).toEqual(StatusCode.SuccessCreated)
   })
 
@@ -89,8 +87,6 @@ describe('/attractions/', () => {
     const res: any = await request(TestSetup.app)
       .patch(`/attractions/${defaultEntityId}`)
       .send({ ratings: 3.3 })
-
-    console.log(res.body)
 
     expect(res.body.data.ratings).toEqual('3.3')
   })

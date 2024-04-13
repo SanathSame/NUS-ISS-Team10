@@ -70,16 +70,16 @@ describe('/flights/', () => {
   test('returns status code 200 if it updates a given entity with appropriate id and details', async () => {
     const res: any = await request(TestSetup.app)
       .patch(`/flights/${defaultEntityId}`)
-      .send({ city: 'Malaysia' })
+      .send({ departure_city: 'Malaysia' })
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
 
   test('returns object with updated attribute if updated successfully', async () => {
     const res: any = await request(TestSetup.app)
       .patch(`/flights/${defaultEntityId}`)
-      .send({ city: 'Malaysia' })
+      .send({ departure_city: 'Malaysia' })
 
-    expect(res.body.data.city).toEqual('Malaysia')
+    expect(res.body.data.departure_city).toEqual('Malaysia')
   })
 
   test('returns status code 200 if it deletes a given entity id', async () => {
