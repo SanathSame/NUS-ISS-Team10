@@ -21,7 +21,7 @@ describe('/attractions/', () => {
         name: 'wakandiii',
         city: 'Singapore',
         description: 'Integer a nibh. In quis justo.',
-        price: 29.61,
+        price: 29,
         ratings: 5,
         opening_hours: '10:01 PM',
         type_of_attraction: 'Beaches and Islands'
@@ -37,12 +37,12 @@ describe('/attractions/', () => {
       .post('/attractions/')
       .send({
         name: 'wakanda',
-        city: 'Singapore',
-        description: 'Integer a nibh. In quis justo.',
-        price: 29.61,
+        city: 'Singaporess',
+        description: 'Integer a nibh. sssIn quis justo.',
+        price: 29,
         ratings: 5,
-        opening_hours: '10:01 PM',
-        type_of_attraction: 'Beaches and Islands'
+        opening_hours: '10:02 PM',
+        type_of_attraction: 'aaaBeaches and Islands'
       })
 
     expect(res.body.data._id).toBeDefined()
