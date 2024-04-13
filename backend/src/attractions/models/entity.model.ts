@@ -10,7 +10,8 @@ const attractionEntitySchema = new Schema({
   price: { type: Number, required: true },
   ratings: { type: Number, required: true },
   opening_hours: { type: String, required: true },
-  type_of_attraction: { type: String, required: true }
+  type_of_attraction: { type: String, required: true },
+  attraction_image: { type: String, required: true }
 })
 
 export { attractionEntitySchema, attractionEntityModelName }

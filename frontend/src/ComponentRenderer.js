@@ -22,6 +22,7 @@ import LoginPage from 'pages/Login.js'
 import SignupPage from 'pages/Signup.js'
 import FlightPage from 'pages/Flight.js'
 import AttractionPage from 'pages/AttractionPage'
+import HotelPage from 'pages/HotelPage'
 
 import LoginPageImageSrc from 'images/demo/LoginPage.jpeg'
 import SignupPageImageSrc from 'images/demo/SignupPage.jpeg'
@@ -136,6 +137,10 @@ export const components = {
     AttractionPage: {
       component: AttractionPage,
       url: '/components/innerPages/AttractionPage'
+    },
+    HotelPage: {
+      component: HotelPage,
+      url: '/components/innerPages/HotelPage'
     }
   },
 
