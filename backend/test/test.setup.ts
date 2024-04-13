@@ -2,8 +2,6 @@ import { app } from './index'
 
 const port = 4010
 
-const defaultEntityId: string = '6591464efc13ae0a31fa20b9'
-
 const productObject = app.get('product-database').getDbObject()
 const userObject = app.get('user-database').getDbObject()
 const flightObject = app.get('flight-database').getDbObject()
@@ -50,4 +48,4 @@ const afterAllFunction = afterAll(async () => {
   await server.close()
 })
 
-export { app, defaultEntityId, beforeAllFunction, beforeEachFunction, afterEachFunction, afterAllFunction }
+export { app, beforeAllFunction, beforeEachFunction, afterEachFunction, afterAllFunction }

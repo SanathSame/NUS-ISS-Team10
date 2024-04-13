@@ -4,6 +4,8 @@ import { SampleEntities } from '../data/entities.sample'
 
 import * as TestSetup from '../../test.setup'
 
+const defaultEntityId: string = '1'
+
 describe('/flights/', () => {
   test('returns status code 201 if it accepts a given entity with appropriate details', async () => {
     const res: any = await request(TestSetup.app)
@@ -53,28 +55,28 @@ describe('/flights/', () => {
 
   test('returns status code 200 if it gets a given entity id', async () => {
     const res: any = await request(TestSetup.app)
-      .get(`/flights/${TestSetup.defaultEntityId}`)
+      .get(`/flights/${defaultEntityId}`)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
 
   test('returns an object containing the attribute of the entity requested', async () => {
     const res: any = await request(TestSetup.app)
-      .get(`/flights/${TestSetup.defaultEntityId}`)
+      .get(`/flights/${defaultEntityId}`)
 
     expect(res.body.data.quantity).toEqual(SampleEntities[0].quantity)
   })
 
   test('returns status code 200 if it updates a given entity with appropriate id and details', async () => {
     const res: any = await request(TestSetup.app)
-      .patch(`/flights/${TestSetup.defaultEntityId}`)
+      .patch(`/flights/${defaultEntityId}`)
       .send({ city: 'Malaysia' })
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
 
   test('returns object with updated attribute if updated successfully', async () => {
     const res: any = await request(TestSetup.app)
-      .patch(`/flights/${TestSetup.defaultEntityId}`)
+      .patch(`/flights/${defaultEntityId}`)
       .send({ city: 'Malaysia' })
 
     expect(res.body.data.city).toEqual('Malaysia')
@@ -82,7 +84,7 @@ describe('/flights/', () => {
 
   test('returns status code 200 if it deletes a given entity id', async () => {
     const res: any = await request(TestSetup.app)
-      .delete(`/flights/${TestSetup.defaultEntityId}`)
+      .delete(`/flights/${defaultEntityId}`)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })

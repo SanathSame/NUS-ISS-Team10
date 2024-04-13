@@ -4,12 +4,13 @@ import { SampleEntities } from '../data/entities.sample'
 
 import * as TestSetup from '../../test.setup'
 
+const defaultEntityId: string = '661609ebfc13ae7ef9ab89f5'
+
 describe('/attractions/', () => {
   test('returns status code 201 if it accepts a given entity with appropriate details', async () => {
     const res: any = await request(TestSetup.app)
       .post('/attractions/')
       .send({
-        name: 'Attraction',
         city: 'Singapore',
         description: 'Integer a nibh. In quis justo.',
         price: 29.61,
@@ -25,7 +26,6 @@ describe('/attractions/', () => {
     const res: any = await request(TestSetup.app)
       .post('/attractions/')
       .send({
-        name: 'Attraction',
         city: 'Singapore',
         description: 'Integer a nibh. In quis justo.',
         price: 29.61,
@@ -53,28 +53,28 @@ describe('/attractions/', () => {
 
   test('returns status code 200 if it gets a given entity id', async () => {
     const res: any = await request(TestSetup.app)
-      .get(`/flights/${TestSetup.defaultEntityId}`)
+      .get(`/flights/${defaultEntityId}`)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
 
   test('returns an object containing the attribute of the entity requested', async () => {
     const res: any = await request(TestSetup.app)
-      .get(`/flights/${TestSetup.defaultEntityId}`)
+      .get(`/flights/${defaultEntityId}`)
 
     expect(res.body.data.quantity).toEqual(SampleEntities[0].quantity)
   })
 
   test('returns status code 200 if it updates a given entity with appropriate id and details', async () => {
     const res: any = await request(TestSetup.app)
-      .patch(`/attractions/${TestSetup.defaultEntityId}`)
+      .patch(`/attractions/${defaultEntityId}`)
       .send({ city: 'Malaysia' })
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
 
   test('returns object with updated attribute if updated successfully', async () => {
     const res: any = await request(TestSetup.app)
-      .patch(`/attractions/${TestSetup.defaultEntityId}`)
+      .patch(`/attractions/${defaultEntityId}`)
       .send({ city: 'Malaysia' })
 
     expect(res.body.data.city).toEqual('Malaysia')
@@ -82,7 +82,7 @@ describe('/attractions/', () => {
 
   test('returns status code 200 if it deletes a given entity id', async () => {
     const res: any = await request(TestSetup.app)
-      .delete(`/attractions/${TestSetup.defaultEntityId}`)
+      .delete(`/attractions/${defaultEntityId}`)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })

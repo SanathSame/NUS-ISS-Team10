@@ -4,6 +4,8 @@ import { SampleEntities } from '../data/entities.sample'
 
 import * as TestSetup from '../../test.setup'
 
+const defaultEntityId: string = '65757316fc13ae561bfa20eb'
+
 describe('/users/', () => {
   test('returns status code 201 if it accepts a given entity with appropriate details', async () => {
     const res: any = await request(TestSetup.app)
@@ -46,21 +48,21 @@ describe('/users/', () => {
 
   test('returns status code 200 if it gets a given entity id', async () => {
     const res: any = await request(TestSetup.app)
-      .get(`/users/${TestSetup.defaultEntityId}`)
+      .get(`/users/${defaultEntityId}`)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
 
   test('returns an object containing the email of the entity requested', async () => {
     const res: any = await request(TestSetup.app)
-      .get(`/users/${TestSetup.defaultEntityId}`)
+      .get(`/users/${defaultEntityId}`)
 
     expect(res.body.data.quantity).toEqual(SampleEntities[0].quantity)
   })
 
   test('returns status code 200 if it accepts a given entity with appropriate id and details', async () => {
     const res: any = await request(TestSetup.app)
-      .patch(`/users/${TestSetup.defaultEntityId}`)
+      .patch(`/users/${defaultEntityId}`)
       .send({ quantity: 46 })
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
@@ -68,7 +70,7 @@ describe('/users/', () => {
 
   test('returns object with updated password if updated successfully', async () => {
     const res: any = await request(TestSetup.app)
-      .patch(`/users/${TestSetup.defaultEntityId}`)
+      .patch(`/users/${defaultEntityId}`)
       .send({ quantity: 46 })
 
     expect(res.body.data.quantity).toEqual(46)
@@ -76,7 +78,7 @@ describe('/users/', () => {
 
   test('returns status code 200 if it deletes a given entity id', async () => {
     const res: any = await request(TestSetup.app)
-      .delete(`/users/${TestSetup.defaultEntityId}`)
+      .delete(`/users/${defaultEntityId}`)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })

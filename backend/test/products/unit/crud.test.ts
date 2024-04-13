@@ -4,6 +4,8 @@ import { SampleEntities } from '../data/entities.sample'
 
 import * as TestSetup from '../../test.setup'
 
+const defaultEntityId: string = '6591464efc13ae0a31fa20b9'
+
 describe('/products/', () => {
   test('returns status code 201 if it accepts a given entity with appropriate details', async () => {
     const res: any = await request(TestSetup.app)
@@ -47,21 +49,21 @@ describe('/products/', () => {
 
   test('returns status code 200 if it gets a given entity id', async () => {
     const res: any = await request(TestSetup.app)
-      .get(`/products/${TestSetup.defaultEntityId}`)
+      .get(`/products/${defaultEntityId}`)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
 
   test('returns an object containing the email of the entity requested', async () => {
     const res: any = await request(TestSetup.app)
-      .get(`/products/${TestSetup.defaultEntityId}`)
+      .get(`/products/${defaultEntityId}`)
 
     expect(res.body.data.quantity).toEqual(SampleEntities[0].quantity)
   })
 
   test('returns status code 200 if it updates a given entity with appropriate id and details', async () => {
     const res: any = await request(TestSetup.app)
-      .patch(`/products/${TestSetup.defaultEntityId}`)
+      .patch(`/products/${defaultEntityId}`)
       .send({ quantity: 46 })
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
@@ -69,7 +71,7 @@ describe('/products/', () => {
 
   test('returns object with updated entity if updated successfully', async () => {
     const res: any = await request(TestSetup.app)
-      .patch(`/products/${TestSetup.defaultEntityId}`)
+      .patch(`/products/${defaultEntityId}`)
       .send({ quantity: 46 })
 
     expect(res.body.data.quantity).toEqual(46)
@@ -77,7 +79,7 @@ describe('/products/', () => {
 
   test('returns status code 200 if it deletes a given entity id', async () => {
     const res: any = await request(TestSetup.app)
-      .delete(`/products/${TestSetup.defaultEntityId}`)
+      .delete(`/products/${defaultEntityId}`)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
