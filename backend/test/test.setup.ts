@@ -49,7 +49,7 @@ const afterEachFunction = afterEach(async () => {
 })
 
 const afterAllFunction = afterAll(async () => {
-  await productObject.close();
+  await productObject.$pool.close()
   await server.close()
 })
 
