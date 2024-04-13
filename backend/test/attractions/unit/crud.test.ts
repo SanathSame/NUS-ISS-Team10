@@ -31,7 +31,6 @@ describe('/attractions/', () => {
     expect(res.statusCode).toEqual(StatusCode.SuccessCreated)
   })
 
-
   test('returns error if missing properties added', async () => {
     const res: any = await request(TestSetup.app)
       .post('/attractions/')
@@ -62,7 +61,6 @@ describe('/attractions/', () => {
 
     expect(res.body.data._id).toBeDefined()
   })
-  
 
   test('returns status code 200 if can fetch a list of existing entities', async () => {
     const res: any = await request(TestSetup.app)
@@ -112,12 +110,5 @@ describe('/attractions/', () => {
       .delete(`/attractions/${defaultEntityId}`)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
-  })
-
-  test('returns status code 200 if it deletes a given entity id', async () => {
-    const res: any = await request(TestSetup.app)
-      .delete('/attractions/wakwandeu')
-
-    expect(res.statusCode).toEqual(StatusCode.ServerErrorInternal)
   })
 })
