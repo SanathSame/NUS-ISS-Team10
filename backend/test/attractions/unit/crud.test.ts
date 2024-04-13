@@ -53,16 +53,16 @@ describe('/attractions/', () => {
 
   test('returns status code 200 if it gets a given entity id', async () => {
     const res: any = await request(TestSetup.app)
-      .get(`/flights/${defaultEntityId}`)
+      .get(`/attractions/${defaultEntityId}`)
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
 
   test('returns an object containing the attribute of the entity requested', async () => {
     const res: any = await request(TestSetup.app)
-      .get(`/flights/${defaultEntityId}`)
+      .get(`/attractions/${defaultEntityId}`)
 
-    expect(res.body.data.price).toEqual(SampleEntities[0].price)
+    expect(res.body.data.opening_hours).toEqual(SampleEntities[0].opening_hours)
   })
 
   test('returns status code 200 if it updates a given entity with appropriate id and details', async () => {
