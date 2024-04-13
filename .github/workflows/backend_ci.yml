@@ -78,7 +78,7 @@ jobs:
         cat .env
 
     - name: Run tests
-      run: npm run test-debug
+      run: npm run test
 
   code-quality:
     runs-on: ubuntu-latest
