@@ -20,8 +20,9 @@ import HostingCloudLandingPageImageSrc from 'images/demo/HostingCloudLandingPage
 
 import LoginPage from 'pages/Login.js'
 import SignupPage from 'pages/Signup.js'
-import BlogIndexPage from 'pages/BlogIndex.js'
-import LandingPage from 'pages/LandingPage.js'
+import FlightPage from 'pages/Flight.js'
+import AttractionPage from 'pages/AttractionPage'
+
 import LoginPageImageSrc from 'images/demo/LoginPage.jpeg'
 import SignupPageImageSrc from 'images/demo/SignupPage.jpeg'
 import BlogIndexPageImageSrc from 'images/demo/BlogIndexPage.jpeg'
@@ -29,6 +30,7 @@ import BackgroundAsImageHero from 'components/hero/BackgroundAsImage.js'
 import IllustrationAndVideoHero from 'components/hero/TwoColumnWithVideo.js'
 import IllustrationAndInputHero from 'components/hero/TwoColumnWithInput.js'
 import FullWidthWithImageHero from 'components/hero/FullWidthWithImage.js'
+import FullWidthWithImageModified from 'components/hero/FullWidthWithImageModified.js'
 import BackgroundAsImageWithCenteredContentHero from 'components/hero/BackgroundAsImageWithCenteredContent.js'
 import IllustrationAndPrimaryBackgroundHero from 'components/hero/TwoColumnWithPrimaryBackground.js'
 import AboutUsPageImageSrc from 'images/demo/AboutUsPage.jpeg'
@@ -51,9 +53,11 @@ import WithStatsAndImage2Features from 'components/features/TwoColSingleFeatureW
 import VerticalWithAlternateImageAndTextFeatures from 'components/features/VerticalWithAlternateImageAndText.js'
 
 import SliderCards from 'components/cards/ThreeColSlider.js'
+import SliderCardsModified from 'components/cards/ThreeColSliderModified.js'
 import TrendingCards from 'components/cards/TwoTrendingPreviewCardsWithImage.js'
 import PortfolioCards from 'components/cards/PortfolioTwoCardsWithImage.js'
 import TabGridCards from 'components/cards/TabCardGrid.js'
+import TabGridCardsModified from 'components/cards/TabCardGridModified.js'
 import ProfileThreeColGridCards from 'components/cards/ProfileThreeColGrid.js'
 import ThreeColContactDetailsCards from 'components/cards/ThreeColContactDetails.js'
 
@@ -109,6 +113,11 @@ export const components = {
       component: HostingCloudLandingPage,
       imageSrc: HostingCloudLandingPageImageSrc,
       url: '/components/landingPages/HostingCloudLandingPage'
+    },
+    FlightPage: {
+      component: FlightPage,
+      imageSrc: HostingCloudLandingPageImageSrc,
+      url: '/components/landingPages/FlightPage'
     }
   },
 
@@ -130,6 +139,10 @@ export const components = {
       url: '/components/innerPages/SignupPage',
       imageSrc: SignupPageImageSrc,
       scrollAnimationDisabled: true
+    },
+    AttractionPage: {
+      component: AttractionPage,
+      url: '/components/innerPages/AttractionPage'
     },
     LandingPage: {
       component: LandingPage,
@@ -161,6 +174,11 @@ export const components = {
           name: 'Full Width With Image',
           component: FullWidthWithImageHero,
           url: '/components/blocks/Hero/FullWidthWithImage'
+        },
+        FullWidthWithImageModified: {
+          name: 'Full Width With Image Modified',
+          component: FullWidthWithImageModified,
+          url: '/components/blocks/Hero/FullWidthWithImageModified'
         },
         BackgroundAsImageWithCenteredContent: {
           name: 'Full Width Background Image with centered content',
@@ -268,6 +286,11 @@ export const components = {
           component: SliderCards,
           url: '/components/blocks/Cards/Slider'
         },
+        SliderModified: {
+          name: 'Three Column Slider Modified',
+          component: SliderCardsModified,
+          url: '/components/blocks/Cards/SliderModified'
+        },
         Portfolio: {
           name: 'Two Column Portfolio Cards With Images ',
           component: PortfolioCards,
@@ -277,6 +300,11 @@ export const components = {
           name: 'Tab Card Grid With Tab Switcher',
           component: TabGridCards,
           url: '/components/blocks/Cards/TabGrid'
+        },
+        TabGridModified: {
+          name: 'Tab Card Grid With Tab Switcher Modified',
+          component: TabGridCardsModified,
+          url: '/components/blocks/Cards/TabGridModified'
         },
         ProfileThreeColGrid: {
           name: 'Three Column Grid Cards For Profile',
