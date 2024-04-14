@@ -71,7 +71,7 @@ export default ({
 
       console.log('Login successful!')
 
-      setRedirectTo('')
+      setRedirectTo('/components/innerPages/LandingPage')
     } catch (error) {
       // Use a more clear way to check if there is an error message
       const errorMessage = error.message !== undefined ? error.message : 'Login failed'
