@@ -1,60 +1,37 @@
 import React, { useState, useEffect } from 'react'
+import tw from 'twin.macro'
+import AnimationRevealPage from 'helpers/AnimationRevealPage.js'
+// import Header, { LogoLink, NavLinks, NavLink as NavLinkBase } from '../headers/light.js'
+// import Hero from 'components/hero/FullWidthWithImage.js'
+import Footer from 'components/footers/MiniCenteredFooter.js'
+// import Header, { LogoLink, NavLinks, NavLink as NavLinkBase } from '../headers/light.js'
 // import { useNavigate } from 'react-router-dom' // Import the useNavigate hook
-// import AnimationRevealPage from 'helpers/AnimationRevealPage.js'
 // import { Container as ContainerBase } from 'components/misc/Layouts'
 // import tw from 'twin.macro'
 // import styled from 'styled-components'
 import { css } from "styled-components/macro"; //eslint-disable-line
-// import illustration from 'images/login-illustration.svg'
-// import logo from 'images/logo.svg'
-// import googleIconImageSrc from 'images/google-icon.png'
-// import twitterIconImageSrc from 'images/twitter-icon.png'
-// import { ReactComponent as LoginIcon } from 'feather-icons/dist/icons/log-in.svg'
-// import { AuthApi } from 'api/auth/AuthApi'
 import { FlightApi } from 'api/flight/FlightApi'
 
-// const Container = tw(ContainerBase)`min-h-screen bg-primary-900 text-white font-medium flex justify-center -m-8`
-// const Content = tw.div`max-w-screen-xl m-0 sm:mx-20 sm:my-16 bg-white text-gray-900 shadow sm:rounded-lg flex justify-center flex-1`
-// const MainContainer = tw.div`lg:w-1/2 xl:w-5/12 p-6 sm:p-12`
-// const LogoLink = tw.a``
-// const LogoImage = tw.img`h-12 mx-auto`
-// const MainContent = tw.div`mt-12 flex flex-col items-center`
-// const Heading = tw.h1`text-2xl xl:text-3xl font-extrabold`
-// const FormContainer = tw.div`w-full flex-1 mt-8`
-
-// const SocialButtonsContainer = tw.div`flex flex-col items-center`
-// const SocialButton = styled.a`
-//   ${tw`w-full max-w-xs font-semibold rounded-lg py-3 border text-gray-900 bg-gray-100 hocus:bg-gray-200 hocus:border-gray-400 flex items-center justify-center transition-all duration-300 focus:outline-none focus:shadow-outline text-sm mt-5 first:mt-0`}
-//   .iconContainer {
-//     ${tw`bg-white p-2 rounded-full`}
-//   }
-//   .icon {
-//     ${tw`w-4`}
-//   }
-//   .text {
-//     ${tw`ml-4`}
+// const StyledHeader = styled(Header)`
+//   ${tw`justify-between`}
+//   ${LogoLink} {
+//     ${tw`mr-8 pb-0`}
 //   }
 // `
 
-// const DividerTextContainer = tw.div`my-12 border-b text-center relative`
-// const DividerText = tw.div`leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform -translate-y-1/2 absolute inset-x-0 top-1/2 bg-transparent`
+// const NavLink = tw(NavLinkBase)`
+//   sm:text-sm sm:mx-6
+// `
 
-// const Form = tw.form`mx-auto max-w-xs`
-// const Input = tw.input`w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 first:mt-0`
-// const SubmitButton = styled.button`
-//   ${tw`mt-5 tracking-wide font-semibold bg-primary-500 text-gray-100 w-full py-4 rounded-lg hover:bg-primary-900 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none`}
-//   .icon {
-//     ${tw`w-6 h-6 -ml-2`}
-//   }
-//   .text {
-//     ${tw`ml-3`}
-//   }
+const Container = tw.div`relative -mx-8 -mt-8`
+// const TwoColumn = tw.div`flex flex-col lg:flex-row bg-gray-100`
+// const LeftColumn = tw.div`ml-8 mr-8 xl:pl-10 py-8`
+// const RightColumn = styled.div`
+//   background-image: url("https://images.pexels.com/photos/1068795/pexels-photo-1068795.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+//   ${tw`bg-green-500 bg-cover bg-center xl:ml-24 h-96 lg:h-auto lg:w-1/2 lg:flex-1`}
 // `
-// const IllustrationContainer = tw.div`sm:rounded-r-lg flex-1 bg-purple-100 text-center hidden lg:flex justify-center`
-// const IllustrationImage = styled.div`
-//   ${props => `background-image: url("${props.imageSrc}");`}
-//   ${tw`m-12 xl:m-16 w-full max-w-sm bg-contain bg-center bg-no-repeat`}
-// `
+// const Content = tw.div`mt-24 lg:mt-24 lg:mb-24 flex flex-col sm:items-center lg:items-stretch`
+// const Heading = tw.h1`text-3xl sm:text-5xl md:text-6xl lg:text-5xl font-black leading-none`
 
 const FlightPage = () => {
   const [flightData, setFlightData] = useState([])
@@ -73,7 +50,8 @@ const FlightPage = () => {
   }, [])
 
   return (
-    <div>
+    <AnimationRevealPage disabled>
+    <Container>
       <h2>Flight Data</h2>
       <table>
         <thead>
@@ -105,7 +83,9 @@ const FlightPage = () => {
           ))}
         </tbody>
       </table>
-    </div>
+    </Container>
+    <Footer />
+    </AnimationRevealPage>
   )
 }
 
