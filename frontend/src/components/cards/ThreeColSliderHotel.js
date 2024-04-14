@@ -9,7 +9,7 @@ import { ReactComponent as LocationIcon } from 'feather-icons/dist/icons/map-pin
 import { ReactComponent as StarIcon } from 'feather-icons/dist/icons/star.svg'
 import { ReactComponent as ChevronLeftIcon } from 'feather-icons/dist/icons/chevron-left.svg'
 import { ReactComponent as ChevronRightIcon } from 'feather-icons/dist/icons/chevron-right.svg'
-import { AttractionApi } from 'api/attraction/AttractionApi'
+import { HotelApi } from 'api/hotel/HotelApi'
 
 const Container = tw.div`relative`
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`
@@ -81,8 +81,8 @@ const SearchButton = styled.button`
 export default () => {
   // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
   const [sliderRef, setSliderRef] = useState(null)
-  const [attractions, setAttractions] = useState([])
-  const [originalAttractions, setOriginalAttractions] = useState([])
+  const [hotels, setHotels] = useState([])
+  const [originalHotels, setOriginalHotels] = useState([])
   const sliderSettings = {
     arrows: false,
     slidesToShow: 3,
@@ -104,17 +104,17 @@ export default () => {
   }
 
   useEffect(() => {
-    fetchAttractions()
+    fetchHotels()
   }, [])
 
-  const fetchAttractions = async () => {
+  const fetchHotels = async () => {
     try {
-      const fetchedAttractions = await AttractionApi.getAttractions()
-      console.log('data.data: ', fetchedAttractions.data.data)
-      setAttractions(fetchedAttractions.data.data)
-      setOriginalAttractions(fetchedAttractions.data.data)
+      const fetchedHotels = await HotelApi.getHotels()
+      console.log('data.data: ', fetchedHotels.data.data)
+      setHotels(fetchedHotels.data.data)
+      setOriginalHotels(fetchedHotels.data.data)
     } catch (error) {
-      console.error('Error fetching attractions:', error)
+      console.error('Error fetching hotels:', error)
     }
   }
 
@@ -125,23 +125,23 @@ export default () => {
       searchQuery = searchInput.value.toLowerCase()
     }
     console.log('Search Query:', searchQuery)
-    console.log('Attractions Before Filtering:', attractions)
+    console.log('Hotels Before Filtering:', hotels)
     if (!searchQuery) {
-      // If search query is empty, fetch attractions again
-      fetchAttractions()
+      // If search query is empty, fetch hotels again
+      fetchHotels()
     } else {
-      const filteredAttractions = originalAttractions.filter(attraction => {
-        const attractionName = attraction.name.toLowerCase()
-        const attractionCity = attraction.city.toLowerCase()
-        const attractionCountry = attraction.country.toLowerCase()
+      const filteredHotels = originalHotels.filter(hotel => {
+        const hotelName = hotel.name.toLowerCase()
+        const hotelCity = hotel.city.toLowerCase()
+        const hotelCountry = hotel.country.toLowerCase()
         return (
-          attractionName.includes(searchQuery) ||
-          attractionCity.includes(searchQuery) ||
-          attractionCountry.includes(searchQuery)
+          hotelName.includes(searchQuery) ||
+          hotelCity.includes(searchQuery) ||
+          hotelCountry.includes(searchQuery)
         )
       })
-      console.log('Filtered Attractions:', filteredAttractions)
-      setAttractions(filteredAttractions)
+      console.log('Filtered Hotels:', filteredHotels)
+      setHotels(filteredHotels)
     }
   }
 
@@ -149,7 +149,7 @@ export default () => {
     <Container>
       <Content>
         <HeadingWithControl>
-          <Heading>Popular Attractions</Heading>
+          <Heading>Popular Hotels</Heading>
           <SearchContainer>
             <SearchInput id='searchInput' type="text" placeholder="Search..." />
             <SearchButton onClick={handleSearch}>Search</SearchButton>
@@ -160,15 +160,15 @@ export default () => {
           </Controls>
         </HeadingWithControl>
         <CardSlider ref={setSliderRef} {...sliderSettings}>
-          {attractions.map((attraction, index) => (
+          {hotels.map((hotel, index) => (
             <Card key={index}>
-               <CardImage imageSrc={attraction.attraction_image} alt="Attraction Image"/>
+               <CardImage imageSrc={hotel.hotel_image}/>
               <TextInfo>
                 <TitleReviewContainer>
-                  <Title>{attraction.name}</Title>
+                  <Title>{hotel.name}</Title>
                   <RatingsInfo>
                     <StarIcon />
-                    <Rating>{attraction.ratings}</Rating>
+                    <Rating>{hotel.ratings}</Rating>
                   </RatingsInfo>
                 </TitleReviewContainer>
                 <SecondaryInfoContainer>
@@ -176,16 +176,16 @@ export default () => {
                     <IconContainer>
                       <LocationIcon />
                     </IconContainer>
-                    <Text>{attraction.city}, {attraction.country}</Text>
+                    <Text>{hotel.city}, {hotel.country}</Text>
                   </IconWithText>
                   <IconWithText>
                     <IconContainer>
                       <PriceIcon />
                     </IconContainer>
-                    <Text>{attraction.price}</Text>
+                    <Text>{hotel.price}</Text>
                   </IconWithText>
                 </SecondaryInfoContainer>
-                <Description>{attraction.description}</Description>
+                <Description>{hotel.description}</Description>
               </TextInfo>
               <PrimaryButton>Book Now</PrimaryButton>
             </Card>
