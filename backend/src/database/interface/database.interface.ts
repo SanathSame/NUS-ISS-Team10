@@ -14,6 +14,8 @@ interface Database {
   updateEntity: (id: string, newData: Partial<any>) => Promise<any>
 
   deleteEntity: (id: string) => Promise<any>
+
+  getDbObject: () => any
 }
 
 export default Database

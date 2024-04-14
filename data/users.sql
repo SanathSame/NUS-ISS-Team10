@@ -61,6 +61,18 @@ create table attractions (
 
 );
 
+create table hotels (
+    _id varchar(24) NOT NULL DEFAULT generate_object_id(),
+    name VARCHAR(30) NOT NULL,
+	city VARCHAR(50) NOT NULL,
+	country VARCHAR(50) NOT NULL,
+    description TEXT,
+	price DECIMAL(6,2) NOT NULL,
+	ratings DECIMAL(3,1) NOT NULL,
+	ammenities VARCHAR(50) NOT NULL,
+    hotel_image VARCHAR(500) NOT NULL
+);
+
 create table flights (
     _id varchar(24) NOT NULL DEFAULT generate_object_id(),
 	departure_city VARCHAR(50) NOT NULL,
@@ -250,6 +262,24 @@ insert into attractions (_id, name, city, country, description, price, ratings, 
 insert into attractions (_id, name, city, country, description, price, ratings, opening_hours, type_of_attraction, attraction_image) values ('661609ebfc13ae7ef9ab8a14', 'Forbidden City', 'Beijing', 'China', 'Delve into the rich history and grandeur of the Forbidden City, an architectural marvel nestled in the heart of Beijing', 855.68, 9.7, '10:31 PM', 'Historical Sites and Monuments', 'https://cdn.britannica.com/03/198203-050-138BB1C3/entrance-Gate-of-Divine-Might-Beijing-Forbidden.jpg');
 insert into attractions (_id, name, city, country, description, price, ratings, opening_hours, type_of_attraction, attraction_image) values ('661609ebfc13ae7ef9ab8a15', 'Neuschwanstein Castle', 'Schwangau', 'Germany', 'Experience the fairy-tale allure of Neuschwanstein Castle, nestled amidst the picturesque Bavarian Alps', 466.96, 2.5, '11:50 PM', 'Historical Sites and Monuments', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Schloss_Neuschwanstein_2013.jpg/800px-Schloss_Neuschwanstein_2013.jpg');
 insert into attractions (_id, name, city, country, description, price, ratings, opening_hours, type_of_attraction, attraction_image) values ('661609ebfc13ae7ef9ab8a16', 'Petra', 'Uum Sayhoun', 'Jordan', 'Step into the mesmerizing world of Petra, where the ancient city emerges from the rose-red cliffs of Jordan', 632.0, 5.1, '7:05 PM', 'Historical Sites and Monuments', 'https://i.natgeofe.com/n/69e2cf60-ad59-4d20-bdd1-dc96f40ab4e8/petra-world-heritage-jordan_3x2.jpg');
+
+
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20eb', 'Sheraton Hotels & Resorts', 'Kanḏay', 'Afghanistan', 'Tranquil coastal retreat with stunning views and luxurious amenities.', 304.01, 2.13, 'Restaurant','https://66b4fb5b0eb079420f42-f8d2ee6acac1b4bd28ecd85cc6789b99.ssl.cf1.rackcdn.com/18-Sheraton-Pool.jpg');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20ec', 'Mercure', 'Buenavista', 'Philippines', 'Escape to luxury amidst scenic landscapes and upscale amenities.', 197.1, 0.42, 'Spa','https://hotelier.com.py/wp-content/uploads/2019/09/Mercure-hotel.jpg');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20ed', 'Renaissance Hotels', 'H̱olon', 'Israel', 'Experience luxury and comfort in a scenic retreat.', 830.89, 3.8, 'Free Wi-Fi','https://cache.marriott.com/marriottassets/marriott/DALBR/dalbr-exterior-0060-hor-feat.jpg');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20ee', 'Novotel', 'Biao', 'Philippines', 'Discover elegance and tranquility in a picturesque setting.', 246.75, 3.67, 'Free Wi-Fi','https://media.glassdoor.com/l/4c/d8/a8/07/novotel.jpg');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20ef', 'ibis', 'Borgholm', 'Sweden', 'Indulge in upscale comforts amidst natural beauty.', 285.26, 4.53, 'Free Wi-Fi','https://tophotel.news/wp-content/uploads/2019/02/Ibis.jpg');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20f1', 'The Ritz-Carlton', 'Shimen', 'China', 'Luxury accommodation surrounded by breathtaking natural landscapes.', 961.2, 0.85, 'Gym','https://th.bing.com/th/id/OIP.W2DwtzssP5WOrW6fRi2kKQHaE8?rs=1&pid=ImgDetMain');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20f2', 'Candlewood Suites', 'Zemlyansk', 'Russia', 'Experience upscale amenities amidst stunning natural scenery.', 175.93, 2.31, 'Spa','https://digital.ihg.com/is/image/ihg/candlewood-suites-miami-5499069824-4x3');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20f3', 'Kerry Hotels', 'Oslo', 'Norway', 'Elegant lodging nestled in the heart of picturesque surroundings.', 839.55, 0.35, 'Spa','https://www.filmages.com/images/made/images/thumbs/Kerry_Hotel_Moment_00001_500_281.jpg');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20f4', 'Kimpton Hotels & Restaurants', 'Vysokogornyy', 'Russia', 'Discover refined comfort amidst the beauty of nature.', 969.49, 2.48, 'Gym','https://th.bing.com/th/id/OIP.k6yhWNX8UGivmLjAGfqBMgHaIJ?rs=1&pid=ImgDetMain');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20f5', 'Mandarin Oriental', 'Majunying', 'China', 'Escape to a tranquil haven offering luxury amidst scenic beauty.', 297.55, 1.91, 'Swimming Pool','https://luxurylaunches.com/wp-content/uploads/2016/03/1-The-Mandarin-Oriental-Hong-Kong%E2%80%99s-night-fa%C3%A7ade.jpg');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20f6', 'Holiday Inn', 'Bethel Town', 'Jamaica', 'Immerse in luxury amid nature serene embrace.', 715.03, 2.43, 'Gym','https://th.bing.com/th/id/OIP.IdE0W-CI8M2PVb9ABM9OFAHaFj?rs=1&pid=ImgDetMain');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20f7', 'Hotel Jen', 'Lingbeizhou', 'China', 'Luxurious hideaway nestled in scenic tranquility awaits.', 506.87, 2.55, 'Restaurant','https://2.bp.blogspot.com/-CQ_MgyYxi8M/WmA7eQo2kdI/AAAAAAAAdvA/_Ftc50yx0Z4aFVJ0a9jNHfk13pSG-fk9ACLcBGAs/s1600/jen.jpg');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20f8', 'Courtyard by Marriott', 'Rongcheng', 'China', 'Discover lavish comfort in a picturesque natural setting.', 973.08, 4.51, 'Gym','https://th.bing.com/th/id/OIP.SVA-ESO3MoCtEKfZoPsrSgHaFj?rs=1&pid=ImgDetMain');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20f9', 'Radisson Hotels', 'Hoit Taria', 'China', 'Unwind in opulent elegance amidst stunning natural landscapes.', 660.88, 4.56, 'Spa','https://th.bing.com/th/id/OIP.lsoycdmk7c3OHemDY8OhHwHaE7?rs=1&pid=ImgDetMain');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20fa', 'Pullman Hotels and Resort', 'Guanli', 'China', 'Indulge in upscale amenities amidst serene, picturesque surroundings.', 360.65, 3.96, 'Restaurant','https://www.ahstatic.com/photos/8276_ho_00_p_2048x1536.jpg');
+insert into hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) values ('65e57316fc13ae561bfa20fb', 'Four Seasons Hotel', 'El Paso', 'United States', 'Elegant lodging nestled in the heart of picturesque surroundings.', 355.14, 0.01, 'Restaurant','https://th.bing.com/th/id/OIP.7e4ArBZCOXPR94s4itEBqQHaHC?rs=1&pid=ImgDetMain');
 
 
 insert into flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) values ('1', 'Jakarta Indonesia', 'Pattaya Thailand', '28-04-2022', '7:38 AM', 5, 801.68);
