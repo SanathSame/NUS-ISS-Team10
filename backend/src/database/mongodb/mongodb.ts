@@ -55,6 +55,10 @@ class MongoDb implements Database {
   async deleteEntity (_id: string): Promise<any> {
     return this.ModelObject.deleteOne({ _id }).exec()
   }
+
+  getDbObject (): any {
+    return this.ModelObject
+  }
 }
 
 export default MongoDb

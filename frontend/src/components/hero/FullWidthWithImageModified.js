@@ -32,7 +32,7 @@ export default ({
     <NavLinks key={1}>
       <NavLink href="#">Itenerary</NavLink>
       <NavLink href="#">Flights</NavLink>
-      <NavLink href="#">Hotels</NavLink>
+      <NavLink href="/components/innerPages/HotelPage">Hotels</NavLink>
       <NavLink href="/components/innerPages/AttractionPage">Attractions</NavLink>
     </NavLinks>
   ],

@@ -70,6 +70,10 @@ class Postgres implements Database {
   async deleteEntity (_id: string): Promise<any> {
     return this.db.oneOrNone(`DELETE FROM ${this.entityModelName}s WHERE _id = $1 RETURNING *`, [_id])
   }
+
+  getDbObject (): any {
+    return this.db
+  }
 }
 
 export default Postgres
