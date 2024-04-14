@@ -45,7 +45,7 @@ export default ({
   navLinks = [
     <NavLinks key={1}>
       <NavLink href="#">Itenerary</NavLink>
-      <NavLink href="#">Flights</NavLink>
+      <NavLink href="/components/innerPages/FlightPage">Flights</NavLink>
       <NavLink href="#">Hotels</NavLink>
       <NavLink href="/components/innerPages/AttractionPage">Attractions</NavLink>
     </NavLinks>
@@ -59,7 +59,7 @@ export default ({
     </>
   ),
   description = 'Welcome',
-  primaryActionUrl = '#',
+  primaryActionUrl = '/components/innerPages/FlightPage',
   primaryActionText = 'Find flights',
   secondaryActionUrl = '#',
   secondaryActionText = 'Search Hotels',

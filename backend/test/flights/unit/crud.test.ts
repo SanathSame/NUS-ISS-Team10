@@ -12,8 +12,10 @@ describe('/flights/', () => {
       .post('/flights/')
       .send({
         _id: '1',
-        departure_city: 'Hing Bali',
-        arrival_city: 'Temburong Ipsum',
+        departure_city: 'Hing',
+        departure_country: 'Bali',
+        arrival_city: 'Temburong',
+        arrival_country: 'Brunei',
         departure_date: '2022-04-28',
         departure_time: '7:38 AM',
         flight_duration: 5,
@@ -28,8 +30,10 @@ describe('/flights/', () => {
       .post('/flights/')
       .send({
         _id: '1',
-        departure_city: 'Jakarta Bali',
-        arrival_city: 'Temburong Thailand',
+        departure_city: 'Jakarta',
+        departure_country: 'Bali',
+        arrival_city: 'Temburong',
+        arrival_country: 'Brunei',
         departure_date: '2022-04-28',
         departure_time: '7:38 AM',
         flight_duration: 5,

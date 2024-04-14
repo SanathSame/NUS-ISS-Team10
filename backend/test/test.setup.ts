@@ -28,10 +28,10 @@ const beforeEachFunction = beforeEach(async () => {
   productObject.one('INSERT INTO attractions (_id, name, city, country, description, price, ratings, opening_hours, type_of_attraction) VALUES ' +
   "('661609ebfc13ae7ef9ab89f6', 'Bora Bora', 'Sitovo', 'Bulgaria', 'dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere', 522.81, 9.9, '12:23 PM', 'Markets and Bazaars') RETURNING *")
 
-  productObject.one('INSERT INTO flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) VALUES ' +
-  "('1', 'Jakarta Indonesia', 'Pattaya Thailand', '2022-04-28', '7:38 AM', 5, 801.68) RETURNING *")
-  productObject.one('INSERT INTO flights (_id, departure_city, arrival_city, departure_date, departure_time, flight_duration, ticket_price) VALUES ' +
-  "('2', 'Singapore Singapore', 'Penang Malaysia', '2022-06-07', '11:54 PM', 18, 267.36) RETURNING *")
+  productObject.one('INSERT INTO flights (_id, departure_city, departure_country, arrival_city, arrival_country, departure_date, departure_time, flight_duration, ticket_price) VALUES ' +
+  "('1', 'Jakarta', 'Indonesia', 'Pattaya','Thailand', '2022-04-28', '7:38 AM', 5, 801.68) RETURNING *")
+  productObject.one('INSERT INTO flights (_id, departure_city, departure_country, arrival_city, arrival_country, departure_date, departure_time, flight_duration, ticket_price) VALUES ' +
+  "('2', 'Singapore', 'Singapore', 'Penang', 'Malaysia', '2022-06-07', '11:54 PM', 18, 267.36) RETURNING *")
 })
 
 const afterEachFunction = afterEach(async () => {
