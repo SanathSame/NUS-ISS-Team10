@@ -22,6 +22,8 @@ import LoginPage from 'pages/Login.js'
 import SignupPage from 'pages/Signup.js'
 import FlightPage from 'pages/Flight.js'
 import AttractionPage from 'pages/AttractionPage'
+import BlogIndexPage from 'pages/BlogIndex.js'
+import LandingPage from 'pages/LandingPage.js'
 
 import LoginPageImageSrc from 'images/demo/LoginPage.jpeg'
 import SignupPageImageSrc from 'images/demo/SignupPage.jpeg'
