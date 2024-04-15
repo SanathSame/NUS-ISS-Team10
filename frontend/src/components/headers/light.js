@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom' // Import the useNavigate hook
 import { motion } from 'framer-motion'
 import tw from 'twin.macro'
 import styled from 'styled-components'
-import { css } from "styled-components/macro"; //eslint-disable-line
+import { css } from "styled-components/macro" //eslint-disable-line
 
 import useAnimatedNavToggler from '../../helpers/useAnimatedNavToggler.js'
+import { FaAngleDown } from 'react-icons/fa' // Importing the icon
 
 import logo from '../../images/logo.svg'
 import { ReactComponent as MenuIcon } from 'feather-icons/dist/icons/menu.svg'
@@ -34,13 +36,12 @@ export const PrimaryLink = tw(NavLink)`
 `
 
 export const LogoLink = styled(NavLink)`
-  ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`};
+  ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`}
 
   img {
     ${tw`w-10 mr-3`}
   }
 `
-
 export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`
 export const NavToggle = tw.button`
   lg:hidden z-20 focus:outline-none hocus:text-primary-500 transition duration-300
@@ -57,27 +58,44 @@ export const DesktopNavLinks = tw.nav`
 `
 
 export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = 'lg' }) => {
-  /*
-   * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
-   * This links props should be an array of "NavLinks" components which is exported from this file.
-   * Each "NavLinks" component can contain any amount of "NavLink" component, also exported from this file.
-   * This allows this Header to be multi column.
-   * So If you pass only a single item in the array with only one NavLinks component as root, you will get 2 column header.
-   * Left part will be LogoLink, and the right part will be the the NavLinks component you
-   * supplied.
-   * Similarly if you pass 2 items in the links array, then you will get 3 columns, the left will be "LogoLink", the center will be the first "NavLinks" component in the array and the right will be the second "NavLinks" component in the links array.
-   * You can also choose to directly modify the links here by not passing any links from the parent component and
-   * changing the defaultLinks variable below below.
-   * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
-   */
-  const defaultLinks = [
-    <NavLinks key={1}>
-      <NavLink href="/#">Itenerary</NavLink>
-      <NavLink href="/#">Flights</NavLink>
-      <NavLink href="/#">Hotels</NavLink>
-      <NavLink href="/#">Attractions</NavLink>
-    </NavLinks>
-  ]
+  const [redirectTo, setRedirectTo] = useState(null) // State to manage redirection
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (redirectTo) {
+      navigate(redirectTo)
+    }
+  }, [redirectTo, navigate])
+  const defaultLinks = () => {
+    const [showDropdown, setShowDropdown] = useState(false)
+    const handleLogout = () => {
+      localStorage.removeItem('username')
+      setRedirectTo('/components/innerPages/LoginPage')
+    }
+    return (
+      <NavLinks>
+        <NavLink href="/#">Itinerary</NavLink>
+        <NavLink href="/#">Flights</NavLink>
+        <NavLink href="/#">Hotels</NavLink>
+        <NavLink href="/#">Attractions</NavLink>
+{localStorage.getItem('username')
+  ? (
+    <div style={{ position: 'relative' }}>
+      <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => setShowDropdown(!showDropdown)}>
+        <span>{localStorage.getItem('username')}</span>
+        <FaAngleDown style={{ marginLeft: '5px' }} />
+      </div>
+      {showDropdown && (
+        <div style={{ position: 'absolute', top: '100%', left: 0, background: '#fff', border: '1px solid #ccc' }}>
+          <button onClick={handleLogout}>Log Out</button>
+        </div>
+      )}
+    </div>
+    )
+  : null}
+</NavLinks>
+    )
+  }
 
   const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler()
   const collapseBreakpointCss = collapseBreakPointCssMap[collapseBreakpointClass]

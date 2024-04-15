@@ -70,7 +70,7 @@ export default ({
       localStorage.setItem('accessToken', response.data.data.accessToken)
 
       console.log('Login successful!')
-
+      localStorage.setItem('username', username.value)
       setRedirectTo('/components/innerPages/LandingPage')
     } catch (error) {
       // Use a more clear way to check if there is an error message

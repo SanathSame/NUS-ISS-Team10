@@ -12,6 +12,14 @@ export default () => {
     <AnimationRevealPage>
       <Header />
       <MainFeature1
+        heading='Itenerary Builder'
+        description='Make your best itenerary by trying out every combination, easily!'
+        buttonRounded={false}
+        primaryButtonText='Plan itenerary'
+        imageSrc='https://images.unsplash.com/photo-1522199710521-72d69614c702?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRyYXZlbCUyMGl0ZW5lcmFyeXxlbnwwfHwwfHx8MA%3D%3D'
+        textOnLeft={false}
+      />
+      <MainFeature1
         heading='Book flights'
         description='Travel-Aid helps users find the best flights to their destinations and back.'
         buttonRounded={false}
@@ -33,9 +41,6 @@ export default () => {
         primaryButtonText='Book attractions'
         imageSrc='https://images.unsplash.com/photo-1534016493773-9cdaf3eb86c0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dG91cmlzdHN8ZW58MHx8MHx8fDA%3D'
       />
-      {/* <TeamCardGrid
-        subheading={<Subheading>Our Team</Subheading>}
-      /> */}
       <Footer />
     </AnimationRevealPage>
   )
