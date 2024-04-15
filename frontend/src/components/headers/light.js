@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom' // Import the useNavigate hook
+import React from 'react'
+// import { useNavigate } from 'react-router-dom' // Import the useNavigate hook
 import { motion } from 'framer-motion'
 import tw from 'twin.macro'
 import styled from 'styled-components'
 import { css } from "styled-components/macro" //eslint-disable-line
 
 import useAnimatedNavToggler from '../../helpers/useAnimatedNavToggler.js'
-import { FaAngleDown } from 'react-icons/fa' // Importing the icon
+// import { FaAngleDown } from 'react-icons/fa' // Importing the icon
 
 import logo from '../../images/logo.svg'
 import { ReactComponent as MenuIcon } from 'feather-icons/dist/icons/menu.svg'
@@ -57,43 +57,16 @@ export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `
 
-export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = 'lg' }) => {
-  const [redirectTo, setRedirectTo] = useState(null) // State to manage redirection
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (redirectTo) {
-      navigate(redirectTo)
-    }
-  }, [redirectTo, navigate])
+export default ({ logoLink, links, className, collapseBreakpointClass = 'lg' }) => {
   const defaultLinks = () => {
-    const [showDropdown, setShowDropdown] = useState(false)
-    const handleLogout = () => {
-      localStorage.removeItem('username')
-      setRedirectTo('/components/innerPages/LoginPage')
-    }
     return (
-      <NavLinks>
-        <NavLink href="/#">Itinerary</NavLink>
-        <NavLink href="/#">Flights</NavLink>
-        <NavLink href="/#">Hotels</NavLink>
-        <NavLink href="/#">Attractions</NavLink>
-{localStorage.getItem('username')
-  ? (
-    <div style={{ position: 'relative' }}>
-      <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => setShowDropdown(!showDropdown)}>
-        <span>{localStorage.getItem('username')}</span>
-        <FaAngleDown style={{ marginLeft: '5px' }} />
-      </div>
-      {showDropdown && (
-        <div style={{ position: 'absolute', top: '100%', left: 0, background: '#fff', border: '1px solid #ccc' }}>
-          <button onClick={handleLogout}>Log Out</button>
-        </div>
-      )}
-    </div>
-    )
-  : null}
-</NavLinks>
+      <NavLinks key={1}>
+        <NavLink href="/components/innerPages/BlogIndexPage">Itinerary</NavLink>
+        <NavLink href="/components/innerPages/FlightPage">Flights</NavLink>
+        <NavLink href="/components/innerPages/HotelPage">Hotels</NavLink>
+        <NavLink href="/components/innerPages/AttractionPage">Attractions</NavLink>
+        <NavLink href="/#">Log Out</NavLink>
+      </NavLinks>
     )
   }
 

@@ -70,5 +70,4 @@ create table flights (
 	ticket_price DECIMAL(10,2) NOT NULL
 );
 
-//add table definition here
 ALTER SYSTEM SET max_connections = 50;
