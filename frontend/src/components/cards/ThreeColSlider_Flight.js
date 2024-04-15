@@ -9,7 +9,7 @@ import { ReactComponent as LocationIcon } from 'feather-icons/dist/icons/map-pin
 import { ReactComponent as StarIcon } from 'feather-icons/dist/icons/star.svg'
 import { ReactComponent as ChevronLeftIcon } from 'feather-icons/dist/icons/chevron-left.svg'
 import { ReactComponent as ChevronRightIcon } from 'feather-icons/dist/icons/chevron-right.svg'
-import { AttractionApi } from 'api/attraction/AttractionApi'
+import { FlightApi } from 'api/flight/FlightApi'
 
 const Container = tw.div`relative`
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`
@@ -67,7 +67,6 @@ const Text = tw.div`ml-2 text-sm font-semibold text-gray-800`
 
 const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`
 
-// Added SearchContainer, SearchInput, and SearchButton components
 const SearchContainer = styled.div`
   ${tw`flex justify-center mt-8`}
 `
@@ -79,10 +78,31 @@ const SearchButton = styled.button`
 `
 
 export default () => {
-  // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
   const [sliderRef, setSliderRef] = useState(null)
-  const [attractions, setAttractions] = useState([])
-  const [originalAttractions, setOriginalAttractions] = useState([])
+  const [flightData, setFlightData] = useState([])
+  useEffect(() => {
+    fetchFlightData()
+  }, [])
+
+  const fetchFlightData = async () => {
+    try {
+      const response = await FlightApi.getFlights()
+      console.log(response.data)
+      setFlightData(response.data.data)
+    } catch (error) {
+      console.error('Error fetching flight data:', error)
+    }
+  }
+
+  const handleSearch = () => {
+    const searchInput = document.getElementById('searchInput')
+    let searchQuery = ''
+    if (searchInput) {
+      searchQuery = searchInput.value.toLowerCase()
+    }
+    console.log('Search Query:', searchQuery)
+  }
+
   const sliderSettings = {
     arrows: false,
     slidesToShow: 3,
@@ -103,53 +123,11 @@ export default () => {
     ]
   }
 
-  useEffect(() => {
-    fetchAttractions()
-  }, [])
-
-  const fetchAttractions = async () => {
-    try {
-      const fetchedAttractions = await AttractionApi.getAttractions()
-      console.log('data.data: ', fetchedAttractions.data.data)
-      setAttractions(fetchedAttractions.data.data)
-      setOriginalAttractions(fetchedAttractions.data.data)
-    } catch (error) {
-      console.error('Error fetching attractions:', error)
-    }
-  }
-
-  const handleSearch = () => {
-    const searchInput = document.getElementById('searchInput')
-    let searchQuery = ''
-    if (searchInput) {
-      searchQuery = searchInput.value.toLowerCase()
-    }
-    console.log('Search Query:', searchQuery)
-    console.log('Attractions Before Filtering:', attractions)
-    if (!searchQuery) {
-      // If search query is empty, fetch attractions again
-      fetchAttractions()
-    } else {
-      const filteredAttractions = originalAttractions.filter(attraction => {
-        const attractionName = attraction.name.toLowerCase()
-        const attractionCity = attraction.city.toLowerCase()
-        const attractionCountry = attraction.country.toLowerCase()
-        return (
-          attractionName.includes(searchQuery) ||
-          attractionCity.includes(searchQuery) ||
-          attractionCountry.includes(searchQuery)
-        )
-      })
-      console.log('Filtered Attractions:', filteredAttractions)
-      setAttractions(filteredAttractions)
-    }
-  }
-
   return (
     <Container>
       <Content>
         <HeadingWithControl>
-          <Heading>Popular Attractions</Heading>
+          <Heading>Search Flights</Heading>
           <SearchContainer>
             <SearchInput id='searchInput' type="text" placeholder="Search..." />
             <SearchButton onClick={handleSearch}>Search</SearchButton>
@@ -160,15 +138,15 @@ export default () => {
           </Controls>
         </HeadingWithControl>
         <CardSlider ref={setSliderRef} {...sliderSettings}>
-          {attractions.map((attraction, index) => (
+          {flightData.map((flight, index) => (
             <Card key={index}>
-               <CardImage imageSrc={attraction.attraction_image} alt="Attraction Image"/>
+              <CardImage imageSrc={'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80'} />
               <TextInfo>
                 <TitleReviewContainer>
-                  <Title>{attraction.name}</Title>
+                  <Title>{flight.arrival_city}</Title>
                   <RatingsInfo>
                     <StarIcon />
-                    <Rating>{attraction.ratings}</Rating>
+                    <Rating>{flight.flight_duration}</Rating>
                   </RatingsInfo>
                 </TitleReviewContainer>
                 <SecondaryInfoContainer>
@@ -176,18 +154,18 @@ export default () => {
                     <IconContainer>
                       <LocationIcon />
                     </IconContainer>
-                    <Text>{attraction.city}, {attraction.country}</Text>
+                    <Text>{flight.arrival_country}</Text>
                   </IconWithText>
                   <IconWithText>
                     <IconContainer>
                       <PriceIcon />
                     </IconContainer>
-                    <Text>{attraction.price}</Text>
+                    <Text>{flight.ticket_price}</Text>
                   </IconWithText>
                 </SecondaryInfoContainer>
-                <Description>{attraction.description}</Description>
+                <Description>{flight.departure_country}</Description>
               </TextInfo>
-              <PrimaryButton>Book Now</PrimaryButton>
+              <PrimaryButton>Add to Itenerary</PrimaryButton>
             </Card>
           ))}
         </CardSlider>

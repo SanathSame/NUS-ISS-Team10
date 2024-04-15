@@ -22,6 +22,7 @@ import LoginPage from 'pages/Login.js'
 import SignupPage from 'pages/Signup.js'
 import FlightPage from 'pages/Flight.js'
 import AttractionPage from 'pages/AttractionPage'
+import HotelPage from 'pages/HotelPage'
 import BlogIndexPage from 'pages/BlogIndex.js'
 import LandingPage from 'pages/LandingPage.js'
 
@@ -115,11 +116,6 @@ export const components = {
       component: HostingCloudLandingPage,
       imageSrc: HostingCloudLandingPageImageSrc,
       url: '/components/landingPages/HostingCloudLandingPage'
-    },
-    FlightPage: {
-      component: FlightPage,
-      imageSrc: HostingCloudLandingPageImageSrc,
-      url: '/components/landingPages/FlightPage'
     }
   },
 
@@ -142,9 +138,17 @@ export const components = {
       imageSrc: SignupPageImageSrc,
       scrollAnimationDisabled: true
     },
+    FlightPage: {
+      component: FlightPage,
+      url: '/components/innerPages/FlightPage'
+    },
     AttractionPage: {
       component: AttractionPage,
       url: '/components/innerPages/AttractionPage'
+    },
+    HotelPage: {
+      component: HotelPage,
+      url: '/components/innerPages/HotelPage'
     },
     LandingPage: {
       component: LandingPage,
