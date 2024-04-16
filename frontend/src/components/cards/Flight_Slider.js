@@ -10,6 +10,7 @@ import { ReactComponent as ClockIcon } from 'feather-icons/dist/icons/clock.svg'
 import { ReactComponent as ChevronLeftIcon } from 'feather-icons/dist/icons/chevron-left.svg'
 import { ReactComponent as ChevronRightIcon } from 'feather-icons/dist/icons/chevron-right.svg'
 import { FlightApi } from 'api/flight/FlightApi'
+import FlightFilter from './Flight_Filter'
 
 const Container = tw.div`relative`
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`
@@ -67,20 +68,11 @@ const Text = tw.div`ml-2 text-sm font-semibold text-gray-800`
 
 const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`
 
-const SearchContainer = styled.div`
-  ${tw`flex justify-center mt-8`}
-`
-const SearchInput = tw.input`border rounded p-2 mr-2`
-const SearchButton = styled.button`
-  ${tw`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg`}
-`
-
-const ResultsText = tw.p`text-sm font-semibold text-gray-800 text-right`
-
 export default () => {
   const [sliderRef, setSliderRef] = useState(null)
   const [flightData, setFlightData] = useState([])
   const [filteredFlights, setFilteredFlights] = useState([])
+  // const [advancedSearch, setAdvancedSearch] = useState([])
 
   useEffect(() => {
     fetchFlightData()
@@ -97,31 +89,6 @@ export default () => {
     }
   }
 
-  const handleSearch = () => {
-    const searchInput = document.getElementById('searchInput')
-    let searchQuery = ''
-    if (searchInput) {
-      searchQuery = searchInput.value.toLowerCase()
-    }
-    if (!searchQuery) {
-      setFilteredFlights(flightData)
-    } else {
-      const res = flightData.filter(flight => {
-        const arrivalCity = flight.arrival_city.toLowerCase()
-        const arrivalCountry = flight.arrival_country.toLowerCase()
-        const departureCity = flight.departure_city.toLowerCase()
-        const departureCountry = flight.departure_country.toLowerCase()
-        return (
-          arrivalCity.includes(searchQuery) ||
-          arrivalCountry.includes(searchQuery) ||
-          departureCity.includes(searchQuery) ||
-          departureCountry.includes(searchQuery)
-        )
-      })
-      setFilteredFlights(res)
-    }
-  }
-
   const handlePrimaryBtn = (flight) => {
     console.log('Selected flight:', flight)
   }
@@ -135,18 +102,18 @@ export default () => {
 
   const sliderSettings = {
     arrows: false,
-    slidesToShow: 3,
+    slidesToShow: Math.min(3, filteredFlights.length),
     responsive: [
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 2
+          slidesToShow: Math.min(2, filteredFlights.length)
         }
       },
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 1
+          slidesToShow: Math.min(1, filteredFlights.length)
         }
       }
     ]
@@ -157,16 +124,16 @@ export default () => {
       <Content>
         <HeadingWithControl>
           <Heading>Search Flights</Heading>
-          <SearchContainer>
-            <SearchInput id='searchInput' type="text" placeholder="Search..." />
-            <SearchButton onClick={handleSearch}>Search</SearchButton>
-          </SearchContainer>
+          <FlightFilter
+            setFilteredFlights = {setFilteredFlights}
+            filteredFlights = {filteredFlights}
+            flightData = {flightData}
+          />
           <Controls>
             <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
             <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
           </Controls>
         </HeadingWithControl>
-        <ResultsText>Showing {filteredFlights.length} results</ResultsText>
         <CardSlider ref={setSliderRef} {...sliderSettings}>
           {filteredFlights.map((flight, index) => (
             <Card key={index}>
