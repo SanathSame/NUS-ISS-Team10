@@ -44,7 +44,7 @@ const Actions = styled.div`
 export default ({
   navLinks = [
     <NavLinks key={1}>
-      <NavLink href="#">Itenerary</NavLink>
+      <NavLink href="/components/innerPages/BlogIndexPage">Itenerary</NavLink>
       <NavLink href="/components/innerPages/FlightPage">Flights</NavLink>
       <NavLink href="#">Hotels</NavLink>
       <NavLink href="/components/innerPages/AttractionPage">Attractions</NavLink>

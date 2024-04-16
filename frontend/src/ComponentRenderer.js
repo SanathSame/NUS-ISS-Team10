@@ -23,10 +23,12 @@ import SignupPage from 'pages/Signup.js'
 import FlightPage from 'pages/Flight.js'
 import AttractionPage from 'pages/AttractionPage'
 import HotelPage from 'pages/HotelPage'
+import BlogIndexPage from 'pages/BlogIndex.js'
+import LandingPage from 'pages/LandingPage.js'
 
 import LoginPageImageSrc from 'images/demo/LoginPage.jpeg'
 import SignupPageImageSrc from 'images/demo/SignupPage.jpeg'
-
+import BlogIndexPageImageSrc from 'images/demo/BlogIndexPage.jpeg'
 import BackgroundAsImageHero from 'components/hero/BackgroundAsImage.js'
 import IllustrationAndVideoHero from 'components/hero/TwoColumnWithVideo.js'
 import IllustrationAndInputHero from 'components/hero/TwoColumnWithInput.js'
@@ -34,6 +36,7 @@ import FullWidthWithImageHero from 'components/hero/FullWidthWithImage.js'
 import FullWidthWithImageModified from 'components/hero/FullWidthWithImageModified.js'
 import BackgroundAsImageWithCenteredContentHero from 'components/hero/BackgroundAsImageWithCenteredContent.js'
 import IllustrationAndPrimaryBackgroundHero from 'components/hero/TwoColumnWithPrimaryBackground.js'
+import AboutUsPageImageSrc from 'images/demo/AboutUsPage.jpeg'
 
 import TwoPlansWithDurationSwitcherPricing from 'components/pricing/TwoPlansWithDurationSwitcher.js'
 import ThreePlansWithHalfPrimaryBackgroundPricing from 'components/pricing/ThreePlansWithHalfPrimaryBackground.js'
@@ -123,6 +126,12 @@ export const components = {
       scrollAnimationDisabled: true,
       url: '/components/innerPages/LoginPage'
     },
+    BlogIndexPage: {
+      component: BlogIndexPage,
+      url: '/components/innerPages/BlogIndexPage',
+      imageSrc: BlogIndexPageImageSrc,
+      scrollAnimationDisabled: true
+    },
     SignupPage: {
       component: SignupPage,
       url: '/components/innerPages/SignupPage',
@@ -140,6 +149,11 @@ export const components = {
     HotelPage: {
       component: HotelPage,
       url: '/components/innerPages/HotelPage'
+    },
+    LandingPage: {
+      component: LandingPage,
+      url: '/components/innerPages/LandingPage',
+      imageSrc: AboutUsPageImageSrc
     }
   },
 

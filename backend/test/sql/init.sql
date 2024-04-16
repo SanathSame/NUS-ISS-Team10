@@ -69,4 +69,5 @@ create table flights (
     flight_duration INT NOT NULL,
 	ticket_price DECIMAL(10,2) NOT NULL
 );
+
 ALTER SYSTEM SET max_connections = 50;
