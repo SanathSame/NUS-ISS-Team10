@@ -113,11 +113,6 @@ export const components = {
       component: HostingCloudLandingPage,
       imageSrc: HostingCloudLandingPageImageSrc,
       url: '/components/landingPages/HostingCloudLandingPage'
-    },
-    FlightPage: {
-      component: FlightPage,
-      imageSrc: HostingCloudLandingPageImageSrc,
-      url: '/components/landingPages/FlightPage'
     }
   },
 
@@ -133,6 +128,10 @@ export const components = {
       url: '/components/innerPages/SignupPage',
       imageSrc: SignupPageImageSrc,
       scrollAnimationDisabled: true
+    },
+    FlightPage: {
+      component: FlightPage,
+      url: '/components/innerPages/FlightPage'
     },
     AttractionPage: {
       component: AttractionPage,
