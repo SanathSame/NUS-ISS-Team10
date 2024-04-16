@@ -28,6 +28,7 @@ export default (navLinks = [
         description='Make your best itenerary by trying out every combination, easily!'
         buttonRounded={false}
         primaryButtonText='Plan itenerary'
+        primaryButtonUrl='/components/innerPages/BlogIndexPage'
         imageSrc='https://images.unsplash.com/photo-1522199710521-72d69614c702?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRyYXZlbCUyMGl0ZW5lcmFyeXxlbnwwfHwwfHx8MA%3D%3D'
         textOnLeft={false}
       />
@@ -45,7 +46,7 @@ export default (navLinks = [
         buttonRounded={false}
         primaryButtonText='Book hotels'
         primaryButtonUrl='/components/innerPages/HotelPage'
-        imageSrc='https://images.unsplash.com/photo-1606046604972-77cc76aee944?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aG90ZWxzfGVufDB8fDB8fHww'
+        imageSrc='https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         textOnLeft={false}
       />
         <MainFeature1
@@ -54,7 +55,7 @@ export default (navLinks = [
         buttonRounded={false}
         primaryButtonText='Book attractions'
         primaryButtonUrl='/components/innerPages/AttractionPage'
-        imageSrc='https://images.unsplash.com/photo-1534016493773-9cdaf3eb86c0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dG91cmlzdHN8ZW58MHx8MHx8fDA%3D'
+        imageSrc='https://images.unsplash.com/photo-1689982922260-46cce9b95627?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
       />
       <Footer />
     </AnimationRevealPage>

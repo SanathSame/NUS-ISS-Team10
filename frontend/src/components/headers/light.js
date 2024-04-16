@@ -74,7 +74,7 @@ export default ({ logoLink, links, className, collapseBreakpointClass = 'lg' }) 
   const collapseBreakpointCss = collapseBreakPointCssMap[collapseBreakpointClass]
 
   const defaultLogoLink = (
-    <LogoLink href="/">
+    <LogoLink href='/components/landingPages/HotelTravelLandingPage'>
       <img src={logo} alt="logo" />
       Travel-Aid
     </LogoLink>

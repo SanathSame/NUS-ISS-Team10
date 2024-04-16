@@ -187,7 +187,7 @@ export default () => {
                 </SecondaryInfoContainer>
                 <Description>{attraction.description}</Description>
               </TextInfo>
-              <PrimaryButton>Book Now</PrimaryButton>
+              <PrimaryButton>Add to Itenerary</PrimaryButton>
             </Card>
           ))}
         </CardSlider>
