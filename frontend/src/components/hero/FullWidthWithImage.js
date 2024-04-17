@@ -26,27 +26,14 @@ const RightColumn = styled.div`
 
 const Content = tw.div`mt-24 lg:mt-24 lg:mb-24 flex flex-col sm:items-center lg:items-stretch`
 const Heading = tw.h1`text-3xl sm:text-5xl md:text-6xl lg:text-5xl font-black leading-none`
-const Paragraph = tw.p`max-w-md my-8 lg:my-5 lg:my-8 sm:text-lg lg:text-base xl:text-lg leading-loose`
-
-const Actions = styled.div`
-  ${tw`mb-8 lg:mb-0`}
-  .action {
-    ${tw`text-center inline-block w-full sm:w-48 py-4 font-semibold tracking-wide rounded hocus:outline-none focus:shadow-outline transition duration-300`}
-  }
-  .primaryAction {
-    ${tw`bg-primary-500 text-gray-100 hover:bg-primary-700`}
-  }
-  .secondaryAction {
-    ${tw`mt-4 sm:mt-0 sm:ml-4 bg-gray-300 text-gray-700 hover:bg-gray-400 hover:text-gray-800`}
-  }
-`
+const Paragraph = tw.p`max-w-md my-8 lg:my-5 lg:my-8 sm:text-lg lg:text-base xl:text-lg leading-loose italic`
 
 export default ({
   navLinks = [
     <NavLinks key={1}>
-      <NavLink href="#">Itenerary</NavLink>
+      <NavLink href="/components/innerPages/BlogIndexPage">Itenerary</NavLink>
       <NavLink href="/components/innerPages/FlightPage">Flights</NavLink>
-      <NavLink href="#">Hotels</NavLink>
+      <NavLink href="/components/innerPages/HotelPage">Hotels</NavLink>
       <NavLink href="/components/innerPages/AttractionPage">Attractions</NavLink>
     </NavLinks>
   ],
@@ -58,13 +45,7 @@ export default ({
       <span tw="text-primary-500">with Travel-Aid</span>
     </>
   ),
-  description = 'Welcome',
-  primaryActionUrl = '/components/innerPages/FlightPage',
-  primaryActionText = 'Find flights',
-  secondaryActionUrl = '#',
-  secondaryActionText = 'Search Hotels',
-  ternaryActionUrl = '#',
-  ternaryActionText = 'Search Attractions'
+  description = 'Welcome to Travel-Aid, where your next adventure begins. Find flights, hotels, and attractions effortlessly, tailored to your preferences. Say goodbye to endless searching and hello to hassle-free travel planning. Explore the world with confidence and create memories that last a lifetime.'
 }) => {
   return (
     <Container>
@@ -74,17 +55,6 @@ export default ({
           <Content>
             <Heading>{heading}</Heading>
             <Paragraph>{description}</Paragraph>
-            <Actions>
-              <a href={primaryActionUrl} className="action primaryAction">
-                {primaryActionText}
-              </a>
-              <a href={secondaryActionUrl} className="action secondaryAction">
-                {secondaryActionText}
-              </a>
-              <a href={ternaryActionUrl} className="action secondaryAction">
-                {ternaryActionText}
-              </a>
-            </Actions>
           </Content>
         </LeftColumn>
         <RightColumn></RightColumn>

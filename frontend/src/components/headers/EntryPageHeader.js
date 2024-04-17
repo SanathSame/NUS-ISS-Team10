@@ -1,12 +1,10 @@
 import React from 'react'
-// import { useNavigate } from 'react-router-dom' // Import the useNavigate hook
 import { motion } from 'framer-motion'
 import tw from 'twin.macro'
 import styled from 'styled-components'
-import { css } from "styled-components/macro" //eslint-disable-line
+import { css } from "styled-components/macro"; //eslint-disable-line
 
 import useAnimatedNavToggler from '../../helpers/useAnimatedNavToggler.js'
-// import { FaAngleDown } from 'react-icons/fa' // Importing the icon
 
 import logo from '../../images/logo.svg'
 import { ReactComponent as MenuIcon } from 'feather-icons/dist/icons/menu.svg'
@@ -36,12 +34,13 @@ export const PrimaryLink = tw(NavLink)`
 `
 
 export const LogoLink = styled(NavLink)`
-  ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`}
+  ${tw`flex items-center font-black border-b-0 text-2xl! ml-0!`};
 
   img {
     ${tw`w-10 mr-3`}
   }
 `
+
 export const MobileNavLinksContainer = tw.nav`flex flex-1 items-center justify-between`
 export const NavToggle = tw.button`
   lg:hidden z-20 focus:outline-none hocus:text-primary-500 transition duration-300
@@ -57,37 +56,23 @@ export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `
 
-export default ({ logoLink, links, className, collapseBreakpointClass = 'lg' }) => {
-  const defaultLinks = () => {
-    return (
-      <NavLinks key={1}>
-        <NavLink href="/components/innerPages/BlogIndexPage">Itinerary</NavLink>
-        <NavLink href="/components/innerPages/FlightPage">Flights</NavLink>
-        <NavLink href="/components/innerPages/HotelPage">Hotels</NavLink>
-        <NavLink href="/components/innerPages/AttractionPage">Attractions</NavLink>
-        <NavLink href="/#">Log Out</NavLink>
-      </NavLinks>
-    )
-  }
-
+export default ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = 'lg' }) => {
   const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler()
   const collapseBreakpointCss = collapseBreakPointCssMap[collapseBreakpointClass]
 
   const defaultLogoLink = (
-    <LogoLink href='/components/landingPages/HotelTravelLandingPage'>
+    <LogoLink href="/">
       <img src={logo} alt="logo" />
       Travel-Aid
     </LogoLink>
   )
 
   logoLink = logoLink || defaultLogoLink
-  links = links || defaultLinks
 
   return (
     <Header className={className || 'header-light'}>
       <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
         {logoLink}
-        {links}
       </DesktopNavLinks>
 
       <MobileNavLinksContainer css={collapseBreakpointCss.mobileNavLinksContainer}>
