@@ -144,7 +144,7 @@ export default () => {
             <LogoImg src={LogoImage} />
             <LogoText>Travel-Aid Inc.</LogoText>
           </LogoContainer>
-          <CopywrightNotice>&copy; 2018 Travel-Aid Inc. All Rights Reserved.</CopywrightNotice>
+          <CopywrightNotice>&copy; 2024 Travel-Aid Inc. All Rights Reserved.</CopywrightNotice>
           <SocialLinksContainer>
             <SocialLink href="https://facebook.com">
               <FacebookIcon />

@@ -6,7 +6,7 @@ import { SectionHeading } from 'components/misc/Headings'
 import { PrimaryButton as PrimaryButtonBase } from 'components/misc/Buttons'
 import { ReactComponent as PriceIcon } from 'feather-icons/dist/icons/dollar-sign.svg'
 import { ReactComponent as LocationIcon } from 'feather-icons/dist/icons/map-pin.svg'
-import { ReactComponent as StarIcon } from 'feather-icons/dist/icons/star.svg'
+import { ReactComponent as ClockIcon } from 'feather-icons/dist/icons/clock.svg'
 import { ReactComponent as ChevronLeftIcon } from 'feather-icons/dist/icons/chevron-left.svg'
 import { ReactComponent as ChevronRightIcon } from 'feather-icons/dist/icons/chevron-right.svg'
 import { FlightApi } from 'api/flight/FlightApi'
@@ -45,13 +45,13 @@ const TextInfo = tw.div`py-6 sm:px-10 sm:py-6`
 const TitleReviewContainer = tw.div`flex flex-col sm:flex-row sm:justify-between sm:items-center`
 const Title = tw.h5`text-2xl font-bold`
 
-const RatingsInfo = styled.div`
+const DurationInfo = styled.div`
   ${tw`flex items-center sm:ml-4 mt-2 sm:mt-0`}
   svg {
-    ${tw`w-6 h-6 text-yellow-500 fill-current`}
+    ${tw`w-6 h-6`}
   }
 `
-const Rating = tw.span`ml-2 font-bold`
+const Duration = tw.span`ml-2 font-bold`
 
 const Description = tw.p`text-sm leading-loose mt-2 sm:mt-4`
 
@@ -70,16 +70,18 @@ const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-fu
 const SearchContainer = styled.div`
   ${tw`flex justify-center mt-8`}
 `
-
 const SearchInput = tw.input`border rounded p-2 mr-2`
-
 const SearchButton = styled.button`
-  ${tw`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg`}
+  ${tw`bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-lg`}
 `
+
+const ResultsText = tw.p`text-sm font-semibold text-gray-800 text-right`
 
 export default () => {
   const [sliderRef, setSliderRef] = useState(null)
   const [flightData, setFlightData] = useState([])
+  const [filteredFlights, setFilteredFlights] = useState([])
+
   useEffect(() => {
     fetchFlightData()
   }, [])
@@ -89,6 +91,7 @@ export default () => {
       const response = await FlightApi.getFlights()
       console.log(response.data)
       setFlightData(response.data.data)
+      setFilteredFlights(response.data.data)
     } catch (error) {
       console.error('Error fetching flight data:', error)
     }
@@ -100,7 +103,34 @@ export default () => {
     if (searchInput) {
       searchQuery = searchInput.value.toLowerCase()
     }
-    console.log('Search Query:', searchQuery)
+    if (!searchQuery) {
+      setFilteredFlights(flightData)
+    } else {
+      const res = flightData.filter(flight => {
+        const arrivalCity = flight.arrival_city.toLowerCase()
+        const arrivalCountry = flight.arrival_country.toLowerCase()
+        const departureCity = flight.departure_city.toLowerCase()
+        const departureCountry = flight.departure_country.toLowerCase()
+        return (
+          arrivalCity.includes(searchQuery) ||
+          arrivalCountry.includes(searchQuery) ||
+          departureCity.includes(searchQuery) ||
+          departureCountry.includes(searchQuery)
+        )
+      })
+      setFilteredFlights(res)
+    }
+  }
+
+  const handlePrimaryBtn = (flight) => {
+    console.log('Selected flight:', flight)
+  }
+
+  const formatDate = (dateString) => {
+    const [day, month, year] = dateString.split('-').map(Number)
+    const date = new Date(year, month - 1, day)
+    const options = { day: 'numeric', month: 'long', year: 'numeric' }
+    return date.toLocaleDateString('en-GB', options)
   }
 
   const sliderSettings = {
@@ -113,7 +143,6 @@ export default () => {
           slidesToShow: 2
         }
       },
-
       {
         breakpoint: 900,
         settings: {
@@ -137,17 +166,18 @@ export default () => {
             <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
           </Controls>
         </HeadingWithControl>
+        <ResultsText>Showing {filteredFlights.length} results</ResultsText>
         <CardSlider ref={setSliderRef} {...sliderSettings}>
-          {flightData.map((flight, index) => (
+          {filteredFlights.map((flight, index) => (
             <Card key={index}>
               <CardImage imageSrc={'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80'} />
               <TextInfo>
                 <TitleReviewContainer>
                   <Title>{flight.arrival_city}</Title>
-                  <RatingsInfo>
-                    <StarIcon />
-                    <Rating>{flight.flight_duration}</Rating>
-                  </RatingsInfo>
+                  <DurationInfo>
+                    <ClockIcon />
+                    <Duration>{flight.flight_duration}hr</Duration>
+                  </DurationInfo>
                 </TitleReviewContainer>
                 <SecondaryInfoContainer>
                   <IconWithText>
@@ -160,12 +190,12 @@ export default () => {
                     <IconContainer>
                       <PriceIcon />
                     </IconContainer>
-                    <Text>{flight.ticket_price}</Text>
+                    <Text>${flight.ticket_price}</Text>
                   </IconWithText>
                 </SecondaryInfoContainer>
-                <Description>{flight.departure_country}</Description>
+                <Description>Depart from {flight.departure_city}, {flight.departure_country} on {formatDate(flight.departure_date)}, {flight.departure_time}.</Description>
               </TextInfo>
-              <PrimaryButton>Add to Itenerary</PrimaryButton>
+              <PrimaryButton onClick={() => handlePrimaryBtn(flight)}>Add to Itenerary</PrimaryButton>
             </Card>
           ))}
         </CardSlider>

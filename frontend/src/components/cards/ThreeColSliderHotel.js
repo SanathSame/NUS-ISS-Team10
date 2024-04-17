@@ -75,7 +75,7 @@ const SearchContainer = styled.div`
 const SearchInput = tw.input`border rounded p-2 mr-2`
 
 const SearchButton = styled.button`
-  ${tw`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg`}
+  ${tw`bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-lg`}
 `
 
 export default () => {
@@ -187,7 +187,7 @@ export default () => {
                 </SecondaryInfoContainer>
                 <Description>{hotel.description}</Description>
               </TextInfo>
-              <PrimaryButton>Book Now</PrimaryButton>
+              <PrimaryButton>Add to Itenerary</PrimaryButton>
             </Card>
           ))}
         </CardSlider>

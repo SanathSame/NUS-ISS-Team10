@@ -117,7 +117,7 @@ export default () => {
                       <LocationIcon /> {card.locationText}
                     </CardMetaFeature>
                   </CardMeta>
-                  <CardAction>Book Now</CardAction>
+                  <CardAction>Add to Itenerary</CardAction>
                 </CardText>
               </Card>
             </CardColumn>

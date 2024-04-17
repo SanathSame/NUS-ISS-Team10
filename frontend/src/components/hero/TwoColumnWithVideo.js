@@ -27,7 +27,7 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 
 export default ({
   heading = 'Welcome to Travel-Aid',
-  description = 'Our templates are easy to setup, understand and customize. Fully modular components with a variety of pages and components.',
+  description = 'We help people who love to travel, travel.',
   primaryButtonText = 'Sign Up',
   primaryButtonUrl = '/components/innerPages/SignupPage',
   secondaryButtonText = 'Login',
