@@ -72,7 +72,6 @@ export default () => {
   const [sliderRef, setSliderRef] = useState(null)
   const [flightData, setFlightData] = useState([])
   const [filteredFlights, setFilteredFlights] = useState([])
-  // const [advancedSearch, setAdvancedSearch] = useState([])
 
   useEffect(() => {
     fetchFlightData()
