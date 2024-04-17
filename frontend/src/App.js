@@ -80,10 +80,10 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 // import Footer from "components/footers/FiveColumnWithBackground.js";
 // import Footer from "components/footers/FiveColumnDark.js";
 // import Footer from "components/footers/MiniCenteredFooter.js";
-
+import LogoutPage from 'pages/Logout.js'
+import HotelTravelLandingPage from 'demos/TravelLandingPage.js'
 /* Ready Made Pages (from demos folder) */
 // import EventLandingPage from "demos/EventLandingPage.js";
-// import HotelTravelLandingPage from "demos/HotelTravelLandingPage.js";
 // import AgencyLandingPage from "demos/AgencyLandingPage.js";
 // import SaaSProductLandingPage from "demos/SaaSProductLandingPage.js";
 // import RestaurantLandingPage from "demos/RestaurantLandingPage.js";
@@ -91,8 +91,8 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 // import HostingCloudLandingPage from "demos/HostingCloudLandingPage.js";
 
 /* Inner Pages */
-// import LoginPage from "pages/Login.js";
-// import SignupPage from "pages/Signup.js";
+import LoginPage from 'pages/Login.js'
+import SignupPage from 'pages/Signup.js'
 // import PricingPage from "pages/Pricing.js";
 // import AboutUsPage from "pages/AboutUs.js";
 // import ContactUsPage from "pages/ContactUs.js";
@@ -103,19 +103,56 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import ComponentRenderer from 'ComponentRenderer.js'
 import EntryPage from 'pages/EntryPage.js'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Buffer } from 'buffer'
 
 export default function App () {
   // If you want to disable the animation just use the disabled `prop` like below on your page's component
   // return <AnimationRevealPage disabled>xxxxxxxxxx</AnimationRevealPage>;
+
+  const isRefreshTokenValid = () => {
+    try {
+      const refreshToken = localStorage.getItem('refreshToken')
+
+      if (refreshToken === null || refreshToken === undefined) {
+        return false
+      }
+
+      const decodedToken = decodeToken(refreshToken)
+
+      // Refresh token has expired
+      if (decodedToken.exp * 1000 < Date.now()) {
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
+
+        return false
+      }
+
+      return true
+    } catch (parsingError) {
+      console.error('Error with refresh token:', parsingError)
+      return false
+    }
+  }
+
+  function decodeToken (jwtToken) {
+    const payloadBase64 = jwtToken.split('.')[1]
+    // Decode the base64-encoded payload
+    const payloadJson = Buffer.from(payloadBase64, 'base64').toString('utf-8')
+
+    return JSON.parse(payloadJson)
+  }
 
   return (
     <>
       <GlobalStyles />
       <Router>
         <Routes>
-          <Route path="/components/:type/:subtype/:name" element={<ComponentRenderer />} />
-          <Route path="/components/:type/:name" element={<ComponentRenderer />} />
-          <Route path="/" element={<EntryPage />} />
+          <Route path="/components/innerPages/SignupPage" element={isRefreshTokenValid() ? <HotelTravelLandingPage/> : <SignupPage/> } />
+          <Route path="/components/innerPages/LoginPage" element={isRefreshTokenValid() ? <HotelTravelLandingPage/> : <LoginPage /> } />
+          <Route path="/components/innerPages/LogoutPage" element={isRefreshTokenValid() ? <LogoutPage/> : <EntryPage /> } />
+          <Route path="/components/:type/:subtype/:name" element={isRefreshTokenValid() ? <ComponentRenderer /> : <EntryPage />} />
+          <Route path="/components/:type/:name" element={isRefreshTokenValid() ? <ComponentRenderer /> : <EntryPage />} />
+          <Route path="/*" element={<EntryPage />} />
         </Routes>
       </Router>
     </>

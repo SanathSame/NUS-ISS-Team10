@@ -68,10 +68,9 @@ export default ({
 
       localStorage.setItem('refreshToken', response.data.data.refreshToken)
       localStorage.setItem('accessToken', response.data.data.accessToken)
-
       console.log('Login successful!')
-      localStorage.setItem('username', username.value)
-      setRedirectTo('/components/landingPages/HotelTravelLandingPage')
+      setRedirectTo('/components/landingPages/LandingPage')
+      location.reload()
     } catch (error) {
       // Use a more clear way to check if there is an error message
       const errorMessage = error.message !== undefined ? error.message : 'Login failed'

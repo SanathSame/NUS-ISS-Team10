@@ -35,6 +35,7 @@ export default ({
       <NavLink href="/components/innerPages/FlightPage">Flights</NavLink>
       <NavLink href="/components/innerPages/HotelPage">Hotels</NavLink>
       <NavLink href="/components/innerPages/AttractionPage">Attractions</NavLink>
+      <NavLink href="/components/innerPages/LogoutPage">Logout</NavLink>
     </NavLinks>
   ],
   heading = (
