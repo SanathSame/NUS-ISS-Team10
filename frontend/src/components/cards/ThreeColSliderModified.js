@@ -85,19 +85,19 @@ export default () => {
   const [originalAttractions, setOriginalAttractions] = useState([])
   const sliderSettings = {
     arrows: false,
-    slidesToShow: 3,
+    slidesToShow: Math.min(3, attractions.length),
     responsive: [
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 2
+          slidesToShow: Math.min(2, attractions.length)
         }
       },
 
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 1
+          slidesToShow: Math.min(1, attractions.length)
         }
       }
     ]
