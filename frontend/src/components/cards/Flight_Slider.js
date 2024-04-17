@@ -10,6 +10,8 @@ import { ReactComponent as ClockIcon } from 'feather-icons/dist/icons/clock.svg'
 import { ReactComponent as ChevronLeftIcon } from 'feather-icons/dist/icons/chevron-left.svg'
 import { ReactComponent as ChevronRightIcon } from 'feather-icons/dist/icons/chevron-right.svg'
 import { FlightApi } from 'api/flight/FlightApi'
+import FlightFilter from './Flight_Filter'
+import { parse } from 'date-fns'
 
 const Container = tw.div`relative`
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`
@@ -67,16 +69,6 @@ const Text = tw.div`ml-2 text-sm font-semibold text-gray-800`
 
 const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`
 
-const SearchContainer = styled.div`
-  ${tw`flex justify-center mt-8`}
-`
-const SearchInput = tw.input`border rounded p-2 mr-2`
-const SearchButton = styled.button`
-  ${tw`bg-primary-500 hover:bg-primary-700 text-white font-bold py-2 px-4 rounded-lg`}
-`
-
-const ResultsText = tw.p`text-sm font-semibold text-gray-800 text-right`
-
 export default () => {
   const [sliderRef, setSliderRef] = useState(null)
   const [flightData, setFlightData] = useState([])
@@ -89,36 +81,19 @@ export default () => {
   const fetchFlightData = async () => {
     try {
       const response = await FlightApi.getFlights()
-      console.log(response.data)
-      setFlightData(response.data.data)
-      setFilteredFlights(response.data.data)
-    } catch (error) {
-      console.error('Error fetching flight data:', error)
-    }
-  }
-
-  const handleSearch = () => {
-    const searchInput = document.getElementById('searchInput')
-    let searchQuery = ''
-    if (searchInput) {
-      searchQuery = searchInput.value.toLowerCase()
-    }
-    if (!searchQuery) {
-      setFilteredFlights(flightData)
-    } else {
-      const res = flightData.filter(flight => {
-        const arrivalCity = flight.arrival_city.toLowerCase()
-        const arrivalCountry = flight.arrival_country.toLowerCase()
-        const departureCity = flight.departure_city.toLowerCase()
-        const departureCountry = flight.departure_country.toLowerCase()
+      const fetchedRawData = (response.data.data)
+      const currentDate = new Date()
+      currentDate.setHours(0, 0, 0, 0)
+      const flightsAfterToday = fetchedRawData.filter(flight => {
+        const departureDate = parse(flight.departure_date, 'dd-MM-yyyy', new Date())
         return (
-          arrivalCity.includes(searchQuery) ||
-          arrivalCountry.includes(searchQuery) ||
-          departureCity.includes(searchQuery) ||
-          departureCountry.includes(searchQuery)
+          departureDate >= currentDate
         )
       })
-      setFilteredFlights(res)
+      setFlightData(flightsAfterToday)
+      setFilteredFlights(flightsAfterToday)
+    } catch (error) {
+      console.error('Error fetching flight data:', error)
     }
   }
 
@@ -135,42 +110,52 @@ export default () => {
 
   const sliderSettings = {
     arrows: false,
-    slidesToShow: 3,
+    slidesToShow: Math.min(3, filteredFlights.length),
     responsive: [
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 2
+          slidesToShow: Math.min(2, filteredFlights.length)
         }
       },
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 1
+          slidesToShow: Math.min(1, filteredFlights.length)
         }
       }
     ]
   }
+
+  const cardImageStore = [
+    'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1549294413-26f195200c16?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1571770095004-6b61b1cf308a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1615880484746-a134be9a6ecf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80'
+  ]
 
   return (
     <Container>
       <Content>
         <HeadingWithControl>
           <Heading>Search Flights</Heading>
-          <SearchContainer>
-            <SearchInput id='searchInput' type="text" placeholder="Search..." />
-            <SearchButton onClick={handleSearch}>Search</SearchButton>
-          </SearchContainer>
+          <FlightFilter
+            setFilteredFlights = {setFilteredFlights}
+            filteredFlights = {filteredFlights}
+            flightData = {flightData}
+          />
           <Controls>
             <PrevButton onClick={sliderRef?.slickPrev}><ChevronLeftIcon/></PrevButton>
             <NextButton onClick={sliderRef?.slickNext}><ChevronRightIcon/></NextButton>
           </Controls>
         </HeadingWithControl>
-        <ResultsText>Showing {filteredFlights.length} results</ResultsText>
         <CardSlider ref={setSliderRef} {...sliderSettings}>
           {filteredFlights.map((flight, index) => (
             <Card key={index}>
-              <CardImage imageSrc={'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80'} />
+              <CardImage imageSrc={cardImageStore[index % (cardImageStore.length)]} />
               <TextInfo>
                 <TitleReviewContainer>
                   <Title>{flight.arrival_city}</Title>
