@@ -35,7 +35,7 @@ export default (props) => {
   }
 
   const handleSearch = () => {
-    console.log('inputs: ', input1, input2, input3, input4, startDate, endDate)
+    console.log('search inputs: ', input1, input2, input3, startDate, endDate)
     if (input1 === '' && input2 === '' && input3 === '' && startDate === null && endDate === null) {
       return
     }
