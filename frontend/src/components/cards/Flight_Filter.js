@@ -6,9 +6,13 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { parse } from 'date-fns'
 
 const FilterContainer = styled.div`
-  ${tw`flex flex-col items-center mt-8`}
+  ${tw`flex flex-col items-center justify-center mt-8`}
+`
+const InputContainer = styled.div`
+  ${tw`flex flex-wrap justify-center`}
 `
 const FilterInput = tw.input`border rounded p-2 mx-1 my-1`
+const DatePickerStyled = tw(DatePicker)`border rounded p-2 mx-1 my-1`
 const SearchButton = styled.button`
   ${tw`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mx-1 my-1`}
 `
@@ -50,8 +54,8 @@ export default (props) => {
       const isMatch1 = !input1 || (arrivalCity.includes(input1.toLowerCase()) || arrivalCountry.includes(input1.toLowerCase()))
       const isMatch2 = !input2 || (departureCity.includes(input2.toLowerCase()) || departureCountry.includes(input2.toLowerCase()))
       const isMatch3 = !input3 || (price <= parseFloat(input3))
-      const isMatch4 = !startDate || (startDate < departureDate)
-      const isMatch5 = !endDate || (endDate > departureDate)
+      const isMatch4 = !startDate || (startDate <= departureDate)
+      const isMatch5 = !endDate || (endDate >= departureDate)
 
       return (
         isMatch1 && isMatch2 && isMatch3 && isMatch4 && isMatch5
@@ -62,13 +66,13 @@ export default (props) => {
 
   return (
     <FilterContainer>
-      <div>
+      <InputContainer>
         <FilterInput id='input1' type="text" placeholder="Destination" value={input1} onChange={(e) => setInput1(e.target.value)} />
         <FilterInput id='input2' type="text" placeholder="Origin" value={input2} onChange={(e) => setInput2(e.target.value)} />
+      </InputContainer>
+      <InputContainer>
         <FilterInput id='input3' type="number" placeholder="Budget" value={input3} onChange={(e) => setInput3(e.target.value)} />
-      </div>
-      <div>
-        <DatePicker
+        <DatePickerStyled
           selectsRange={true}
           startDate={startDate}
           endDate={endDate}
@@ -76,10 +80,9 @@ export default (props) => {
             setDateRange(update)
           }}
           isClearable={true}
-          showIcon={true}
           placeholderText="Date range"
         />
-      </div>
+      </InputContainer>
       <div>
         <ResetButton onClick={handleReset}>Reset</ResetButton>
         <SearchButton onClick={handleSearch}>Search</SearchButton>

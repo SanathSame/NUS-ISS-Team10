@@ -11,6 +11,7 @@ import { ReactComponent as ChevronLeftIcon } from 'feather-icons/dist/icons/chev
 import { ReactComponent as ChevronRightIcon } from 'feather-icons/dist/icons/chevron-right.svg'
 import { FlightApi } from 'api/flight/FlightApi'
 import FlightFilter from './Flight_Filter'
+import { parse } from 'date-fns'
 
 const Container = tw.div`relative`
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`
@@ -80,9 +81,17 @@ export default () => {
   const fetchFlightData = async () => {
     try {
       const response = await FlightApi.getFlights()
-      console.log(response.data)
-      setFlightData(response.data.data)
-      setFilteredFlights(response.data.data)
+      const fetchedRawData = (response.data.data)
+      const currentDate = new Date()
+      currentDate.setHours(0, 0, 0, 0)
+      const flightsAfterToday = fetchedRawData.filter(flight => {
+        const departureDate = parse(flight.departure_date, 'dd-MM-yyyy', new Date())
+        return (
+          departureDate >= currentDate
+        )
+      })
+      setFlightData(flightsAfterToday)
+      setFilteredFlights(flightsAfterToday)
     } catch (error) {
       console.error('Error fetching flight data:', error)
     }
@@ -118,6 +127,16 @@ export default () => {
     ]
   }
 
+  const cardImageStore = [
+    'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1549294413-26f195200c16?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1571770095004-6b61b1cf308a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80',
+    'https://images.unsplash.com/photo-1615880484746-a134be9a6ecf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80'
+  ]
+
   return (
     <Container>
       <Content>
@@ -136,7 +155,7 @@ export default () => {
         <CardSlider ref={setSliderRef} {...sliderSettings}>
           {filteredFlights.map((flight, index) => (
             <Card key={index}>
-              <CardImage imageSrc={'https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&h=1024&w=768&q=80'} />
+              <CardImage imageSrc={cardImageStore[index % (cardImageStore.length)]} />
               <TextInfo>
                 <TitleReviewContainer>
                   <Title>{flight.arrival_city}</Title>
