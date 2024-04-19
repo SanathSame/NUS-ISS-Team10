@@ -18,6 +18,7 @@ import RestaurantLandingPageImageSrc from 'images/demo/RestaurantLandingPage.jpe
 import ServiceLandingPageImageSrc from 'images/demo/ServiceLandingPage.jpeg'
 import HostingCloudLandingPageImageSrc from 'images/demo/HostingCloudLandingPage.jpeg'
 
+import LogoutPage from 'pages/Logout.js'
 import LoginPage from 'pages/Login.js'
 import SignupPage from 'pages/Signup.js'
 import FlightPage from 'pages/Flight.js'
@@ -154,7 +155,12 @@ export const components = {
       component: LandingPage,
       url: '/components/innerPages/LandingPage',
       imageSrc: AboutUsPageImageSrc
+    },
+    LogoutPage: {
+      component: LogoutPage,
+      url: '/components/innerPages/Logout'
     }
+
   },
 
   blocks: {
