@@ -35,7 +35,7 @@ class EntityController {
 
   createNewEntity (req: Request, res: Response, next: NextFunction): void {
     const body = req.body
-    const database = req.app.get('product-database')
+    const database = req.app.get('itenerary-database')
     entityServiceObject
       .createNewEntity(database, body)
       .then((createResult) => {
@@ -59,7 +59,7 @@ class EntityController {
 
   getEntityById (req: Request, res: Response, next: NextFunction): void {
     const { id } = req.params
-    const database = req.app.get('product-database')
+    const database = req.app.get('itenerary-database')
 
     entityServiceObject
       .getEntityById(database, id)
@@ -83,7 +83,7 @@ class EntityController {
 
   getAllEntities (req: Request, res: Response, next: NextFunction): void {
     const { params } = req.params
-    const database = req.app.get('product-database')
+    const database = req.app.get('itenerary-database')
 
     entityServiceObject
       .getAllEntities(database, params)
@@ -108,7 +108,7 @@ class EntityController {
   updateEntityById (req: Request, res: Response, next: NextFunction): void {
     const newData = req.body
     const { id } = req.params
-    const database = req.app.get('product-database')
+    const database = req.app.get('itenerary-database')
 
     entityServiceObject
       .updateEntityById(database, id, newData)
@@ -133,7 +133,7 @@ class EntityController {
 
   deleteEntityById (req: Request, res: Response, next: NextFunction): void {
     const { id } = req.params
-    const database = req.app.get('product-database')
+    const database = req.app.get('itenerary-database')
 
     entityServiceObject
       .deleteEntityById(database, id)
