@@ -40,7 +40,7 @@ export default ({ roundedHeaderButton }) => {
         <TwoColumn>
           <LeftColumn>
             <Heading>
-              Travel<span tw="text-primary-500">Band Change</span>
+              Travel<span tw="text-primary-500"> Aid</span>
             </Heading>
             <Paragraph>
               We help people who love to travel, travel.
