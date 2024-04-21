@@ -86,6 +86,21 @@ create table flights (
 	ticket_price DECIMAL(10,2) NOT NULL
 );
 
+CREATE TABLE itinerary (
+    _id VARCHAR(24) NOT NULL DEFAULT generate_object_id(),
+    flight_id VARCHAR(24) NOT NULL,
+    hotel_id VARCHAR(24) NOT NULL,
+    attraction_id VARCHAR(24) NOT NULL,
+    date DATE NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    PRIMARY KEY (_id),
+    FOREIGN KEY (flight_id) REFERENCES flights(_id),
+    FOREIGN KEY (hotel_id) REFERENCES hotels(_id),
+    FOREIGN KEY (attraction_id) REFERENCES attractions(_id)
+);
+
+
+
 insert into users (_id, username, password, email) values ('65757316fc13ae561bfa20eb', 'Wilek', '$2a$04$gFV8SwSMf9jzfx5Gax2x9eJ/o1dtxa3WMbMxbbDvN2cpzhHdn/KFy', 'wlannin0@admin.ch');
 insert into users (_id, username, password, email) values ('65757316fc13ae561bfa20ec', 'Neville', '$2a$04$VrmVSPIcSEgMV/kW6yo/GugiuIWDNAHYQEky0X6ic/eYyOrggKdMy', 'nlawlor1@dailymotion.com');
 insert into users (_id, username, password, email) values ('65757316fc13ae561bfa20ed', 'Alic', '$2a$04$y4G4V3/gvvBijJ0HzdqtGuSuTf4bCz3ucOsEz24T3oUtLFTquLaLG', 'astokoe2@hc360.com');
@@ -1285,3 +1300,13 @@ insert into flights (_id, departure_city, departure_country, arrival_city, arriv
 insert into flights (_id, departure_city, departure_country, arrival_city, arrival_country, departure_date, departure_time, flight_duration, ticket_price) values ('998', 'Singapore', 'Singapore', 'Phuket', 'Thailand', '06-06-2024', '1:26 AM', 4, 421.86);
 insert into flights (_id, departure_city, departure_country, arrival_city, arrival_country, departure_date, departure_time, flight_duration, ticket_price) values ('999', 'Siem Reap', 'Cambodia', 'Bandung', 'Indonesia', '30-11-2024', '6:10 AM', 3, 570.63);
 insert into flights (_id, departure_city, departure_country, arrival_city, arrival_country, departure_date, departure_time, flight_duration, ticket_price) values ('1000', 'Da Nang', 'Vietnam', 'Phuket', 'Thailand', '03-05-2024', '2:41 AM', 10, 56.04);
+
+
+-- Inserting 5 values for the user "sanath" into the itinerary table
+INSERT INTO itinerary (_id, flight_id, hotel_id, attraction_id, date, username)
+VALUES
+('1', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-03', 'sanath'),
+('2', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-04', 'sanath'),
+('3', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-05', 'sanath'),
+('4', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-06', 'sanath'),
+('5', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-07', 'sanath');

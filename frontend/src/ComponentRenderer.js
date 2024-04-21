@@ -26,6 +26,7 @@ import AttractionPage from 'pages/AttractionPage'
 import HotelPage from 'pages/HotelPage'
 import BlogIndexPage from 'pages/BlogIndex.js'
 import LandingPage from 'pages/LandingPage.js'
+import Itinerary from 'pages/ItineraryPage.js'
 
 import LoginPageImageSrc from 'images/demo/LoginPage.jpeg'
 import SignupPageImageSrc from 'images/demo/SignupPage.jpeg'
@@ -41,7 +42,7 @@ import AboutUsPageImageSrc from 'images/demo/AboutUsPage.jpeg'
 
 import TwoPlansWithDurationSwitcherPricing from 'components/pricing/TwoPlansWithDurationSwitcher.js'
 import ThreePlansWithHalfPrimaryBackgroundPricing from 'components/pricing/ThreePlansWithHalfPrimaryBackground.js'
-import ThreePlansPricing from 'components/pricing/ThreePlans.js'
+import IteneraryBuilder from 'components/pricing/IteneraryBuilder.js'
 
 import ThreeColWithSideImageFeatures from 'components/features/ThreeColWithSideImage.js'
 import TwoColWithButtonFeatures from 'components/features/TwoColWithButton.js'
@@ -156,6 +157,10 @@ export const components = {
       url: '/components/innerPages/LandingPage',
       imageSrc: AboutUsPageImageSrc
     },
+    ItineraryPage: {
+      component: Itinerary,
+      url: '/components/innerPages/ItineraryPage'
+    },
     LogoutPage: {
       component: LogoutPage,
       url: '/components/innerPages/Logout'
@@ -217,10 +222,10 @@ export const components = {
           component: ThreePlansWithHalfPrimaryBackgroundPricing,
           url: '/components/blocks/Pricing/ThreePlansWithHalfPrimaryBackground'
         },
-        ThreePlans: {
+        IteneraryBuilder: {
           name: 'Simple Three Plans',
-          component: ThreePlansPricing,
-          url: '/components/blocks/Pricing/ThreePlans'
+          component: IteneraryBuilder,
+          url: '/components/blocks/Pricing/IteneraryBuilder'
         }
       }
     },

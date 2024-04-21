@@ -16,32 +16,6 @@ const imageCss = tw`rounded-4xl`
 export default () => (
   <AnimationRevealPage>
     <Hero />
-    <MainFeature
-        heading={
-          <>
-            Itenerary
-            <wbr /> <HighlightedText>Builder</HighlightedText>
-          </>
-        }
-        description={
-          <Description>
-            Explore our comprehensive itinerary builder tool to plan your next adventure seamlessly. Craft personalized travel plans tailored to your preferences with ease.
-            <br />
-            <br />
-            Start planning today and turn your dreams into unforgettable memories.
-          </Description>
-        }
-        buttonRounded={false}
-        textOnLeft={false}
-        primaryButtonText='Plan itenerary'
-        primaryButtonUrl='/components/innerPages/BlogIndexPage'
-        imageSrc={
-          'https://images.unsplash.com/photo-1522199710521-72d69614c702?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRyYXZlbCUyMGl0ZW5lcmFyeXxlbnwwfHwwfHx8MA%3D%3D'
-        }
-        imageCss={imageCss}
-        imageDecoratorBlob={true}
-        imageDecoratorBlobCss={tw`left-1/2 -translate-x-1/2 md:w-32 md:h-32 opacity-25`}
-      />
       <MainFeature
         heading={
           <>
@@ -115,6 +89,32 @@ export default () => (
         primaryButtonUrl='/components/innerPages/AttractionPage'
         imageSrc={
           'https://images.unsplash.com/photo-1689982922260-46cce9b95627?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        }
+        imageCss={imageCss}
+        imageDecoratorBlob={true}
+        imageDecoratorBlobCss={tw`left-1/2 -translate-x-1/2 md:w-32 md:h-32 opacity-25`}
+      />
+      <MainFeature
+        heading={
+          <>
+            Itinerary
+            <wbr /> <HighlightedText>Builder</HighlightedText>
+          </>
+        }
+        description={
+          <Description>
+            Explore our comprehensive itinerary builder tool to plan your next adventure seamlessly. Craft personalized travel plans tailored to your preferences with ease.
+            <br />
+            <br />
+            Start planning today and turn your dreams into unforgettable memories.
+          </Description>
+        }
+        buttonRounded={false}
+        textOnLeft={false}
+        primaryButtonText='Plan itinerary'
+        primaryButtonUrl='/components/innerPages/ItineraryPage'
+        imageSrc={
+          'https://images.unsplash.com/photo-1522199710521-72d69614c702?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRyYXZlbCUyMGl0ZW5lcmFyeXxlbnwwfHwwfHx8MA%3D%3D'
         }
         imageCss={imageCss}
         imageDecoratorBlob={true}

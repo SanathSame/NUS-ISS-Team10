@@ -78,9 +78,9 @@ const CardImage = styled.div(props => [
 const CardText = tw.div`mt-4`
 
 const CardHeader = tw.div`flex justify-between items-center`
-const CardType = tw.div`text-primary-500 font-bold text-lg`
+const CardType = tw.div`text-primary-500 font-bold text-sm`
 const CardPrice = tw.div`font-semibold text-sm text-gray-600`
-const CardPriceAmount = tw.span`font-bold text-gray-800 text-lg`
+const CardPriceAmount = tw.span`font-bold text-gray-800 text-sm`
 
 const CardTitle = tw.h5`text-xl mt-4 font-bold`
 
@@ -104,7 +104,7 @@ export default () => {
   useEffect(() => {
     fetchFlightData()
   }, [])
-
+  const addToItenerary = {}
   const fetchFlightData = async () => {
     try {
       const response = await FlightApi.getFlights()
@@ -224,7 +224,7 @@ export default () => {
                       <FlightIcon /> {flight.departure_city}
                     </CardMetaFeature>
                     <CardMetaFeature>
-                      <TimeIcon /> {flight.flight_duration}
+                      <TimeIcon /> {flight.flight_duration} hrs
                     </CardMetaFeature>
                     <CardMetaFeature>
                       <LocationIcon /> {flight.departure_country}
