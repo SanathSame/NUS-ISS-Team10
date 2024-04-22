@@ -85,19 +85,19 @@ export default () => {
   const [originalHotels, setOriginalHotels] = useState([])
   const sliderSettings = {
     arrows: false,
-    slidesToShow: 3,
+    slidesToShow: Math.min(3, hotels.length),
     responsive: [
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 2
+          slidesToShow: Math.min(2, hotels.length)
         }
       },
 
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 1
+          slidesToShow: Math.min(1, hotels.length)
         }
       }
     ]
