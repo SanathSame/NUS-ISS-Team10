@@ -128,7 +128,8 @@ export default () => {
     console.log('Attractions Before Filtering:', attractions)
     if (!searchQuery) {
       // If search query is empty, fetch attractions again
-      fetchAttractions()
+      // fetchAttractions()
+      setAttractions(originalAttractions)
     } else {
       const filteredAttractions = originalAttractions.filter(attraction => {
         const attractionName = attraction.name.toLowerCase()
