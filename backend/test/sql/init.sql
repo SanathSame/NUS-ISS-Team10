@@ -81,7 +81,7 @@ CREATE TABLE itinerarys (
     flight_id VARCHAR(24) NOT NULL,
     hotel_id VARCHAR(24) NOT NULL,
     attraction_id VARCHAR(24) NOT NULL,
-    date DATE NOT NULL,
+    date VARCHAR(50) NOT NULL,
     username VARCHAR(50) NOT NULL,
     PRIMARY KEY (_id),
     FOREIGN KEY (username) REFERENCES users(username),

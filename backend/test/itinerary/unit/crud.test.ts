@@ -6,7 +6,7 @@ import * as TestSetup from '../../test.setup'
 
 const defaultEntityId: string = '123456789012345678901234'
 
-describe('/users/', () => {
+describe('/itinerarys/', () => {
   test('returns status code 200 if api is set up correctly', async () => {
     const res: any = await request(TestSetup.app)
       .get('/itineraries/health')
@@ -66,7 +66,7 @@ describe('/users/', () => {
     const res: any = await request(TestSetup.app)
       .get(`/itineraries/${defaultEntityId}`)
 
-    expect(res.body.data.data.username).toEqual(SampleEntities[0].username)
+    expect(res.body.data.username).toEqual(SampleEntities[0].username)
   })
 
   test('returns status code 200 if it accepts a given entity with appropriate id and details', async () => {
@@ -82,7 +82,7 @@ describe('/users/', () => {
       .patch(`/itineraries/${defaultEntityId}`)
       .send({ username: 'Neville' })
 
-    expect(res.body.data.data.username).toEqual('Neville')
+    expect(res.body.data.username).toEqual('Neville')
   })
 
   test('returns status code 200 if it deletes a given entity id', async () => {
