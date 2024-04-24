@@ -40,10 +40,10 @@ const beforeEachFunction = beforeEach(async () => {
     "('123456789012345678901237', 'Hotel XYZ', 'AnotherCity', 'AnotherCountry', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 200.00, 4.8, 'Gym, Spa, Restaurant', 'https://example.com/hotel_image2.jpg') RETURNING *")
 
   productObject.one('INSERT INTO itinerary (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
-  "('123456789012345678901234', '1', 'YOUR_HOTEL_ID_HERE', '661609ebfc13ae7ef9ab89f5', '2022-04-28', 'shawn') RETURNING *")
+  "('123456789012345678901234', '1', '123456789012345678901236', '661609ebfc13ae7ef9ab89f5', '2022-04-28', 'shawn') RETURNING *")
 
   productObject.one('INSERT INTO itinerary (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
-  "('123456789012345678901235', '2', 'YOUR_OTHER_HOTEL_ID_HERE', '661609ebfc13ae7ef9ab89f6', '2022-06-07', 'Neville') RETURNING *")
+  "('123456789012345678901235', '2', '123456789012345678901236', '661609ebfc13ae7ef9ab89f6', '2022-06-07', 'Neville') RETURNING *")
 })
 
 const afterEachFunction = afterEach(async () => {
