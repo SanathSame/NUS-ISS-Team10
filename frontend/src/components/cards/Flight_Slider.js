@@ -9,7 +9,7 @@ import { ReactComponent as ChevronRightIcon } from 'feather-icons/dist/icons/che
 import { FlightApi } from 'api/flight/FlightApi'
 import FlightFilter from './Flight_Filter'
 import { parse } from 'date-fns'
-// import { ReactComponent as FlightIcon } from 'feather-icons/dist/icons/send.svg'
+import { ReactComponent as FlightIcon } from 'feather-icons/dist/icons/send.svg'
 import { ReactComponent as LocationIcon } from 'feather-icons/dist/icons/map-pin.svg'
 import { ReactComponent as ClockIcon } from 'feather-icons/dist/icons/clock.svg'
 import { ReactComponent as PriceIcon } from 'feather-icons/dist/icons/dollar-sign.svg'
@@ -31,7 +31,7 @@ const PrevButton = tw(ControlButton)``
 const NextButton = tw(ControlButton)``
 
 const CardSlider = styled(Slider)`
-  ${tw`mt-16`}
+  ${tw`mt-8`}
   .slick-track { 
     ${tw`flex`}
   }
@@ -45,7 +45,7 @@ const CardImage = styled.div(props => [
   tw`w-full h-56 sm:h-64 bg-cover bg-center rounded sm:rounded-none sm:rounded-tl-4xl`
 ])
 
-const TextInfo = tw.div`py-6 sm:px-10 sm:py-6`
+const TextInfo = tw.div`py-6 sm:px-8 sm:py-6`
 const TitleReviewContainer = tw.div`flex flex-col sm:flex-row sm:justify-between sm:items-center`
 const Title = tw.h5`text-2xl font-bold`
 
@@ -55,12 +55,12 @@ const DurationInfo = styled.div`
     ${tw`w-6 h-6`}
   }
 `
-const Duration = tw.span`ml-2 font-bold`
+const Duration = tw.span`ml-1 font-bold`
 
-const Description = tw.p`text-sm leading-loose mt-2 sm:mt-4`
+const Description = tw.p`text-sm leading-loose mt-2 sm:mt-2`
 
-const SecondaryInfoContainer = tw.div`flex flex-col sm:flex-row mt-2 sm:mt-4`
-const IconWithText = tw.div`flex items-center mr-6 my-2 sm:my-0`
+const SecondaryInfoContainer = tw.div`flex flex-col sm:flex-row mt-2 sm:mt-2`
+const IconWithText = tw.div`flex items-center mr-6 my-2 sm:my-1`
 const IconContainer = styled.div`
   ${tw`inline-block rounded-full p-2 bg-gray-700 text-gray-100`}
   svg {
@@ -71,33 +71,6 @@ const Text = tw.div`ml-2 text-sm font-semibold text-gray-800`
 
 const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`
 
-// const Card = tw.div`mx-auto xl:mx-0 xl:ml-auto max-w-sm md:max-w-xs lg:max-w-sm xl:max-w-xs`
-// const CardImage = styled.div(props => [
-//   `background-image: url("${props.imageSrc}");`,
-//   tw`h-80 bg-cover bg-center rounded`
-// ])
-
-// const CardText = tw.div`mt-4`
-
-// const CardHeader = tw.div`flex justify-between items-center`
-// const CardType = tw.div`text-primary-500 font-bold text-sm`
-// const CardPrice = tw.div`font-semibold text-sm text-gray-600`
-// const CardPriceAmount = tw.span`font-bold text-gray-800 text-sm`
-
-// const CardTitle = tw.h5`text-xl mt-4 font-bold`
-
-// const CardMeta = styled.div`
-//   ${tw`flex flex-row flex-wrap justify-between sm:items-center font-semibold tracking-wide text-gray-600 uppercase text-xs`}
-// `
-
-// const CardMetaFeature = styled.div`
-//   ${tw`flex items-center mt-4`}
-//   svg {
-//     ${tw`w-5 h-5 mr-1`}
-//   }
-// `
-// const CardAction = tw(PrimaryButtonBase)`w-full mt-8`
-
 export default () => {
   const [sliderRef, setSliderRef] = useState(null)
   const [flightData, setFlightData] = useState([])
@@ -106,7 +79,7 @@ export default () => {
   useEffect(() => {
     fetchFlightData()
   }, [])
-  // const addToItenerary = {}
+
   const fetchFlightData = async () => {
     try {
       const response = await FlightApi.getFlights()
@@ -208,45 +181,21 @@ export default () => {
                   </IconWithText>
                 </SecondaryInfoContainer>
                 <Description>Depart from </Description>
-                <IconWithText>
+                  <IconWithText>
                     <IconContainer>
-                      <LocationIcon />
+                      <FlightIcon />
                     </IconContainer>
                     <Text>{flight.departure_city}, {flight.departure_country}</Text>
-                </IconWithText>
-                <IconWithText>
+                  </IconWithText>
+                  <IconWithText>
                     <IconContainer>
                       <DateIcon/>
                     </IconContainer>
-                    <Text>on {formatDate(flight.departure_date)}, {flight.departure_time}.</Text>
+                    <Text>{formatDate(flight.departure_date)}, {flight.departure_time}</Text>
                   </IconWithText>
               </TextInfo>
               <PrimaryButton onClick={() => handlePrimaryBtn(flight)}>Add to Itenerary</PrimaryButton>
             </Card>
-            // <Card key={index}>
-            //     <CardImage imageSrc={cardImageStore[index % (cardImageStore.length)]}/>
-            //     <CardText>
-            //       <CardHeader>
-            //         <CardType>{flight.arrival_city},{flight.arrival_country}</CardType>
-            //         <CardPrice>
-            //           <CardPriceAmount>${flight.ticket_price}</CardPriceAmount>
-            //         </CardPrice>
-            //       </CardHeader>
-            //       <CardTitle>{formatDate(flight.departure_date)}, {flight.departure_time}</CardTitle>
-            //       <CardMeta>
-            //         <CardMetaFeature>
-            //           <FlightIcon /> {flight.departure_city}
-            //         </CardMetaFeature>
-            //         <CardMetaFeature>
-            //           <TimeIcon /> {flight.flight_duration} hrs
-            //         </CardMetaFeature>
-            //         <CardMetaFeature>
-            //           <LocationIcon /> {flight.departure_country}
-            //         </CardMetaFeature>
-            //       </CardMeta>
-            //       <CardAction onClick={addToItenerary}>Add to Itenerary</CardAction>
-            //     </CardText>
-            //   </Card>
           ))}
         </CardSlider>
       </Content>
