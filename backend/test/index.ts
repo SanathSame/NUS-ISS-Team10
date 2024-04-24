@@ -16,6 +16,8 @@ import AuthRouter from '../src/auth/routes/auth.route'
 import UserRouter from '../src/users/routes/user.route'
 import AttractionRouter from '../src/attractions/routes/entity.route'
 import FlightRouter from '../src/flights/routes/entity.route'
+import { itineraryEntityModelName, itineraryEntitySchema } from '../src/itinerary/models/entity.model'
+import ItineraryRouter from '../src/itinerary/routes/entity.route'
 
 export const app: Express = express()
 
@@ -28,6 +30,8 @@ const authDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_
 const userDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), userEntitySchema, userEntityModelName)
 const attractionDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), attractionEntitySchema, attractionEntityModelName)
 const flightDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), flightEntitySchema, flightEntityModelName)
+
+const itineraryDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), itineraryEntitySchema, itineraryEntityModelName)
 // Add db object here for entity schema and model name, ref products
 
 productDatabase.connect()
@@ -43,6 +47,8 @@ app.set('user-database', userDatabase)
 app.set('attraction-database', attractionDatabase)
 app.set('flight-database', flightDatabase)
 
+app.set('itinerary-database', itineraryDatabase)
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -51,3 +57,4 @@ app.use('/auth/', AuthRouter)
 app.use('/users/', UserRouter)
 app.use('/attractions/', AttractionRouter)
 app.use('/flights/', FlightRouter)
+app.use('/itineraries/', ItineraryRouter)

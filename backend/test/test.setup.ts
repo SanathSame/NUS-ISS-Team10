@@ -39,16 +39,16 @@ const beforeEachFunction = beforeEach(async () => {
   productObject.one('INSERT INTO hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) VALUES ' +
     "('123456789012345678901237', 'Hotel XYZ', 'AnotherCity', 'AnotherCountry', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 200.00, 4.8, 'Gym, Spa, Restaurant', 'https://example.com/hotel_image2.jpg') RETURNING *")
 
-  productObject.one('INSERT INTO itinerary (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
+  productObject.one('INSERT INTO itinerarys (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
   "('123456789012345678901234', '1', '123456789012345678901236', '661609ebfc13ae7ef9ab89f5', '2022-04-28', 'shawn') RETURNING *")
 
-  productObject.one('INSERT INTO itinerary (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
+  productObject.one('INSERT INTO itinerarys (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
   "('123456789012345678901235', '2', '123456789012345678901236', '661609ebfc13ae7ef9ab89f6', '2022-06-07', 'Neville') RETURNING *")
 })
 
 const afterEachFunction = afterEach(async () => {
   await productObject.manyOrNone('DELETE FROM products RETURNING *')
-  await productObject.manyOrNone('DELETE FROM itinerary RETURNING *')
+  await productObject.manyOrNone('DELETE FROM itinerarys RETURNING *')
   await productObject.manyOrNone('DELETE FROM users RETURNING *')
   await productObject.manyOrNone('DELETE FROM flights RETURNING *')
   await productObject.manyOrNone('DELETE FROM attractions RETURNING *')
