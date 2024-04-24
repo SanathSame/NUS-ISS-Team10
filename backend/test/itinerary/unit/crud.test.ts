@@ -4,7 +4,7 @@ import { SampleEntities } from '../data/entities.sample'
 
 import * as TestSetup from '../../test.setup'
 
-const defaultEntityId: string = '65757316fc13ae561bfa20eb'
+const defaultEntityId: string = '123456789012345678901234'
 
 describe('/users/', () => {
   test('returns status code 200 if api is set up correctly', async () => {
@@ -39,7 +39,7 @@ describe('/users/', () => {
   })
   test('returns status code 200 if can fetch a list of existing entities', async () => {
     const res: any = await request(TestSetup.app)
-      .get('/users/')
+      .get('/itineraries/')
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
@@ -76,7 +76,7 @@ describe('/users/', () => {
   test('returns object with updated attribute if updated successfully', async () => {
     const res: any = await request(TestSetup.app)
       .patch(`/itineraries/${defaultEntityId}`)
-      .send({ username: 'imelda' })
+      .send({ username: 'Neville' })
 
     expect(res.body.data.username).toEqual('imelda')
   })

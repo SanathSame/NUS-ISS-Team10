@@ -70,4 +70,29 @@ create table flights (
 	ticket_price DECIMAL(10,2) NOT NULL
 );
 
+create table hotels (
+    _id varchar(24) NOT NULL DEFAULT generate_object_id() UNIQUE,
+    name VARCHAR(30) NOT NULL,
+	city VARCHAR(50) NOT NULL,
+	country VARCHAR(50) NOT NULL,
+    description TEXT,
+	price DECIMAL(6,2) NOT NULL,
+	ratings DECIMAL(3,1) NOT NULL,
+	ammenities VARCHAR(50) NOT NULL,
+    hotel_image VARCHAR(500) NOT NULL
+);
+
+CREATE TABLE itinerary (
+    _id VARCHAR(24) NOT NULL DEFAULT generate_object_id(),
+    flight_id VARCHAR(24) NOT NULL,
+    hotel_id VARCHAR(24) NOT NULL,
+    attraction_id VARCHAR(24) NOT NULL,
+    date DATE NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    PRIMARY KEY (_id),
+    FOREIGN KEY (flight_id) REFERENCES flights(_id),
+    FOREIGN KEY (hotel_id) REFERENCES hotels(_id),
+    FOREIGN KEY (attraction_id) REFERENCES attractions(_id)
+);
+
 ALTER SYSTEM SET max_connections = 50;
