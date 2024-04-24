@@ -88,7 +88,7 @@ describe('/hotels/', () => {
     const res: any = await request(TestSetup.app)
       .get(`/hotels/${defaultEntityId}`)
 
-    expect(res.body.data.hotel_image).toEqual(SampleEntities[0].hotel_image)
+    expect(res.body.data.hotel_image).toEqual(SampleEntities[1].hotel_image)
   })
 
   test('returns status code 200 if it updates a given entity with appropriate id and details', async () => {
