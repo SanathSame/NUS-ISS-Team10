@@ -4,14 +4,16 @@ import tw from 'twin.macro'
 import styled from 'styled-components'
 import { SectionHeading } from 'components/misc/Headings'
 import { PrimaryButton as PrimaryButtonBase } from 'components/misc/Buttons'
-import { ReactComponent as PriceIcon } from 'feather-icons/dist/icons/dollar-sign.svg'
-import { ReactComponent as LocationIcon } from 'feather-icons/dist/icons/map-pin.svg'
-import { ReactComponent as ClockIcon } from 'feather-icons/dist/icons/clock.svg'
 import { ReactComponent as ChevronLeftIcon } from 'feather-icons/dist/icons/chevron-left.svg'
 import { ReactComponent as ChevronRightIcon } from 'feather-icons/dist/icons/chevron-right.svg'
 import { FlightApi } from 'api/flight/FlightApi'
 import FlightFilter from './Flight_Filter'
 import { parse } from 'date-fns'
+import { ReactComponent as FlightIcon } from 'feather-icons/dist/icons/send.svg'
+import { ReactComponent as LocationIcon } from 'feather-icons/dist/icons/map-pin.svg'
+import { ReactComponent as ClockIcon } from 'feather-icons/dist/icons/clock.svg'
+import { ReactComponent as PriceIcon } from 'feather-icons/dist/icons/dollar-sign.svg'
+import { ReactComponent as DateIcon } from 'feather-icons/dist/icons/calendar.svg'
 
 const Container = tw.div`relative`
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`
@@ -29,7 +31,7 @@ const PrevButton = tw(ControlButton)``
 const NextButton = tw(ControlButton)``
 
 const CardSlider = styled(Slider)`
-  ${tw`mt-16`}
+  ${tw`mt-8`}
   .slick-track { 
     ${tw`flex`}
   }
@@ -43,7 +45,7 @@ const CardImage = styled.div(props => [
   tw`w-full h-56 sm:h-64 bg-cover bg-center rounded sm:rounded-none sm:rounded-tl-4xl`
 ])
 
-const TextInfo = tw.div`py-6 sm:px-10 sm:py-6`
+const TextInfo = tw.div`py-6 sm:px-8 sm:py-6`
 const TitleReviewContainer = tw.div`flex flex-col sm:flex-row sm:justify-between sm:items-center`
 const Title = tw.h5`text-2xl font-bold`
 
@@ -53,12 +55,12 @@ const DurationInfo = styled.div`
     ${tw`w-6 h-6`}
   }
 `
-const Duration = tw.span`ml-2 font-bold`
+const Duration = tw.span`ml-1 font-bold`
 
-const Description = tw.p`text-sm leading-loose mt-2 sm:mt-4`
+const Description = tw.p`text-sm leading-loose mt-2 sm:mt-2`
 
-const SecondaryInfoContainer = tw.div`flex flex-col sm:flex-row mt-2 sm:mt-4`
-const IconWithText = tw.div`flex items-center mr-6 my-2 sm:my-0`
+const SecondaryInfoContainer = tw.div`flex flex-col sm:flex-row mt-2 sm:mt-2`
+const IconWithText = tw.div`flex items-center mr-6 my-2 sm:my-1`
 const IconContainer = styled.div`
   ${tw`inline-block rounded-full p-2 bg-gray-700 text-gray-100`}
   svg {
@@ -110,7 +112,7 @@ export default () => {
 
   const sliderSettings = {
     arrows: false,
-    slidesToShow: Math.min(3, filteredFlights.length),
+    slidesToShow: 3,
     responsive: [
       {
         breakpoint: 1280,
@@ -121,7 +123,7 @@ export default () => {
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: Math.min(1, filteredFlights.length)
+          slidesToShow: Math.min(2, filteredFlights.length)
         }
       }
     ]
@@ -178,7 +180,19 @@ export default () => {
                     <Text>${flight.ticket_price}</Text>
                   </IconWithText>
                 </SecondaryInfoContainer>
-                <Description>Depart from {flight.departure_city}, {flight.departure_country} on {formatDate(flight.departure_date)}, {flight.departure_time}.</Description>
+                <Description>Depart from </Description>
+                  <IconWithText>
+                    <IconContainer>
+                      <FlightIcon />
+                    </IconContainer>
+                    <Text>{flight.departure_city}, {flight.departure_country}</Text>
+                  </IconWithText>
+                  <IconWithText>
+                    <IconContainer>
+                      <DateIcon/>
+                    </IconContainer>
+                    <Text>{formatDate(flight.departure_date)}, {flight.departure_time}</Text>
+                  </IconWithText>
               </TextInfo>
               <PrimaryButton onClick={() => handlePrimaryBtn(flight)}>Add to Itenerary</PrimaryButton>
             </Card>

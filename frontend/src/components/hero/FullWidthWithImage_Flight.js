@@ -30,18 +30,20 @@ const Heading = tw.h1`text-3xl sm:text-5xl md:text-6xl lg:text-5xl font-black le
 export default ({
   navLinks = [
     <NavLinks key={1}>
-      <NavLink href="/components/innerPages/BlogIndexPage">Itenerary</NavLink>
       <NavLink href="/components/innerPages/FlightPage">Flights</NavLink>
       <NavLink href="/components/innerPages/HotelPage">Hotels</NavLink>
       <NavLink href="/components/innerPages/AttractionPage">Attractions</NavLink>
+      <NavLink href="/components/innerPages/ItineraryPage">Itinerary</NavLink>
+      <NavLink href="/components/innerPages/LogoutPage">Logout</NavLink>
     </NavLinks>
   ],
+  headingText = '',
   heading = (
     <>
-      Find the perfect Flight
+      {headingText}
       <wbr />
       <br />
-      <span tw="text-primary-500">for your Destination</span>
+      <span tw="text-primary-500">for your destination</span>
     </>
   )
 }) => {

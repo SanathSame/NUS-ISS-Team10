@@ -68,6 +68,7 @@ export default ({
 
       localStorage.setItem('refreshToken', response.data.data.refreshToken)
       localStorage.setItem('accessToken', response.data.data.accessToken)
+      localStorage.setItem('username', username)
       console.log('Login successful!')
       setRedirectTo('/components/landingPages/LandingPage')
       location.reload()

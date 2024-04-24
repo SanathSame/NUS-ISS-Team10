@@ -67,7 +67,7 @@ describe('/users/', () => {
 
   test('returns status code 200 if it accepts a given entity with appropriate id and details', async () => {
     const res: any = await request(TestSetup.app)
-      .patch(`/users/${defaultEntityId}`)
+      .patch('/users/65757316fc13ae561bfa20ec')
       .send({ username: 'imelda' })
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
@@ -75,7 +75,7 @@ describe('/users/', () => {
 
   test('returns object with updated attribute if updated successfully', async () => {
     const res: any = await request(TestSetup.app)
-      .patch(`/users/${defaultEntityId}`)
+      .patch('/users/65757316fc13ae561bfa20ec')
       .send({ username: 'imelda' })
 
     expect(res.body.data.username).toEqual('imelda')
@@ -83,7 +83,7 @@ describe('/users/', () => {
 
   test('returns status code 200 if it deletes a given entity id', async () => {
     const res: any = await request(TestSetup.app)
-      .delete(`/users/${defaultEntityId}`)
+      .delete('/users/65757316fc13ae561bfa20ec')
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
