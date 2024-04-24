@@ -83,7 +83,7 @@ describe('/users/', () => {
 
   test('returns status code 200 if it deletes a given entity id', async () => {
     const res: any = await request(TestSetup.app)
-      .delete(`/users/${defaultEntityId}`)
+      .delete('/users/65757316fc13ae561bfa20ec')
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })

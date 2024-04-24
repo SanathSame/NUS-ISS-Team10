@@ -13,7 +13,6 @@ const beforeAllFunction = beforeAll(() => {
 })
 
 const beforeEachFunction = beforeEach(async () => {
-  
   await productObject.one('INSERT INTO products (_id, name, description, price, quantity, created_at) VALUES ' +
   "('6591464efc13ae0a31fa20b9', 'Cold Head Congestion Daytime Non-Drowsy', 'Integer a nibh. In quis justo.', 29.61, 95, '2023-12-28 15:56:58') RETURNING *")
   await productObject.one('INSERT INTO products (_id, name, description, price, quantity, created_at) VALUES ' +
@@ -40,11 +39,11 @@ const beforeEachFunction = beforeEach(async () => {
   await productObject.one('INSERT INTO hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) VALUES ' +
     "('123456789012345678901237', 'Hotel XYZ', 'AnotherCity', 'AnotherCountry', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 200.00, 4.8, 'Gym, Spa, Restaurant', 'https://example.com/hotel_image2.jpg') RETURNING *")
 
-    await productObject.one('INSERT INTO itinerarys (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
+  await productObject.one('INSERT INTO itinerarys (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
   "('123456789012345678901234', '1', '123456789012345678901236', '661609ebfc13ae7ef9ab89f5', '2022-04-28', 'shawn') RETURNING *")
 
   await productObject.one('INSERT INTO itinerarys (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
-  "('123456789012345678901235', '2', '123456789012345678901236', '661609ebfc13ae7ef9ab89f6', '2022-06-07', 'Neville') RETURNING *")
+  "('123456789012345678901235', '2', '123456789012345678901236', '661609ebfc13ae7ef9ab89f6', '2022-06-07', 'shawn') RETURNING *")
 })
 
 const afterEachFunction = afterEach(async () => {
