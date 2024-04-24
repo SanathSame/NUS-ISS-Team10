@@ -72,7 +72,7 @@ describe('/itinerarys/', () => {
   test('returns status code 200 if it accepts a given entity with appropriate id and details', async () => {
     const res: any = await request(TestSetup.app)
       .patch(`/itineraries/${defaultEntityId}`)
-      .send({ username: 'imelda' })
+      .send({ username: 'Neville' })
 
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
