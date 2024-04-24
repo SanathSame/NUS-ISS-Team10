@@ -16,7 +16,7 @@ const itineraryEntitySchema = new Schema({
   flight: { type: Schema.Types.ObjectId, ref: 'Flight', required: true },
   hotel: { type: Schema.Types.ObjectId, ref: 'Hotel', required: true },
   attraction: { type: Schema.Types.ObjectId, ref: 'Attraction', required: true },
-  date: { type: Date, required: true }
+  date: { type: String, required: true }
 })
 
 export { itineraryEntitySchema, itineraryEntityModelName }
