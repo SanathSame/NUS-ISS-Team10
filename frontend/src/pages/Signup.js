@@ -5,7 +5,7 @@ import { Container as ContainerBase } from 'components/misc/Layouts'
 import tw from 'twin.macro'
 import styled from 'styled-components'
 import { css } from "styled-components/macro"; //eslint-disable-line
-import illustration from 'images/signup-illustration.svg'
+import illustration from 'images/Mobile login-amico.svg'
 import logo from 'images/logo.svg'
 import googleIconImageSrc from 'images/google-icon.png'
 import twitterIconImageSrc from 'images/twitter-icon.png'
@@ -36,115 +36,6 @@ const IllustrationImage = styled.div`
   ${props => `background-image: url("${props.imageSrc}");`}
   ${tw`m-12 xl:m-16 w-full max-w-lg bg-contain bg-center bg-no-repeat`}
 `
-
-// export default ({
-//   logoLinkUrl = '/components/innerPages/LoginPage',
-//   illustrationImageSrc = illustration,
-//   headingText = 'Sign Up For Travel-Aid',
-//   socialButtons = [
-//     {
-//       iconImageSrc: googleIconImageSrc,
-//       text: 'Sign Up With Google',
-//       url: 'https://google.com'
-//     },
-//     {
-//       iconImageSrc: twitterIconImageSrc,
-//       text: 'Sign Up With Twitter',
-//       url: 'https://twitter.com'
-//     }
-//   ],
-//   submitButtonText = 'Sign Up',
-//   SubmitButtonIcon = SignUpIcon,
-//   signInUrl = '/components/innerPages/LoginPage'
-// }) => {
-//   const navigate = useNavigate()
-//   const [redirectTo, setRedirectTo] = useState(null) // State to manage redirection
-
-//   useEffect(() => {
-//     if (redirectTo) {
-//       navigate(redirectTo)
-//     }
-//   }, [redirectTo, navigate])
-
-//   const handleSignup = async (event) => {
-//     event.preventDefault()
-//     const username = document.querySelector('#username')
-//     const password = document.querySelector('#password')
-//     const email = document.querySelector('#email')
-//     const [confirmPassword, setConfirmPassword] = useState('')
-//     const [passwordsMatch, setPasswordsMatch] = useState(true)
-
-//     try {
-//       const formData = new FormData()
-//       formData.append('username', username.value)
-//       formData.append('password', password.value)
-//       formData.append('email', email.value)
-
-//       const formObjectRequest = Object.fromEntries(formData)
-//       console.log(formObjectRequest)
-//       const response = await UserApi.createNewUser(formObjectRequest)
-//       console.log('Signup successful!')
-//       console.log(response)
-
-//       setRedirectTo('/components/innerPages/LoginPage')
-//     } catch (error) {
-//       // Use a more clear way to check if there is an error message
-//       const errorMessage = error.message !== undefined ? error.message : 'Login failed'
-//       console.error(errorMessage)
-//     }
-//   }
-
-//   return (
-//     <AnimationRevealPage>
-//       <Container>
-//         <Content>
-//           <MainContainer>
-//             <LogoLink href={logoLinkUrl}>
-//               <LogoImage src={logo} />
-//             </LogoLink>
-//             <MainContent>
-//               <Heading>{headingText}</Heading>
-//               <FormContainer>
-//                 {/* <SocialButtonsContainer>
-//                   {socialButtons.map((socialButton, index) => (
-//                     <SocialButton key={index} href={socialButton.url}>
-//                       <span className="iconContainer">
-//                         <img src={socialButton.iconImageSrc} className="icon" alt="" />
-//                       </span>
-//                       <span className="text">{socialButton.text}</span>
-//                     </SocialButton>
-//                   ))}
-//                 </SocialButtonsContainer> */}
-//                 {/* <DividerTextContainer>
-//                   <DividerText>Or Sign up with your e-mail</DividerText>
-//                 </DividerTextContainer> */}
-//                 <Form>
-//                   <Input id="username" type="text" placeholder="Username" />
-//                   <Input id="email" type="email" placeholder="Email" />
-//                   <Input id="password" type="password" placeholder="Password" />
-//                   <Input id="confirmPassword" type="password" placeholder="Confirm Password" value={confirmPassword} onChange={handleConfirmPasswordChange} />
-//                   <SubmitButton type="button" onClick={handleSignup}>
-//                     <SubmitButtonIcon className="icon" />
-//                     <span className="text">{submitButtonText}</span>
-//                   </SubmitButton>
-//                   <p tw="mt-8 text-sm text-gray-600 text-center">
-//                     Already have an account?{' '}
-//                     <a href={signInUrl} tw="border-b border-gray-500 border-dotted">
-//                       Sign In
-//                     </a>
-//                   </p>
-//                 </Form>
-//               </FormContainer>
-//             </MainContent>
-//           </MainContainer>
-//           <IllustrationContainer>
-//             <IllustrationImage imageSrc={illustrationImageSrc} />
-//           </IllustrationContainer>
-//         </Content>
-//       </Container>
-//     </AnimationRevealPage>
-//   )
-// }
 export default ({
   logoLinkUrl = '/components/innerPages/LoginPage',
   illustrationImageSrc = illustration,
@@ -168,8 +59,8 @@ export default ({
   const navigate = useNavigate()
   const [redirectTo, setRedirectTo] = useState(null) // State to manage redirection
   const [password, setPassword] = useState('')
-  // const [confirmPassword, setConfirmPassword] = useState('')
-  // const [passwordsMatch, setPasswordsMatch] = useState(true)
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [passwordsMatch, setPasswordsMatch] = useState(true)
 
   useEffect(() => {
     if (redirectTo) {
@@ -181,24 +72,25 @@ export default ({
     setPassword(event.target.value)
   }
 
-  // const handleConfirmPasswordChange = (event) => {
-  //   setConfirmPassword(event.target.value)
-  // }
+  const handleConfirmPasswordChange = (event) => {
+    setConfirmPassword(event.target.value)
+  }
 
   const handleSignup = async (event) => {
     event.preventDefault()
-    const username = document.querySelector('#username')
-    const password = document.querySelector('#password')
-    const email = document.querySelector('#email')
-    // if (password !== confirmPassword) {
-    //   setPasswordsMatch(false)
-    //   return
-    // }
+    const username = document.querySelector('#username').value
+    const email = document.querySelector('#email').value
+    console.log('Password is', password)
+    console.log('Confirm password is', confirmPassword)
+    if (password !== confirmPassword) {
+      setPasswordsMatch(false)
+      return
+    }
     try {
       const formData = new FormData()
-      formData.append('username', username.value)
-      formData.append('password', password.value)
-      formData.append('email', email.value)
+      formData.append('username', username)
+      formData.append('password', password)
+      formData.append('email', email)
       const formObjectRequest = Object.fromEntries(formData)
       console.log(formObjectRequest)
       const response = await UserApi.createNewUser(formObjectRequest)
@@ -211,7 +103,6 @@ export default ({
       console.error(errorMessage)
     }
   }
-
   return (
     <AnimationRevealPage>
       <Container>
@@ -227,8 +118,8 @@ export default ({
                   <Input id="username" type="text" placeholder="Username" />
                   <Input id="email" type="email" placeholder="Email" />
                   <Input id="password" type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
-                  {/* <Input id="confirmPassword" type="password" placeholder="Confirm Password" value={confirmPassword} onChange={handleConfirmPasswordChange} />
-                  {!passwordsMatch && <p tw="mt-2 text-red-500 text-xs">Passwords do not match</p>} */}
+                  <Input id="confirmPassword" type="password" placeholder="Confirm Password" value={confirmPassword} onChange={handleConfirmPasswordChange} />
+                  {!passwordsMatch && <p tw="mt-2 text-red-500 text-xs">Passwords do not match</p>}
                   <SubmitButton type="button" onClick={handleSignup}>
                     <SubmitButtonIcon className="icon" />
                     <span className="text">{submitButtonText}</span>

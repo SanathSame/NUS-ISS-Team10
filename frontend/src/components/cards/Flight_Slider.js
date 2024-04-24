@@ -9,9 +9,11 @@ import { ReactComponent as ChevronRightIcon } from 'feather-icons/dist/icons/che
 import { FlightApi } from 'api/flight/FlightApi'
 import FlightFilter from './Flight_Filter'
 import { parse } from 'date-fns'
-import { ReactComponent as FlightIcon } from 'feather-icons/dist/icons/send.svg'
+// import { ReactComponent as FlightIcon } from 'feather-icons/dist/icons/send.svg'
 import { ReactComponent as LocationIcon } from 'feather-icons/dist/icons/map-pin.svg'
-import { ReactComponent as TimeIcon } from 'feather-icons/dist/icons/clock.svg'
+import { ReactComponent as ClockIcon } from 'feather-icons/dist/icons/clock.svg'
+import { ReactComponent as PriceIcon } from 'feather-icons/dist/icons/dollar-sign.svg'
+import { ReactComponent as DateIcon } from 'feather-icons/dist/icons/calendar.svg'
 
 const Container = tw.div`relative`
 const Content = tw.div`max-w-screen-xl mx-auto py-16 lg:py-20`
@@ -37,64 +39,64 @@ const CardSlider = styled(Slider)`
     ${tw`h-auto flex justify-center mb-1`}
   }
 `
-// const Card = tw.div`h-full flex! flex-col sm:border max-w-sm sm:rounded-tl-4xl sm:rounded-br-5xl relative focus:outline-none`
-// const CardImage = styled.div(props => [
-//   `background-image: url("${props.imageSrc}");`,
-//   tw`w-full h-56 sm:h-64 bg-cover bg-center rounded sm:rounded-none sm:rounded-tl-4xl`
-// ])
-
-// const TextInfo = tw.div`py-6 sm:px-10 sm:py-6`
-// const TitleReviewContainer = tw.div`flex flex-col sm:flex-row sm:justify-between sm:items-center`
-// const Title = tw.h5`text-2xl font-bold`
-
-// const DurationInfo = styled.div`
-//   ${tw`flex items-center sm:ml-4 mt-2 sm:mt-0`}
-//   svg {
-//     ${tw`w-6 h-6`}
-//   }
-// `
-// const Duration = tw.span`ml-2 font-bold`
-
-// const Description = tw.p`text-sm leading-loose mt-2 sm:mt-4`
-
-// const SecondaryInfoContainer = tw.div`flex flex-col sm:flex-row mt-2 sm:mt-4`
-// const IconWithText = tw.div`flex items-center mr-6 my-2 sm:my-0`
-// const IconContainer = styled.div`
-//   ${tw`inline-block rounded-full p-2 bg-gray-700 text-gray-100`}
-//   svg {
-//     ${tw`w-3 h-3`}
-//   }
-// `
-// const Text = tw.div`ml-2 text-sm font-semibold text-gray-800`
-
-// const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`
-
-const Card = tw.div`mx-auto xl:mx-0 xl:ml-auto max-w-sm md:max-w-xs lg:max-w-sm xl:max-w-xs`
+const Card = tw.div`h-full flex! flex-col sm:border max-w-sm sm:rounded-tl-4xl sm:rounded-br-5xl relative focus:outline-none`
 const CardImage = styled.div(props => [
   `background-image: url("${props.imageSrc}");`,
-  tw`h-80 bg-cover bg-center rounded`
+  tw`w-full h-56 sm:h-64 bg-cover bg-center rounded sm:rounded-none sm:rounded-tl-4xl`
 ])
 
-const CardText = tw.div`mt-4`
+const TextInfo = tw.div`py-6 sm:px-10 sm:py-6`
+const TitleReviewContainer = tw.div`flex flex-col sm:flex-row sm:justify-between sm:items-center`
+const Title = tw.h5`text-2xl font-bold`
 
-const CardHeader = tw.div`flex justify-between items-center`
-const CardType = tw.div`text-primary-500 font-bold text-sm`
-const CardPrice = tw.div`font-semibold text-sm text-gray-600`
-const CardPriceAmount = tw.span`font-bold text-gray-800 text-sm`
-
-const CardTitle = tw.h5`text-xl mt-4 font-bold`
-
-const CardMeta = styled.div`
-  ${tw`flex flex-row flex-wrap justify-between sm:items-center font-semibold tracking-wide text-gray-600 uppercase text-xs`}
-`
-
-const CardMetaFeature = styled.div`
-  ${tw`flex items-center mt-4`}
+const DurationInfo = styled.div`
+  ${tw`flex items-center sm:ml-4 mt-2 sm:mt-0`}
   svg {
-    ${tw`w-5 h-5 mr-1`}
+    ${tw`w-6 h-6`}
   }
 `
-const CardAction = tw(PrimaryButtonBase)`w-full mt-8`
+const Duration = tw.span`ml-2 font-bold`
+
+const Description = tw.p`text-sm leading-loose mt-2 sm:mt-4`
+
+const SecondaryInfoContainer = tw.div`flex flex-col sm:flex-row mt-2 sm:mt-4`
+const IconWithText = tw.div`flex items-center mr-6 my-2 sm:my-0`
+const IconContainer = styled.div`
+  ${tw`inline-block rounded-full p-2 bg-gray-700 text-gray-100`}
+  svg {
+    ${tw`w-3 h-3`}
+  }
+`
+const Text = tw.div`ml-2 text-sm font-semibold text-gray-800`
+
+const PrimaryButton = tw(PrimaryButtonBase)`mt-auto sm:text-lg rounded-none w-full rounded sm:rounded-none sm:rounded-br-4xl py-3 sm:py-6`
+
+// const Card = tw.div`mx-auto xl:mx-0 xl:ml-auto max-w-sm md:max-w-xs lg:max-w-sm xl:max-w-xs`
+// const CardImage = styled.div(props => [
+//   `background-image: url("${props.imageSrc}");`,
+//   tw`h-80 bg-cover bg-center rounded`
+// ])
+
+// const CardText = tw.div`mt-4`
+
+// const CardHeader = tw.div`flex justify-between items-center`
+// const CardType = tw.div`text-primary-500 font-bold text-sm`
+// const CardPrice = tw.div`font-semibold text-sm text-gray-600`
+// const CardPriceAmount = tw.span`font-bold text-gray-800 text-sm`
+
+// const CardTitle = tw.h5`text-xl mt-4 font-bold`
+
+// const CardMeta = styled.div`
+//   ${tw`flex flex-row flex-wrap justify-between sm:items-center font-semibold tracking-wide text-gray-600 uppercase text-xs`}
+// `
+
+// const CardMetaFeature = styled.div`
+//   ${tw`flex items-center mt-4`}
+//   svg {
+//     ${tw`w-5 h-5 mr-1`}
+//   }
+// `
+// const CardAction = tw(PrimaryButtonBase)`w-full mt-8`
 
 export default () => {
   const [sliderRef, setSliderRef] = useState(null)
@@ -104,7 +106,7 @@ export default () => {
   useEffect(() => {
     fetchFlightData()
   }, [])
-  const addToItenerary = {}
+  // const addToItenerary = {}
   const fetchFlightData = async () => {
     try {
       const response = await FlightApi.getFlights()
@@ -124,9 +126,9 @@ export default () => {
     }
   }
 
-  // const handlePrimaryBtn = (flight) => {
-  //   console.log('Selected flight:', flight)
-  // }
+  const handlePrimaryBtn = (flight) => {
+    console.log('Selected flight:', flight)
+  }
 
   const formatDate = (dateString) => {
     const [day, month, year] = dateString.split('-').map(Number)
@@ -137,7 +139,7 @@ export default () => {
 
   const sliderSettings = {
     arrows: false,
-    slidesToShow: Math.min(3, filteredFlights.length),
+    slidesToShow: 3,
     responsive: [
       {
         breakpoint: 1280,
@@ -181,58 +183,70 @@ export default () => {
         </HeadingWithControl>
         <CardSlider ref={setSliderRef} {...sliderSettings}>
           {filteredFlights.map((flight, index) => (
-            // <Card key={index}>
-            //   <CardImage imageSrc={cardImageStore[index % (cardImageStore.length)]} />
-            //   <TextInfo>
-            //     <TitleReviewContainer>
-            //       <Title>{flight.arrival_city}</Title>
-            //       <DurationInfo>
-            //         <ClockIcon />
-            //         <Duration>{flight.flight_duration}hr</Duration>
-            //       </DurationInfo>
-            //     </TitleReviewContainer>
-            //     <SecondaryInfoContainer>
-            //       <IconWithText>
-            //         <IconContainer>
-            //           <LocationIcon />
-            //         </IconContainer>
-            //         <Text>{flight.arrival_country}</Text>
-            //       </IconWithText>
-            //       <IconWithText>
-            //         <IconContainer>
-            //           <PriceIcon />
-            //         </IconContainer>
-            //         <Text>${flight.ticket_price}</Text>
-            //       </IconWithText>
-            //     </SecondaryInfoContainer>
-            //     <Description>Depart from {flight.departure_city}, {flight.departure_country} on {formatDate(flight.departure_date)}, {flight.departure_time}.</Description>
-            //   </TextInfo>
-            //   <PrimaryButton onClick={() => handlePrimaryBtn(flight)}>Add to Itenerary</PrimaryButton>
-            // </Card>
             <Card key={index}>
-                <CardImage imageSrc={cardImageStore[index % (cardImageStore.length)]}/>
-                <CardText>
-                  <CardHeader>
-                    <CardType>{flight.arrival_city},{flight.arrival_country}</CardType>
-                    <CardPrice>
-                      <CardPriceAmount>${flight.ticket_price}</CardPriceAmount>
-                    </CardPrice>
-                  </CardHeader>
-                  <CardTitle>{formatDate(flight.departure_date)}, {flight.departure_time}</CardTitle>
-                  <CardMeta>
-                    <CardMetaFeature>
-                      <FlightIcon /> {flight.departure_city}
-                    </CardMetaFeature>
-                    <CardMetaFeature>
-                      <TimeIcon /> {flight.flight_duration} hrs
-                    </CardMetaFeature>
-                    <CardMetaFeature>
-                      <LocationIcon /> {flight.departure_country}
-                    </CardMetaFeature>
-                  </CardMeta>
-                  <CardAction onClick={addToItenerary}>Add to Itenerary</CardAction>
-                </CardText>
-              </Card>
+              <CardImage imageSrc={cardImageStore[index % (cardImageStore.length)]} />
+              <TextInfo>
+                <TitleReviewContainer>
+                  <Title>{flight.arrival_city}</Title>
+                  <DurationInfo>
+                    <ClockIcon />
+                    <Duration>{flight.flight_duration}hr</Duration>
+                  </DurationInfo>
+                </TitleReviewContainer>
+                <SecondaryInfoContainer>
+                  <IconWithText>
+                    <IconContainer>
+                      <LocationIcon />
+                    </IconContainer>
+                    <Text>{flight.arrival_country}</Text>
+                  </IconWithText>
+                  <IconWithText>
+                    <IconContainer>
+                      <PriceIcon />
+                    </IconContainer>
+                    <Text>${flight.ticket_price}</Text>
+                  </IconWithText>
+                </SecondaryInfoContainer>
+                <Description>Depart from </Description>
+                <IconWithText>
+                    <IconContainer>
+                      <LocationIcon />
+                    </IconContainer>
+                    <Text>{flight.departure_city}, {flight.departure_country}</Text>
+                </IconWithText>
+                <IconWithText>
+                    <IconContainer>
+                      <DateIcon/>
+                    </IconContainer>
+                    <Text>on {formatDate(flight.departure_date)}, {flight.departure_time}.</Text>
+                  </IconWithText>
+              </TextInfo>
+              <PrimaryButton onClick={() => handlePrimaryBtn(flight)}>Add to Itenerary</PrimaryButton>
+            </Card>
+            // <Card key={index}>
+            //     <CardImage imageSrc={cardImageStore[index % (cardImageStore.length)]}/>
+            //     <CardText>
+            //       <CardHeader>
+            //         <CardType>{flight.arrival_city},{flight.arrival_country}</CardType>
+            //         <CardPrice>
+            //           <CardPriceAmount>${flight.ticket_price}</CardPriceAmount>
+            //         </CardPrice>
+            //       </CardHeader>
+            //       <CardTitle>{formatDate(flight.departure_date)}, {flight.departure_time}</CardTitle>
+            //       <CardMeta>
+            //         <CardMetaFeature>
+            //           <FlightIcon /> {flight.departure_city}
+            //         </CardMetaFeature>
+            //         <CardMetaFeature>
+            //           <TimeIcon /> {flight.flight_duration} hrs
+            //         </CardMetaFeature>
+            //         <CardMetaFeature>
+            //           <LocationIcon /> {flight.departure_country}
+            //         </CardMetaFeature>
+            //       </CardMeta>
+            //       <CardAction onClick={addToItenerary}>Add to Itenerary</CardAction>
+            //     </CardText>
+            //   </Card>
           ))}
         </CardSlider>
       </Content>
