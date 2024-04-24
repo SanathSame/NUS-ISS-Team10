@@ -18,9 +18,11 @@ describe('/users/', () => {
     const res: any = await request(TestSetup.app)
       .post('/itineraries/')
       .send({
-        email: 'aa@bb.com',
-        username: 'testing',
-        password: 'hello123'
+        flight_id: '2',
+        hotel_id: '123456789012345678901236',
+        attraction_id: '661609ebfc13ae7ef9ab89f6',
+        date: '2022-06-07',
+        username: 'Neville'
       })
 
     expect(res.statusCode).toEqual(StatusCode.SuccessCreated)
@@ -30,9 +32,11 @@ describe('/users/', () => {
     const res: any = await request(TestSetup.app)
       .post('/itineraries/')
       .send({
-        email: 'aa@bb.com',
-        username: 'testing',
-        password: 'hello123'
+        flight_id: '2',
+        hotel_id: '123456789012345678901236',
+        attraction_id: '661609ebfc13ae7ef9ab89f6',
+        date: '2022-06-07',
+        username: 'Neville'
       })
 
     expect(res.body.data._id).toBeDefined()
@@ -78,7 +82,7 @@ describe('/users/', () => {
       .patch(`/itineraries/${defaultEntityId}`)
       .send({ username: 'Neville' })
 
-    expect(res.body.data.username).toEqual('imelda')
+    expect(res.body.data.username).toEqual('Neville')
   })
 
   test('returns status code 200 if it deletes a given entity id', async () => {
