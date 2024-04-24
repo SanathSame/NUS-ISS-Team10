@@ -32,6 +32,18 @@ const beforeEachFunction = beforeEach(async () => {
   "('1', 'Jakarta', 'Indonesia', 'Pattaya','Thailand', '2022-04-28', '7:38 AM', 5, 801.68) RETURNING *")
   productObject.one('INSERT INTO flights (_id, departure_city, departure_country, arrival_city, arrival_country, departure_date, departure_time, flight_duration, ticket_price) VALUES ' +
   "('2', 'Singapore', 'Singapore', 'Penang', 'Malaysia', '2022-06-07', '11:54 PM', 18, 267.36) RETURNING *")
+
+  productObject.one('INSERT INTO hotels (_id, name, city, country, description, price, ratings, amenities, hotel_image) VALUES ' +
+  "('123456789012345678901236', 'Hotel ABC', 'YourCity', 'YourCountry', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 150.00, 4.5, 'Free Wi-Fi, Swimming Pool', 'https://example.com/hotel_image1.jpg') RETURNING *")
+
+  productObject.one('INSERT INTO hotels (_id, name, city, country, description, price, ratings, amenities, hotel_image) VALUES ' +
+    "('123456789012345678901237', 'Hotel XYZ', 'AnotherCity', 'AnotherCountry', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 200.00, 4.8, 'Gym, Spa, Restaurant', 'https://example.com/hotel_image2.jpg') RETURNING *")
+
+  productObject.one('INSERT INTO itinerary (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
+  "('123456789012345678901234', '1', 'YOUR_HOTEL_ID_HERE', '661609ebfc13ae7ef9ab89f5', '2022-04-28', 'shawn') RETURNING *")
+
+  productObject.one('INSERT INTO itinerary (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
+  "('123456789012345678901235', '2', 'YOUR_OTHER_HOTEL_ID_HERE', '661609ebfc13ae7ef9ab89f6', '2022-06-07', 'Neville') RETURNING *")
 })
 
 const afterEachFunction = afterEach(async () => {
@@ -39,6 +51,8 @@ const afterEachFunction = afterEach(async () => {
   await productObject.manyOrNone('DELETE FROM users RETURNING *')
   await productObject.manyOrNone('DELETE FROM flights RETURNING *')
   await productObject.manyOrNone('DELETE FROM attractions RETURNING *')
+  await productObject.manyOrNone('DELETE FROM hotels RETURNING *')
+  await productObject.manyOrNone('DELETE FROM itinerary RETURNING *')
 })
 
 const afterAllFunction = afterAll(async () => {
