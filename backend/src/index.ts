@@ -18,6 +18,8 @@ import FlightRouter from './flights/routes/entity.route'
 import { flightEntityModelName, flightEntitySchema } from './flights/models/entity.model'
 import HotelRouter from './hotels/routes/entity.route'
 import { hotelEntityModelName, hotelEntitySchema } from './hotels/models/entity.model'
+import ItineraryRouter from './itinerary/routes/entity.route'
+import { itineraryEntityModelName, itineraryEntitySchema } from './itinerary/models/entity.model'
 
 dotenv.config()
 
@@ -30,6 +32,7 @@ const userDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_
 const attractionDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), attractionEntitySchema, attractionEntityModelName)
 const flightDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), flightEntitySchema, flightEntityModelName)
 const hotelDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), hotelEntitySchema, hotelEntityModelName)
+const itineraryDatabase: Database = createDatabaseObject(Number(process.env.DATABASE_TYPE), String(process.env.DATABASE_CONNECTION_URL), itineraryEntitySchema, itineraryEntityModelName)
 // Add db object here for entity schema and model name, ref products
 
 productDatabase.connect()
@@ -62,6 +65,11 @@ hotelDatabase.connect()
     console.log(error)
   })
 
+itineraryDatabase.connect()
+  .catch((error) => {
+    console.log(error)
+  })
+
 // Call connect function to call wrapper class to connect to db
 
 app.set('product-database', productDatabase)
@@ -70,6 +78,7 @@ app.set('user-database', userDatabase)
 app.set('attraction-database', attractionDatabase)
 app.set('flight-database', flightDatabase)
 app.set('hotel-database', hotelDatabase)
+app.set('itinerary-database', itineraryDatabase)
 
 // set a unique key for db data retrieval in particular controller - refer to controller
 
@@ -85,6 +94,7 @@ app.use('/users/', UserRouter)
 app.use('/attractions/', AttractionRouter)
 app.use('/flights/', FlightRouter)
 app.use('/hotels/', HotelRouter)
+app.use('/itineraries/', ItineraryRouter)
 
 // Add custom router to expose its routes in backends
 

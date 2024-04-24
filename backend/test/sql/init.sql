@@ -17,12 +17,6 @@ CREATE OR REPLACE FUNCTION generate_object_id() RETURNS varchar AS $$
     END;
 $$ LANGUAGE PLPGSQL;
 
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS entities;
-DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS attractions;
-DROP TABLE IF EXISTS flights;
-
 create table users (
 	_id varchar(24) NOT NULL DEFAULT generate_object_id(),
 	username VARCHAR(50) PRIMARY KEY,
@@ -47,7 +41,7 @@ create table products (
 );
 
 create table attractions (
-    _id varchar(24) NOT NULL DEFAULT generate_object_id(),
+    _id varchar(24) NOT NULL DEFAULT generate_object_id() UNIQUE,
     name VARCHAR(50) NOT NULL,
 	city VARCHAR(50) NOT NULL,
 	country VARCHAR(50) NOT NULL,
@@ -59,7 +53,7 @@ create table attractions (
 );
 
 create table flights (
-    _id varchar(24) NOT NULL DEFAULT generate_object_id(),
+    _id varchar(24) NOT NULL DEFAULT generate_object_id() UNIQUE,
 	departure_city VARCHAR(50) NOT NULL,
     departure_country VARCHAR(50) NOT NULL,
 	arrival_city VARCHAR(50) NOT NULL,
@@ -68,6 +62,32 @@ create table flights (
     departure_time VARCHAR(50) NOT NULL,
     flight_duration INT NOT NULL,
 	ticket_price DECIMAL(10,2) NOT NULL
+);
+
+create table hotels (
+    _id varchar(24) NOT NULL DEFAULT generate_object_id() UNIQUE,
+    name VARCHAR(30) NOT NULL,
+	city VARCHAR(50) NOT NULL,
+	country VARCHAR(50) NOT NULL,
+    description TEXT,
+	price DECIMAL(6,2) NOT NULL,
+	ratings DECIMAL(3,1) NOT NULL,
+	ammenities VARCHAR(50) NOT NULL,
+    hotel_image VARCHAR(500) NOT NULL
+);
+
+CREATE TABLE itinerarys (
+    _id VARCHAR(24) NOT NULL DEFAULT generate_object_id(),
+    flight_id VARCHAR(24) NOT NULL,
+    hotel_id VARCHAR(24) NOT NULL,
+    attraction_id VARCHAR(24) NOT NULL,
+    date VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL,
+    PRIMARY KEY (_id),
+    FOREIGN KEY (username) REFERENCES users(username),
+    FOREIGN KEY (flight_id) REFERENCES flights(_id),
+    FOREIGN KEY (hotel_id) REFERENCES hotels(_id),
+    FOREIGN KEY (attraction_id) REFERENCES attractions(_id)
 );
 
 ALTER SYSTEM SET max_connections = 50;
