@@ -48,11 +48,11 @@ const beforeEachFunction = beforeEach(async () => {
 
 const afterEachFunction = afterEach(async () => {
   await productObject.manyOrNone('DELETE FROM products RETURNING *')
+  await productObject.manyOrNone('DELETE FROM itinerary RETURNING *')
   await productObject.manyOrNone('DELETE FROM users RETURNING *')
   await productObject.manyOrNone('DELETE FROM flights RETURNING *')
   await productObject.manyOrNone('DELETE FROM attractions RETURNING *')
   await productObject.manyOrNone('DELETE FROM hotels RETURNING *')
-  await productObject.manyOrNone('DELETE FROM itinerary RETURNING *')
 })
 
 const afterAllFunction = afterAll(async () => {
