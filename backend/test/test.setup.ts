@@ -33,10 +33,10 @@ const beforeEachFunction = beforeEach(async () => {
   productObject.one('INSERT INTO flights (_id, departure_city, departure_country, arrival_city, arrival_country, departure_date, departure_time, flight_duration, ticket_price) VALUES ' +
   "('2', 'Singapore', 'Singapore', 'Penang', 'Malaysia', '2022-06-07', '11:54 PM', 18, 267.36) RETURNING *")
 
-  productObject.one('INSERT INTO hotels (_id, name, city, country, description, price, ratings, amenities, hotel_image) VALUES ' +
+  productObject.one('INSERT INTO hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) VALUES ' +
   "('123456789012345678901236', 'Hotel ABC', 'YourCity', 'YourCountry', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 150.00, 4.5, 'Free Wi-Fi, Swimming Pool', 'https://example.com/hotel_image1.jpg') RETURNING *")
 
-  productObject.one('INSERT INTO hotels (_id, name, city, country, description, price, ratings, amenities, hotel_image) VALUES ' +
+  productObject.one('INSERT INTO hotels (_id, name, city, country, description, price, ratings, ammenities, hotel_image) VALUES ' +
     "('123456789012345678901237', 'Hotel XYZ', 'AnotherCity', 'AnotherCountry', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 200.00, 4.8, 'Gym, Spa, Restaurant', 'https://example.com/hotel_image2.jpg') RETURNING *")
 
   productObject.one('INSERT INTO itinerary (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
