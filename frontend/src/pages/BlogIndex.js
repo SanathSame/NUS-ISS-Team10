@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, ContentWithPaddingXl } from 'components/misc/Layouts'
 import tw from 'twin.macro'
 import styled from 'styled-components'
 import { css } from 'styled-components/macro'
 import { SectionHeading } from 'components/misc/Headings'
 import { PrimaryButton } from 'components/misc/Buttons'
+import { ItineraryApi } from 'api/itinerary/ItineraryApi'
+import { useNavigate } from 'react-router-dom'
 
 const HeadingRow = tw.div`flex`
 const Heading = tw(SectionHeading)`text-gray-900`
@@ -31,7 +33,7 @@ const PostContainer = styled.div`
 `
 const Post = tw.div`cursor-pointer flex flex-col bg-gray-100 rounded-lg`
 const Image = styled.div`
-  ${props => css`background-image: url("${props.imageSrc}");`}
+  ${props => css`background-image: url("https://images.unsplash.com/photo-1418854982207-12f710b74003?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80");`}
   ${tw`h-64 w-full bg-cover bg-center rounded-t-lg`}
 `
 const Info = tw.div`p-8 border-2 border-t-0 rounded-lg rounded-t-none`
@@ -44,57 +46,102 @@ const ButtonContainer = tw.div`flex justify-center`
 const LoadMoreButton = tw(PrimaryButton)`mt-16 mx-auto`
 
 export default ({
-  headingText = 'Itinerary Builder',
-  posts = [
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost(),
-    getPlaceholderPost()
-  ]
+  headingText = 'Itinerary Builder'
 }) => {
+  const [itineraries, setItineraries] = useState([])
   const [visible, setVisible] = useState(7)
+
+  useEffect(() => {
+    const fetchItineraries = async () => {
+      try {
+        const username = localStorage.getItem('username')
+        const itinerariesData = await ItineraryApi.getItineraryByUsername(username)
+        // Fetch additional details for each itinerary
+        const itinerariesWithDetails = await Promise.all(itinerariesData.map(async (itinerary) => {
+          const { flightId, hotelId, attractionId } = itinerary
+          const [flight, hotel, attraction] = await Promise.all([
+            ItineraryApi.getFlightById(flightId),
+            ItineraryApi.getHotelById(hotelId),
+            ItineraryApi.getAttractionById(attractionId)
+          ])
+          return {
+            ...itinerary,
+            flightCountry: flight.arrival_country, // Assuming the flight object has an arrival_country property
+            hotelName: hotel.name,
+            flightDate: flight.departure_date,
+            attractionName: attraction.name
+          }
+        }))
+        setItineraries(itinerariesWithDetails)
+      } catch (error) {
+        console.error('Error fetching itineraries:', error)
+      }
+    }
+
+    fetchItineraries()
+  }, [])
+  const handleClick = () => {
+    const navigate = useNavigate()
+    navigate('/components/innerPages/ItineraryDetailPage')
+  }
   const onLoadMoreClick = () => {
     setVisible(v => v + 6)
   }
+  let content = null
+  if (itineraries.length === 0) {
+    content = <NoItinerariesFound />
+  } else {
+    content = (
+    <>
+      <Posts>
+        {itineraries.slice(0, visible).map((itinerary, index) => (
+          <PostContainer key={index}>
+            <Post className="group" as="a" onClick={handleClick}>
+              <Image/>
+              <Info>
+                <Category>{itinerary.flightCountry}</Category>
+                <CreationDate>{itinerary.flightDate}</CreationDate>
+                <Title>Visit {itinerary.flightCountry}</Title>
+              </Info>
+            </Post>
+          </PostContainer>
+        ))}
+      </Posts>
+      {visible < itineraries.length && (
+        <ButtonContainer>
+          <LoadMoreButton onClick={onLoadMoreClick}>Load More</LoadMoreButton>
+        </ButtonContainer>
+      )}
+    </>
+    )
+  }
+
   return (
-      <Container>
-        <ContentWithPaddingXl>
-          <HeadingRow>
-            <Heading>{headingText}</Heading>
-          </HeadingRow>
-          <Posts>
-            {posts.slice(0, visible).map((post, index) => (
-              <PostContainer key={index} featured={post.featured}>
-                <Post className="group" as="a" href={post.url}>
-                  <Image imageSrc={post.imageSrc} />
-                  <Info>
-                    <Category>{post.category}</Category>
-                    <CreationDate>{post.date}</CreationDate>
-                    <Title>{post.title}</Title>
-                    {post.featured}
-                  </Info>
-                </Post>
-              </PostContainer>
-            ))}
-          </Posts>
-          {visible < posts.length && (
-            <ButtonContainer>
-              <LoadMoreButton onClick={onLoadMoreClick}>Load More</LoadMoreButton>
-            </ButtonContainer>
-          )}
-        </ContentWithPaddingXl>
-      </Container>
+  <Container>
+    <ContentWithPaddingXl>
+      <HeadingRow>
+        <Heading>{headingText}</Heading>
+      </HeadingRow>
+      {content}
+    </ContentWithPaddingXl>
+  </Container>
   )
 }
 
-const getPlaceholderPost = () => ({
-  imageSrc:
-    'https://images.unsplash.com/photo-1418854982207-12f710b74003?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80',
-  category: 'Bali',
-  date: 'April 9, 2024',
-  title: 'Visit Bali #1',
-  url: '/components/blocks/Pricing/ThreePlans'
-})
+const NoItinerariesFound = () => (
+  <div style={{ textAlign: 'center', marginTop: '20px' }}>
+    <p>No itineraries found currently. Happy exploring!</p>
+  </div>
+)
+
+// const getPlaceholderPost = () => ({
+//   imageSrc:
+//     'https://images.unsplash.com/photo-1418854982207-12f710b74003?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80',
+//   category: 'Bali',
+//   date: 'April 9, 2024',
+//   title: 'Visit Bali #1',
+//   url: '/components/blocks/Pricing/ThreePlans'
+// })
 // import React, { useState, useEffect } from 'react'
 // import { Container, ContentWithPaddingXl } from 'components/misc/Layouts'
 // import tw from 'twin.macro'

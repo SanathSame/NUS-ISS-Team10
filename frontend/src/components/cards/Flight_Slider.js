@@ -123,7 +123,7 @@ export default () => {
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: Math.min(1, filteredFlights.length)
+          slidesToShow: Math.min(2, filteredFlights.length)
         }
       }
     ]

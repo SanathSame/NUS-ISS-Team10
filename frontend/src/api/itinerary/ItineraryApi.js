@@ -16,6 +16,9 @@ const getItineraries = async () => {
 const getItineraryById = async (entityId) => {
   return await RequestTypes.getRequest(`${itineraryEndpoint + entityId}`)
 }
+const getItineraryByUsername = async (username) => {
+  return await RequestTypes.getRequest(`${itineraryEndpoint + username}`)
+}
 
 const getItinerariesByFilter = async (filterParams) => {
   return await RequestTypes.getRequest(itineraryEndpoint, {
@@ -49,6 +52,7 @@ export const ItineraryApi = {
   createNewItinerary,
   getItineraries,
   getItineraryById,
+  getItineraryByUsername,
   getItinerariesByFilter,
   updateItineraryById,
   deleteItineraryById,

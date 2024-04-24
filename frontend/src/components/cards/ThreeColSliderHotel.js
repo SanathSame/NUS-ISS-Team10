@@ -79,7 +79,6 @@ const SearchButton = styled.button`
 `
 
 export default () => {
-  // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
   const [sliderRef, setSliderRef] = useState(null)
   const [hotels, setHotels] = useState([])
   const [originalHotels, setOriginalHotels] = useState([])
@@ -93,7 +92,6 @@ export default () => {
           slidesToShow: 2
         }
       },
-
       {
         breakpoint: 900,
         settings: {
@@ -110,7 +108,6 @@ export default () => {
   const fetchHotels = async () => {
     try {
       const fetchedHotels = await HotelApi.getHotels()
-      console.log('data.data: ', fetchedHotels.data.data)
       setHotels(fetchedHotels.data.data)
       setOriginalHotels(fetchedHotels.data.data)
     } catch (error) {
@@ -125,10 +122,10 @@ export default () => {
       searchQuery = searchInput.value.toLowerCase()
     }
     console.log('Search Query:', searchQuery)
-    console.log('Hotels Before Filtering:', hotels)
+    console.log('Original Hotels Before Filtering:', originalHotels)
     if (!searchQuery) {
       // If search query is empty, fetch hotels again
-      fetchHotels()
+      setHotels(originalHotels) // Reset hotels to original list
     } else {
       const filteredHotels = originalHotels.filter(hotel => {
         const hotelName = hotel.name.toLowerCase()
@@ -162,7 +159,7 @@ export default () => {
         <CardSlider ref={setSliderRef} {...sliderSettings}>
           {hotels.map((hotel, index) => (
             <Card key={index}>
-               <CardImage imageSrc={hotel.hotel_image}/>
+              <CardImage imageSrc={hotel.hotel_image}/>
               <TextInfo>
                 <TitleReviewContainer>
                   <Title>{hotel.name}</Title>
@@ -182,12 +179,12 @@ export default () => {
                     <IconContainer>
                       <PriceIcon />
                     </IconContainer>
-                    <Text>{hotel.price}</Text>
+                    <Text>{hotel.price}/night</Text>
                   </IconWithText>
                 </SecondaryInfoContainer>
                 <Description>{hotel.description}</Description>
               </TextInfo>
-              <PrimaryButton>Add to Itenerary</PrimaryButton>
+              <PrimaryButton>Add to Itinerary</PrimaryButton>
             </Card>
           ))}
         </CardSlider>

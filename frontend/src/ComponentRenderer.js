@@ -81,6 +81,7 @@ import FiveColumnWithInputFormFooter from 'components/footers/FiveColumnWithInpu
 import FiveColumnWithBackgroundFooter from 'components/footers/FiveColumnWithBackground.js'
 import FiveColumnDarkFooter from 'components/footers/FiveColumnDark.js'
 import MiniCenteredFooter from 'components/footers/MiniCenteredFooter.js'
+import ItineraryDetailPage from 'pages/ItineraryDetailPage'
 
 export const components = {
   landingPages: {
@@ -160,6 +161,10 @@ export const components = {
     ItineraryPage: {
       component: Itinerary,
       url: '/components/innerPages/ItineraryPage'
+    },
+    ItineraryDetailPage: {
+      component: ItineraryDetailPage,
+      url: '/components/innerPages/ItineraryDetailPage'
     },
     LogoutPage: {
       component: LogoutPage,

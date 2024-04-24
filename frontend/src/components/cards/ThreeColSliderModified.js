@@ -79,7 +79,6 @@ const SearchButton = styled.button`
 `
 
 export default () => {
-  // useState is used instead of useRef below because we want to re-render when sliderRef becomes available (not null)
   const [sliderRef, setSliderRef] = useState(null)
   const [attractions, setAttractions] = useState([])
   const [originalAttractions, setOriginalAttractions] = useState([])
@@ -93,7 +92,6 @@ export default () => {
           slidesToShow: 2
         }
       },
-
       {
         breakpoint: 900,
         settings: {
@@ -110,7 +108,6 @@ export default () => {
   const fetchAttractions = async () => {
     try {
       const fetchedAttractions = await AttractionApi.getAttractions()
-      console.log('data.data: ', fetchedAttractions.data.data)
       setAttractions(fetchedAttractions.data.data)
       setOriginalAttractions(fetchedAttractions.data.data)
     } catch (error) {
@@ -125,10 +122,10 @@ export default () => {
       searchQuery = searchInput.value.toLowerCase()
     }
     console.log('Search Query:', searchQuery)
-    console.log('Attractions Before Filtering:', attractions)
+    console.log('Original Attractions Before Filtering:', originalAttractions)
     if (!searchQuery) {
       // If search query is empty, fetch attractions again
-      fetchAttractions()
+      setAttractions(originalAttractions) // Reset attractions to original list
     } else {
       const filteredAttractions = originalAttractions.filter(attraction => {
         const attractionName = attraction.name.toLowerCase()
@@ -162,7 +159,7 @@ export default () => {
         <CardSlider ref={setSliderRef} {...sliderSettings}>
           {attractions.map((attraction, index) => (
             <Card key={index}>
-               <CardImage imageSrc={attraction.attraction_image} alt="Attraction Image"/>
+              <CardImage imageSrc={attraction.attraction_image} alt="Attraction Image"/>
               <TextInfo>
                 <TitleReviewContainer>
                   <Title>{attraction.name}</Title>
@@ -187,7 +184,7 @@ export default () => {
                 </SecondaryInfoContainer>
                 <Description>{attraction.description}</Description>
               </TextInfo>
-              <PrimaryButton>Add to Itenerary</PrimaryButton>
+              <PrimaryButton>Add to Itinerary</PrimaryButton>
             </Card>
           ))}
         </CardSlider>
