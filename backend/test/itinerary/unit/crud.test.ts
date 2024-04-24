@@ -62,11 +62,11 @@ describe('/users/', () => {
     expect(res.statusCode).toEqual(StatusCode.SuccessOK)
   })
 
-  test('returns an object containing the email of the entity requested', async () => {
+  test('returns an object containing details of the entity requested', async () => {
     const res: any = await request(TestSetup.app)
       .get(`/itineraries/${defaultEntityId}`)
 
-    expect(res.body.data.username).toEqual(SampleEntities[0].username)
+    expect(res.body.data.data.username).toEqual(SampleEntities[0].username)
   })
 
   test('returns status code 200 if it accepts a given entity with appropriate id and details', async () => {
@@ -82,7 +82,7 @@ describe('/users/', () => {
       .patch(`/itineraries/${defaultEntityId}`)
       .send({ username: 'Neville' })
 
-    expect(res.body.data.username).toEqual('Neville')
+    expect(res.body.data.data.username).toEqual('Neville')
   })
 
   test('returns status code 200 if it deletes a given entity id', async () => {

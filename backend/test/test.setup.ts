@@ -43,7 +43,7 @@ const beforeEachFunction = beforeEach(async () => {
   "('123456789012345678901234', '1', '123456789012345678901236', '661609ebfc13ae7ef9ab89f5', '2022-04-28', 'shawn') RETURNING *")
 
   await productObject.one('INSERT INTO itinerarys (_id, flight_id, hotel_id, attraction_id, date, username) VALUES ' +
-  "('123456789012345678901235', '2', '123456789012345678901236', '661609ebfc13ae7ef9ab89f6', '2022-06-07', 'shawn') RETURNING *")
+  "('123456789012345678901235', '1', '123456789012345678901236', '661609ebfc13ae7ef9ab89f5', '2022-06-07', 'shawn') RETURNING *")
 })
 
 const afterEachFunction = afterEach(async () => {
