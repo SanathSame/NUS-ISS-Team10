@@ -17,12 +17,6 @@ CREATE OR REPLACE FUNCTION generate_object_id() RETURNS varchar AS $$
     END;
 $$ LANGUAGE PLPGSQL;
 
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS entities;
-DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS attractions;
-DROP TABLE IF EXISTS flights;
-
 create table users (
 	_id varchar(24) NOT NULL DEFAULT generate_object_id(),
 	username VARCHAR(50) PRIMARY KEY,
@@ -47,7 +41,7 @@ create table products (
 );
 
 create table attractions (
-    _id varchar(24) NOT NULL DEFAULT generate_object_id(),
+    _id varchar(24) NOT NULL DEFAULT generate_object_id() UNIQUE,
     name VARCHAR(50) NOT NULL,
 	city VARCHAR(50) NOT NULL,
 	country VARCHAR(50) NOT NULL,
@@ -59,7 +53,7 @@ create table attractions (
 );
 
 create table flights (
-    _id varchar(24) NOT NULL DEFAULT generate_object_id(),
+    _id varchar(24) NOT NULL DEFAULT generate_object_id() UNIQUE,
 	departure_city VARCHAR(50) NOT NULL,
     departure_country VARCHAR(50) NOT NULL,
 	arrival_city VARCHAR(50) NOT NULL,
