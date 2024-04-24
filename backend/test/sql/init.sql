@@ -76,7 +76,7 @@ create table hotels (
     hotel_image VARCHAR(500) NOT NULL
 );
 
-CREATE TABLE itinerary (
+CREATE TABLE itinerarys (
     _id VARCHAR(24) NOT NULL DEFAULT generate_object_id(),
     flight_id VARCHAR(24) NOT NULL,
     hotel_id VARCHAR(24) NOT NULL,
