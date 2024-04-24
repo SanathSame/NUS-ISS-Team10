@@ -1302,11 +1302,11 @@ insert into flights (_id, departure_city, departure_country, arrival_city, arriv
 insert into flights (_id, departure_city, departure_country, arrival_city, arrival_country, departure_date, departure_time, flight_duration, ticket_price) values ('1000', 'Da Nang', 'Vietnam', 'Phuket', 'Thailand', '03-05-2024', '2:41 AM', 10, 56.04);
 
 
--- -- Inserting 5 values for the user "sanath" into the itinerary table
--- INSERT INTO itinerary (_id, flight_id, hotel_id, attraction_id, date, username)
--- VALUES
--- ('1', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-03', 'sanath'),
--- ('2', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-04', 'sanath'),
--- ('3', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-05', 'sanath'),
--- ('4', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-06', 'sanath'),
--- ('5', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-07', 'sanath');
+-- Inserting 5 values for the user "sanath" into the itinerary table
+INSERT INTO itinerarys (_id, flight_id, hotel_id, attraction_id, date, username)
+VALUES
+('1', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-03', 'shawn'),
+('2', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-04', 'shawn'),
+('3', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-05', 'shawn'),
+('4', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-06', 'shawn'),
+('5', '108', '65e57316fc13ae561bfa20ef', '661609ebfc13ae7ef9ab89f5', '2024-05-07', 'shawn');
