@@ -4,7 +4,7 @@ import { SampleEntities } from '../data/entities.sample'
 
 import * as TestSetup from '../../test.setup'
 
-const defaultEntityId: string = '661609ebfc13ae7ef9ab89f5'
+const defaultEntityId: string = '123456789012345678901237'
 
 describe('/hotels/', () => {
   test('returns status code 200 if api is set up correctly', async () => {
