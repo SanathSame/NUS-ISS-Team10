@@ -54,8 +54,8 @@ export default ({
   useEffect(() => {
     const fetchItineraries = async () => {
       try {
-        const username = localStorage.getItem('username')
-        const itinerariesData = await ItineraryApi.getItineraryByUsername(username)
+        // const username = localStorage.getItem('username')
+        const itinerariesData = await ItineraryApi.getItinerariesByFilter({ username: 'sanath' })
         // Fetch additional details for each itinerary
         const itinerariesWithDetails = await Promise.all(itinerariesData.map(async (itinerary) => {
           const { flightId, hotelId, attractionId } = itinerary
