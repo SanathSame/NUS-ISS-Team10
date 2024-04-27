@@ -135,29 +135,25 @@ jobs:
     - name: Analyze with CodeQL
       uses: github/codeql-action/analyze@v3
 
-    - name: Upload SARIF results
-      uses: github/codeql-action/upload-sarif@v3
-      with:
-        sarif_file: javascript.sarif
 
-    - name: Extract and Format Vulnerabilities
-      id: format-vulnerabilities
-      run: |
-        # Extract and format vulnerabilities from the SARIF file
-        # Store the formatted output in a variable
+    - name: Get Pull Request Number
+      id: pr-number
+      run: echo "::set-output name=pr_number::$(echo ${{ github.event.pull_request.number }})"
 
-    - name: Post Comment
-      if: always()
+    - name: Create Code Scanning Comment
+      if: ${{ github.event_name == 'pull_request' }}
       uses: actions/github-script@v4
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const formattedVulnerabilities = ${{ steps.format-vulnerabilities.outputs.vulnerabilities }};
-          const context = github.context;
-          const octokit = new github.GitHub(process.env.GITHUB_TOKEN);
-          octokit.issues.createComment({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            issue_number: context.issue.number,
-            body: formattedVulnerabilities
+          const prNumber = ${{ steps.pr-number.outputs.pr_number }};
+          const repoOwner = context.repo.owner;
+          const repoName = context.repo.repo;
+          const commentBody = `Check out the Code Scanning results for this pull request [here](https://github.com/${repoOwner}/${repoName}/security/code-scanning?query=pr%3A${prNumber}+is%3Aopen)`;
+
+          github.issues.createComment({
+            owner: repoOwner,
+            repo: repoName,
+            issue_number: prNumber,
+            body: commentBody
           });
