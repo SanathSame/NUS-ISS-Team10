@@ -138,4 +138,26 @@ jobs:
     - name: Upload SARIF results
       uses: github/codeql-action/upload-sarif@v3
       with:
-        sarif_file: codeql-results.sarif
+        sarif_file: javascript.sarif
+
+    - name: Extract and Format Vulnerabilities
+      id: format-vulnerabilities
+      run: |
+        # Extract and format vulnerabilities from the SARIF file
+        # Store the formatted output in a variable
+
+    - name: Post Comment
+      if: always()
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const formattedVulnerabilities = ${{ steps.format-vulnerabilities.outputs.vulnerabilities }};
+          const context = github.context;
+          const octokit = new github.GitHub(process.env.GITHUB_TOKEN);
+          octokit.issues.createComment({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: context.issue.number,
+            body: formattedVulnerabilities
+          });
