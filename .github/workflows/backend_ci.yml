@@ -9,7 +9,7 @@ on:
       - '.github/workflows/backend_ci.yml'
 
 jobs:
-   build-image:
+  build-image:
     runs-on: ubuntu-latest
 
     defaults:
