@@ -87,3 +87,50 @@ jobs:
 
     - name: Lint Codebase
       run: npm run lint
+
+
+  sast-scan:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./backend
+    
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: typescript
+
+    - name: Analyze with CodeQL
+      uses: github/codeql-action/analyze@v3
+
+
+    - name: Get Pull Request Number
+      id: pr-number
+      run: echo "::set-output name=pr_number::$(echo ${{ github.event.pull_request.number }})"
+
+    - name: Create Code Scanning Comment
+      if: ${{ github.event_name == 'pull_request' }}
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const prNumber = ${{ steps.pr-number.outputs.pr_number }};
+          const repoOwner = context.repo.owner;
+          const repoName = context.repo.repo;
+          const commentBody = `Check out the Code Scanning results for this pull request [here](https://github.com/${repoOwner}/${repoName}/security/code-scanning?query=pr%3A${prNumber}+is%3Aopen)`;
+
+          github.issues.createComment({
+            owner: repoOwner,
+            repo: repoName,
+            issue_number: prNumber,
+            body: commentBody
+          });
